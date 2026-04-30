@@ -38,6 +38,11 @@ export const useUserStore = defineStore('User', {
 
         },
         async login(body: logInReq) {
+
+            function setToken(token: string): void {
+                localStorage.setItem('token', token)
+            }
+
             const {success, message, error} = await login(body)
             this.error = error?.message
             if (success) {
@@ -56,6 +61,9 @@ export const useUserStore = defineStore('User', {
 
 
         async register(body: signUpReq) {
+            function setToken(token: string): void {
+                localStorage.setItem('token', token)
+            }
             const {success, message} = await register(body)
             if (success) {
                 const token = useCookie('token')
@@ -72,6 +80,16 @@ export const useUserStore = defineStore('User', {
         },
 
         async logout() {
+
+         function getToken() {
+
+                if (process.client) {
+                    return localStorage.getItem('token')
+                }
+            }
+           function clearToken(): void {
+                localStorage.removeItem('token')
+            }
             const {success} = await logOutUser({token: getToken()!})
             if (success) {
                 const token = useCookie('token')
