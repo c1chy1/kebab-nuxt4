@@ -1,0 +1,30 @@
+{
+  "name": "kebab-nuxt4",
+  "type": "module",
+  "private": true,
+  "scripts": {
+    "build": "nuxt build",
+    "dev": "nuxt dev",
+    "generate": "nuxt generate",
+    "preview": "nuxt preview",
+    "postinstall": "nuxt prepare"
+  },
+  "dependencies": {
+    "@formkit/nuxt": "^2.0.0",
+    "@nuxt/icon": "2.2.1",
+    "@nuxt/image": "2.0.0",
+    "jsonwebtoken": "^9.0.3",
+    "nuxt": "^4.4.2",
+    "pinia": "^3.0.4",
+    "mongoose": "^9.6.1",
+    "mongoose-bcrypt": "^1.11.0",
+    "vue": "^3.5.33",
+    "vue-router": "^5.0.6",
+    "vue3-toastify": "^0.2.9"
+  },
+
+  "devDependencies": {
+    "@pinia/nuxt": "^0.11.3",
+    "@types/jsonwebtoken": "^9.0.10"
+  }
+}
