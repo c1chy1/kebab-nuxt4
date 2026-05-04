@@ -1,0 +1,220 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+
+/*@font-face {
+
+  font-family: 'Alfa Slab One';
+  font-face-name: 'alfa';
+  font-display: swap;
+  src: url('public/fonts/AlfaSlabOne-Regular.woff2') format('woff2');
+
+}
+
+@font-face {
+  font-family: 'Bebas Neue';
+  font-display: swap;
+  src: url('public/fonts/BebasNeue.woff2') format('woff2');
+  font-weight: 700;
+}
+
+@font-face {
+  font-family: 'Montserrat';
+  font-display: swap;
+  src: url('public/fonts/Montserrat-Bold.woff2') format('woff2');
+font-weight: 700;
+}
+
+@font-face {
+  font-family: 'Montserrat';
+  font-display: swap;
+  src: url('public/fonts/Montserrat-Regular.woff2') format('woff2');
+  font-weight: 400;
+}*/
+
+
+:root {
+  font-size: 16px;
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  -webkit-text-size-adjust: 100%;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  font-family: Montserrat, sans-serif;
+  line-height: 28px;
+  font-weight: 400;
+  overflow-x: hidden;
+  text-rendering: geometricPrecision;
+
+
+}
+
+html:has(:is(.modal-open, .modal:target, .modal-toggle:checked + .modal, .modal[open])) {
+  overflow-x: clip !important;
+  overflow-y: scroll !important;
+
+}
+
+@layer base {
+
+  p {
+    color:black;
+  }
+  .toast-center {
+    text-align: center;
+  }
+
+  #register form {
+    @apply w-2/3 sm:w-1/2 mx-auto
+  }
+
+  #login form {
+    @apply w-2/3 sm:w-1/2 mx-auto
+  }
+  #contact {
+    p {
+      color:white;
+    }
+    h2 {
+      color:white;
+    }
+    span {
+      &:hover {
+        color: #ffc107;
+      }
+    }
+    a{
+      color:white;
+      &:hover {
+        color: #ffc107;
+      }
+    }
+  }
+}
+
+
+@layer components {
+
+  .button-orange {
+
+    @apply py-2 px-4 xl:py-4 xl:px-10 bg-[#ff6d00] font-alfa leading-none rounded hover:bg-primary border-none uppercase text-center text-base font-medium text-white transition-all ease-out duration-300  inline-block ;
+  }
+
+  .form-label {
+
+    @apply py-1 sm:py-2 xl:py-3 inline-block font-mont xl:text-xl text-primary text-left font-semibold  tracking-wider transition-all duration-500
+  }
+
+  .form-input {
+
+    @apply h-7  sm:h-8 xl:h-10 pl-1 sm:pl-2 w-full font-bebas text-base sm:text-lg text-[#3d3d3d] input join-item shadow-none border-[#ced4da]  focus:outline-1 focus:outline-offset-0
+
+  }
+
+  .form-validation {
+
+    @apply text-xs  xl:text-sm    mt-1   p-1.5  bottom-8 sm:bottom-10  xl:bottom-12 font-bebas w-full absolute text-white bg-error rounded
+
+  }
+
+
+  .scroll-top-button {
+
+    @apply absolute bottom-0 -left-3  bg-primary flex justify-center items-center w-11 h-11 rounded-full  transition-all
+
+  }
+
+  .section-title {
+
+    @apply text-primary text-center  text-2xl font-alfa sm:text-[36px] lg:text-[50px] mb-2.5 leading-tight font-medium uppercase
+
+  }
+
+}
+
+[data-theme='dark'] {
+
+
+  html {
+
+    background-color: #393552;
+
+  }
+  @layer base {
+    body {
+      @apply bg-primary bg-[url('/bg.png')]
+    }
+    h2 , p {
+      color: oklch(0.8 0 0);
+    }
+    h5 { background-color: oklch(0.3 0 0)
+    }
+
+    #events {
+      .hero-content {
+        background-color: oklch(0.8 0 0);
+        h2 , p {
+          color: oklch(0.3 0 0);
+        }
+      }
+    }
+
+    .form-input,.form-label {
+      color: oklch(0.8 0 0);
+    }
+    #cart h2 {
+      color: black;
+    }
+  }
+
+  @layer components {
+
+    .button-orange {
+
+      @apply bg-secondary hover:bg-[#BEBEBEFF] hover:text-primary
+    }
+    .menu-mobile a {
+      @apply text-primary
+    }
+
+  }
+
+
+  #sidebar button {
+
+    @apply transition-all duration-700
+  }
+  #theme svg {
+    fill: oklch(0.8 0 0);
+  }
+  .background-dark-header {
+    background: rgb(142, 31, 31, 0.5)
+  }
+
+  .shadow-dark-sm {
+
+    box-shadow: 7px 7px 13px 7px rgba(0, 0, 0, 0.3);
+  }
+
+  .shadow-dark-lg {
+
+    box-shadow: 15px 15px 25px 15px rgba(0, 0, 0, 0.5);
+  }
+
+  .filter-dark {
+
+    @apply grayscale
+
+  }
+  .sidebar {
+
+    background: #006b00
+
+  }
+}
