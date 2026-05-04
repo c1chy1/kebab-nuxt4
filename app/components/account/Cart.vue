@@ -12,10 +12,8 @@ import Draggable from 'gsap/Draggable'
 const cart = ref()
 const items = ref()
 const select = ref()
-const tl = gsap.timeline()
-let mm = gsap.matchMedia();
-gsap.registerPlugin(Draggable)
-
+let tl: gsap.core.Timeline
+let mm: gsap.MatchMedia
 
 async function placeOrderHandler() {
   try {
@@ -32,6 +30,9 @@ async function placeOrderHandler() {
 
 
 onMounted(() => {
+  gsap.registerPlugin(Draggable)
+  tl = gsap.timeline()
+  mm = gsap.matchMedia()
 
   let closedPositionW = cart.value.offsetWidth - 35
 
