@@ -14,11 +14,11 @@ useHead({
 </script>
 <template >
   <LayoutNavigation/>
-<!--  <LayoutHeader/>-->
-<!--  <LayoutHome/>-->
-<!--  <LayoutMenu/>-->
+  <LayoutHeader/>
+  <SectionsHome/>
+  <LayoutMenu/>
 <!--  <LayoutEvents/>-->
-  <LayoutGallery/>
+  <SectionsGallery/>
   <section class="
   bg-[length:10rem_22rem]
   sm:bg-[length:18rem_35rem]
