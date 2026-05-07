@@ -11,13 +11,13 @@
     <span class="top-5  bg-[#3d2514]"></span>
 
   </div>
-  <div ref="menu" class="menu-mobile right-0 top-0 cursor-pointer font-mont " id="menu-mobile">
+  <div class="menu-mobile right-0 top-0 cursor-pointer font-mont " id="menu-mobile">
     <div ref="bgMenu" class=" h-screen px-4 bg-menu-mobile bg-accent " id="bg-menu-mobile">
-      <ul class="space-y-2  w-full fixed">
+      <ul ref="menu" class="space-y-2  w-full fixed">
         <li><nuxt-link hash="#header" @click="toggle();$scrollTo('#header')" >Home</nuxt-link></li>
         <li><nuxt-link hash="#menu" @click="toggle();$scrollTo('#menu')"  >Menu</nuxt-link></li>
         <li><nuxt-link hash="#events" @click="toggle();$scrollTo('#events')">Events</nuxt-link></li>
-        <li><nuxt-link hash="#register" @click="toggle();$scrollTo('#login')">Log In</nuxt-link></li>
+        <li><nuxt-link hash="#login" @click="toggle();$scrollTo('#login')">Log In</nuxt-link></li>
         <li><nuxt-link hash="#gallery" @click="toggle();$scrollTo('#gallery')">Gallery</nuxt-link></li>
         <li><nuxt-link hash="#contact" @click="toggle();$scrollTo('#contact')">Contact Us</nuxt-link></li>
       </ul>
@@ -28,61 +28,48 @@
 </template>
 
 <script setup lang="ts">
-const { $gsap } = useNuxtApp()
-const {$scrollTo}  = useNuxtApp()
+const { gsap } = useGSAP();
+const { $scrollTo } = useNuxtApp()
 
-let open = ref(false)
+const open = ref(false)
+const menu = ref<HTMLElement>()
+const bgMenu = ref<HTMLElement>()
 
-let estado = 0
-const width = ref()
 function toggle() {
+  if (!bgMenu.value || !menu.value) return
 
   open.value = !open.value
+  const width = window.innerWidth
+  const items = menu.value.querySelectorAll('li')
 
-  if (process.client) {
-
-    width.value = window.innerWidth
-  }
-  if (estado === 0) {
-    $gsap.to('.bg-menu-mobile', 0.7, {
-      x:-width.value,
-
-      ease: "expo.easeInOut"
-    });
-
-
-    $gsap.to('.menu-mobile li', 1.2, {
-      x:-width.value,
-      scaleX: 1,
+  if (open.value) {
+    gsap.to(bgMenu.value, {
+      duration: 0.7,
+      x: -width,
+      ease: 'expo.inOut',
+    })
+    gsap.to(items, {
       duration: 0.5,
-      delay : 0.2,
+      x: -width,
+      delay: 0.2,
       stagger: 0.04,
-      ease: "Expo.easeInOut"
-    });
-
-    estado = 1;
+      ease: 'expo.inOut',
+    })
   } else {
-    estado = 0;
-    $gsap.to('.bg-menu-mobile', 1.2, {
-          x: 0,
-          delay: 0.2,
-          ease: "Expo.easeInOut"
-        }
-    );
-
-    $gsap.to('.menu-mobile li', 0.7, {
-          x: 0,
-          duration: 0.5,
-          stagger: 0.04,
-          ease: "expo.easeInOut"
-        },
-    );
-  }}
-
-
-
-
-
+    gsap.to(items, {
+      duration: 0.5,
+      x: 0,
+      stagger: 0.04,
+      ease: 'expo.inOut',
+    })
+    gsap.to(bgMenu.value!, {
+      duration: 0.7,
+      x: 0,
+      delay: 0.2,
+      ease: 'expo.inOut',
+    })
+  }
+}
 
 </script>
 

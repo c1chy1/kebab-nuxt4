@@ -44,6 +44,7 @@
 
 import Lightgallery from "lightgallery";
 import 'lightgallery/scss/lightgallery.scss'
+const { public: { lightgalleryLicense } } = useRuntimeConfig()
 const gallery = ref()
 
 function lightGallery() {
@@ -102,6 +103,7 @@ const gallerySettings = {
   speed: 500,
   download: false,
   counter: false,
+  licenseKey: lightgalleryLicense,
 }
 </script>
 

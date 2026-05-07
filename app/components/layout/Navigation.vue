@@ -34,7 +34,7 @@ bg-repeat-round  lg:px-12 xl:px-16  font-bebas">
             <nuxt-link hash="#gallery" @click="$scrollTo('#gallery')">Gallery</nuxt-link>
           </li>
           <li>
-            <nuxt-link hash="#register" @click="$scrollTo('#login')">Log In</nuxt-link>
+            <nuxt-link hash="#login" @click="$scrollTo('#login')">Log In</nuxt-link>
           </li>
           <li>
             <nuxt-link hash="#contact" @click="$scrollTo('#contact')">Contact Us</nuxt-link>
@@ -59,37 +59,28 @@ bg-repeat-round  lg:px-12 xl:px-16  font-bebas">
 
 
 <script setup lang="ts">
-import {ScrollTrigger} from "gsap/ScrollTrigger";
-import ScrollToTop from "~/components/ui/ScrollToTop.vue";
+const { gsap, lazyLoadPlugin } = useGSAP();
 
 const {$scrollToTop, $scrollTo} = useNuxtApp()
-const {$gsap} = useNuxtApp()
+
 const navbar = ref()
 const menu = ref()
 const mobilNav = ref()
 const scrollToTop = ref()
 
 
-onMounted(() => {
+onMounted(async () => {
+  await lazyLoadPlugin("ScrollTrigger");
 
-
-  $gsap.registerPlugin(ScrollTrigger);
-
-
-  $gsap.to(scrollToTop.value, {
+  gsap.set(scrollToTop.value, {
     opacity: 0,
     xPercent: 200,
-
   })
-  $gsap.to(mobilNav.value, {
+  gsap.set(mobilNav.value, {
     opacity: 0,
   })
 
-  $gsap.set(navbar.value, {
-    yPercent: 0
-  })
-
-  const tl = $gsap.timeline({
+  const tl = gsap.timeline({
     scrollTrigger: {
       start: 'top+=50',
       end: 'top+=100',
@@ -118,7 +109,3 @@ onMounted(() => {
   })
 })
 </script>
-<style scoped>
-.nav-bg {
-}
-</style>
