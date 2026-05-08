@@ -29,6 +29,9 @@ const swiper = useSwiper(containerRef, {
         --swiper-pagination-bullet-height: 17px;
         --swiper-pagination-color: #ff6d00;
         --swiper-pagination-bullet-horizontal-gap: 6px;
+        --swiper-pagination-left : 4.5rem;
+        --swiper-pagination-bottom: 4rem;
+        --swiper-pagination-width: 2rem;
       "
     >
       <swiper-slide
@@ -61,13 +64,3 @@ const swiper = useSwiper(containerRef, {
     </swiper-container>
   </section>
 </template>
-
-<style lang="scss" scoped>
-@media screen and (min-width: 1024px) {
-  .swiper-container {
-    --swiper-pagination-bottom: 4rem;
-    --swiper-pagination-left: 4.5rem;
-    --swiper-pagination-text-align: left;
-  }
-}
-</style>
