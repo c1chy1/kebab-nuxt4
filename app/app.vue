@@ -2,10 +2,11 @@
   <div
       :data-theme="themeStore.theme"
       class="duration-700 transition-all">
+    <AccountDashboard v-if="user.isLoggedIn"/>
     <main>
       <NuxtPage/>
     </main>
-<!--    <AccountDashboard/>-->
+
   </div>
 </template>
 <script setup lang="ts">
