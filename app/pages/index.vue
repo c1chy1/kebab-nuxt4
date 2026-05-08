@@ -17,7 +17,7 @@ useHead({
   <LayoutHeader/>
   <SectionsHome/>
   <LayoutMenu/>
-<!--  <LayoutEvents/>-->
+  <LayoutEvents/>
   <SectionsGallery/>
   <section class="
   bg-[length:10rem_22rem]
