@@ -1,7 +1,7 @@
 // https://nuxt.com/docs/api/configuration/nuxt-config
 export default defineNuxtConfig({
   devtools: { enabled: true },
-  modules: ['@nuxt/image', '@nuxt/icon','@pinia/nuxt','@formkit/nuxt','@nuxtjs/tailwindcss','@tailwindcss/typography','nuxt-swiper'],
+  modules: ['@nuxt/image', '@nuxt/icon','@pinia/nuxt','@formkit/nuxt','@nuxtjs/tailwindcss','@tailwindcss/typography','nuxt-swiper','@nuxtjs/fontaine'],
   formkit: {
     autoImport: true,
   },
