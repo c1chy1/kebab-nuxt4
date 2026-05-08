@@ -9,7 +9,7 @@
          class="max-toolbar opacity-0 top-0 sm:top-1 xl:top-2 sm:mr-4 h-10 pl-2 -right-2 lg:-right-6 transition-all duration-700 flex items-center justify-center border-2 border-[#b9cf21] absolute rounded-full ">
 
       <div class="flex items-center space-x-3 pr-2  transition-all duration-70">
-        <AtomsDashboardIconLogOut
+        <UiIconLogOut
             class="fill-white hover:fill-black w-6 h-6 cursor-pointer"
             @click="store.logout()"
         />
@@ -37,7 +37,7 @@
 
       <ul class="flex flex-col text-sm lg:text-base ">
         <li class="hover:ml-4 w-full text-white bg-secondary p-2 pl-8 rounded-full  flex flex-row items-center space-x-3 transition-all duration-700">
-          <AtomsDashboardIconUser/>
+          <UiIconUser/>
           <button
               onclick="user_modal.showModal()"
               class="cursor-pointer">
@@ -228,7 +228,7 @@
 </template>
 <script setup lang="ts">
 
-import {useUserStore} from "/../stores/userStore";
+import {useUserStore} from "@/stores/userStore";
 import gsap from "gsap";
 import Draggable from "gsap/Draggable";
 
