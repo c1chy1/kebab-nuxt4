@@ -3,35 +3,34 @@
 @tailwind utilities;
 
 
-/*@font-face {
+@font-face {
 
   font-family: 'Alfa Slab One';
-  font-face-name: 'alfa';
   font-display: swap;
-  src: url('public/fonts/AlfaSlabOne-Regular.woff2') format('woff2');
+  src: url('../../../public/fonts/AlfaSlabOne-Regular.woff2') format('woff2');
 
 }
 
 @font-face {
   font-family: 'Bebas Neue';
   font-display: swap;
-  src: url('public/fonts/BebasNeue.woff2') format('woff2');
+  src: url('../../../public/fonts/BebasNeue.woff2') format('woff2');
   font-weight: 700;
 }
 
 @font-face {
   font-family: 'Montserrat';
   font-display: swap;
-  src: url('public/fonts/Montserrat-Bold.woff2') format('woff2');
+  src: url('../../../public/fonts/Montserrat-Bold.woff2') format('woff2');
 font-weight: 700;
 }
 
 @font-face {
   font-family: 'Montserrat';
   font-display: swap;
-  src: url('public/fonts/Montserrat-Regular.woff2') format('woff2');
+  src: url('../../../public/fonts/Montserrat-Regular.woff2') format('woff2');
   font-weight: 400;
-}*/
+}
 
 
 :root {
