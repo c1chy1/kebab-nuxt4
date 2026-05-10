@@ -1,75 +1,68 @@
-# Nuxt Minimal Starter
+# 🥙 Kebab Nuxt 4
 
-Look at the [Nuxt documentation](https://nuxt.com/docs/getting-started/introduction) to learn more.
+Modern full-stack web application built with **Nuxt 4** focused on performance, smooth UX and secure authentication flow.
 
-## Setup
+## 🚀 Tech Stack
 
-Make sure to install dependencies:
+### Frontend
 
-```bash
-# npm
-npm install
+* **Nuxt 4**
+* **Vue 3**
+* **Tailwind CSS**
+* **DaisyUI**
+* **Sass**
 
-# pnpm
-pnpm install
+### State Management
 
-# yarn
-yarn install
+* **Pinia**
 
-# bun
-bun install
-```
+### UI / Animations
 
-## Development Server
+* **GSAP**
+* **Lenis**
+* **Swiper**
+* **LightGallery**
+* **Nuxt Image**
+* **Nuxt Icon**
 
-Start the development server on `http://localhost:3000`:
+### Forms & Validation
 
-```bash
-# npm
-npm run dev
+* **FormKit**
 
-# pnpm
-pnpm dev
+### Backend / Database
 
-# yarn
-yarn dev
+* **MongoDB**
+* **Mongoose**
 
-# bun
-bun run dev
-```
+### Authentication & Security
 
-## Production
+* **JWT (jsonwebtoken)**
+* Password hashing with **mongoose-bcrypt**
 
-Build the application for production:
+## ✨ Features
 
-```bash
-# npm
-npm run build
+* 🛒 Fully functional shopping cart system
+* 🔐 User authentication system:
 
-# pnpm
-pnpm build
+  * Register
+  * Login
+  * JWT session handling
+* 👤 User account flow connected with **MongoDB**
+* 🔒 Secure password hashing and authentication logic
+* ⚡ Optimized image loading and performance improvements
+* 🎨 Smooth animations and modern responsive UI
 
-# yarn
-yarn build
+## 📌 Project Highlights
 
-# bun
-bun run build
-```
+This project combines a modern frontend experience with backend logic and database integration.
+Built as a full-stack practice project to improve skills in:
 
-Locally preview production build:
+* authentication systems
+* database management
+* state management
+* animations & UI interactions
+* scalable Nuxt architecture
 
-```bash
-# npm
-npm run preview
+---
 
-# pnpm
-pnpm preview
-
-# yarn
-yarn preview
-
-# bun
-bun run preview
-```
-
-Check out the [deployment documentation](https://nuxt.com/docs/getting-started/deployment) for more information.
+**Built with ❤️ using Nuxt 4**
