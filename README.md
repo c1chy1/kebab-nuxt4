@@ -7,7 +7,6 @@ Modern full-stack web application built with **Nuxt 4** focused on performance, 
 ### Frontend
 
 * **Nuxt 4**
-* **Vue 3**
 * **Tailwind CSS**
 * **DaisyUI**
 * **Sass**
