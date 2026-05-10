@@ -14,12 +14,12 @@
   <div class="menu-mobile right-0 top-0 cursor-pointer font-mont " id="menu-mobile">
     <div ref="bgMenu" class=" h-screen px-4 bg-menu-mobile bg-accent " id="bg-menu-mobile">
       <ul ref="menu" class="space-y-2  w-full fixed">
-        <li><nuxt-link hash="#header" @click="toggle();$scrollTo('#header')" >Home</nuxt-link></li>
-        <li><nuxt-link hash="#menu" @click="toggle();$scrollTo('#menu')"  >Menu</nuxt-link></li>
-        <li><nuxt-link hash="#events" @click="toggle();$scrollTo('#events')">Events</nuxt-link></li>
-        <li><nuxt-link hash="#login" @click="toggle();$scrollTo('#login')">Log In</nuxt-link></li>
-        <li><nuxt-link hash="#gallery" @click="toggle();$scrollTo('#gallery')">Gallery</nuxt-link></li>
-        <li><nuxt-link hash="#contact" @click="toggle();$scrollTo('#contact')">Contact Us</nuxt-link></li>
+        <li><nuxt-link hash="#header" @click="toggle();scrollTo('#header')" >Home</nuxt-link></li>
+        <li><nuxt-link hash="#menu" @click="toggle();scrollTo('#menu')"  >Menu</nuxt-link></li>
+        <li><nuxt-link hash="#events" @click="toggle();scrollTo('#events')">Events</nuxt-link></li>
+        <li><nuxt-link hash="#login" @click="toggle();scrollTo('#login')">Log In</nuxt-link></li>
+        <li><nuxt-link hash="#gallery" @click="toggle();scrollTo('#gallery')">Gallery</nuxt-link></li>
+        <li><nuxt-link hash="#contact" @click="toggle();scrollTo('#contact')">Contact Us</nuxt-link></li>
       </ul>
     </div>
   </div>
@@ -29,7 +29,8 @@
 
 <script setup lang="ts">
 const { gsap } = useGSAP();
-const { $scrollTo } = useNuxtApp()
+const lenis = useLenis()
+const scrollTo = (selector: string) => lenis.value?.scrollTo(selector, { offset: -80 })
 
 const open = ref(false)
 const menu = ref<HTMLElement>()
