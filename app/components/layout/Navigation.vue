@@ -22,26 +22,26 @@ bg-repeat-round  lg:px-12 xl:px-16  font-bebas">
         <ul ref="menu"
             class="menu menu-horizontal  hidden lg:flex justify-end gap-4 py-0 px-1 lg:text-[18px] xl:text-[24px] tracking-[3px] xl:tracking-[4px] relative uppercase transition-all duration-500">
           <li>
-            <nuxt-link hash="#header" @click="$scrollTo('#header')">Home</nuxt-link>
+            <nuxt-link hash="#header" @click="scrollTo('#header')">Home</nuxt-link>
           </li>
           <li>
-            <nuxt-link hash="#menu" @click="$scrollTo('#menu')">Menu</nuxt-link>
+            <nuxt-link hash="#menu" @click="scrollTo('#menu')">Menu</nuxt-link>
           </li>
           <li>
-            <nuxt-link hash="#events" @click="$scrollTo('#events')">Events</nuxt-link>
+            <nuxt-link hash="#events" @click="scrollTo('#events')">Events</nuxt-link>
           </li>
           <li>
-            <nuxt-link hash="#gallery" @click="$scrollTo('#gallery')">Gallery</nuxt-link>
+            <nuxt-link hash="#gallery" @click="scrollTo('#gallery')">Gallery</nuxt-link>
           </li>
           <li>
-            <nuxt-link hash="#login" @click="$scrollTo('#login')">Log In</nuxt-link>
+            <nuxt-link hash="#login" @click="scrollTo('#login')">Log In</nuxt-link>
           </li>
           <li>
-            <nuxt-link hash="#contact" @click="$scrollTo('#contact')">Contact Us</nuxt-link>
+            <nuxt-link hash="#contact" @click="scrollTo('#contact')">Contact Us</nuxt-link>
           </li>
 
           <li>
-            <button ref="scrollToTop" @click="$scrollToTop" class="scroll-top-button">
+            <button ref="scrollToTopBtn" @click="scrollToTop()" class="scroll-top-button">
               <UiScrollToTop class="fill-white w-4"/>
             </button>
           </li>
@@ -61,18 +61,20 @@ bg-repeat-round  lg:px-12 xl:px-16  font-bebas">
 <script setup lang="ts">
 const { gsap, lazyLoadPlugin } = useGSAP();
 
-const {$scrollToTop, $scrollTo} = useNuxtApp()
+const lenis = useLenis()
 
-const navbar = ref()
-const menu = ref()
-const mobilNav = ref()
-const scrollToTop = ref()
+const scrollTo = (selector: string) => lenis.value?.scrollTo(selector, { offset: -80 })
+const scrollToTop = () => lenis.value?.scrollTo(0)
 
+const navbar = ref<HTMLElement>()
+const menu = ref<HTMLElement>()
+const mobilNav = ref<HTMLElement>()
+const scrollToTopBtn = ref<HTMLElement>()
 
 onMounted(async () => {
   await lazyLoadPlugin("ScrollTrigger");
 
-  gsap.set(scrollToTop.value, {
+  gsap.set(scrollToTopBtn.value, {
     opacity: 0,
     xPercent: 200,
   })
@@ -102,7 +104,7 @@ onMounted(async () => {
 
     x: -50
 
-  }).to(scrollToTop.value, {
+  }).to(scrollToTopBtn.value, {
     xPercent: 0,
     opacity: 1,
     backgroundColor: '#006b00'
