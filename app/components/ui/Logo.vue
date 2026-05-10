@@ -1,6 +1,6 @@
 <template>
   <button
-      @click="$scrollToTop"
+      @click="scrollToTop()"
       class="button-logo"
       :class="buttonClasses">
     <nuxt-img
@@ -19,7 +19,8 @@
 
 
 <script setup lang="ts">
-const {$scrollToTop}  = useNuxtApp()
+const lenis = useLenis()
+const scrollToTop = () => lenis.value?.scrollTo(0)
 
 const props = withDefaults(
     defineProps<{
