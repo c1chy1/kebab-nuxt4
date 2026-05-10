@@ -1,4 +1,5 @@
 <template>
+  <VueLenis ref="lenisRef" root>
   <div
       :data-theme="themeStore.theme"
       class="duration-700 transition-all">
@@ -8,16 +9,28 @@
     </main>
 
   </div>
+  </VueLenis>
 </template>
 <script setup lang="ts">
 import {useThemeStore} from '@/stores/useTheme'
 import {useUserStore} from "@/stores/userStore";
 import {useCartStore} from "@/stores/useCart";
+import gsap from 'gsap'
 
 const themeStore = useThemeStore()
 const user = useUserStore()
 
 const {loadCart} = useCartStore()
+
+const lenisRef = useTemplateRef('lenisRef')
+
+watchEffect((onInvalidate) => {
+  function update(time: number) {
+    lenisRef.value?.lenis?.raf(time * 1000)
+  }
+  gsap.ticker.add(update)
+  onInvalidate(() => gsap.ticker.remove(update))
+})
 
 onBeforeMount(async () => {
 
