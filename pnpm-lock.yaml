@@ -23,12 +23,15 @@ importers:
       jsonwebtoken:
         specifier: ^9.0.3
         version: 9.0.3
+      lenis:
+        specifier: ^1.3.23
+        version: 1.3.23(@nuxt/kit@4.4.4(magicast@0.5.2))(vue@3.5.33)
       lightgallery:
         specifier: ^2.9.0
         version: 2.9.0
       mongoose:
-        specifier: ^9.6.1
-        version: 9.6.1(@aws-sdk/credential-providers@3.1039.0)(socks@2.8.8)
+        specifier: ^9.6.2
+        version: 9.6.2(@aws-sdk/credential-providers@3.1039.0)(socks@2.8.8)
       mongoose-bcrypt:
         specifier: ^1.11.0
         version: 1.11.0
@@ -3285,6 +3288,20 @@ packages:
     resolution: {integrity: sha512-b94GiNHQNy6JNTrt5w6zNyffMrNkXZb3KTkCZJb2V1xaEGCk093vkZ2jk3tpaeP33/OiXC+WvK9AxUebnf5nbw==}
     engines: {node: '>= 0.6.3'}
 
+  lenis@1.3.23:
+    resolution: {integrity: sha512-YxYq3TJqj9sJNv0V9SkyQHejt14xwyIwgDaaMK89Uf9SxQfIszu+gTQSSphh6BWlLTNVKvvXAGkg+Zf+oFIevg==}
+    peerDependencies:
+      '@nuxt/kit': '>=3.0.0'
+      react: '>=17.0.0'
+      vue: '>=3.0.0'
+    peerDependenciesMeta:
+      '@nuxt/kit':
+        optional: true
+      react:
+        optional: true
+      vue:
+        optional: true
+
   lightgallery@2.9.0:
     resolution: {integrity: sha512-58Ud1DyhD2ao58t+kPEqSZrjFxg23tGd5ZKr75erm7q31g5xhUtWUJH3sTUkhHzlyJAKHj5eTrJ37HQRXG4Wbg==}
     engines: {node: '>=6.0.0'}
@@ -3500,8 +3517,8 @@ packages:
     resolution: {integrity: sha512-x8XpK0SEDJtAtMoOF2U9aGrGXN6kbu01TqhznGLnA4B1oPXNb4Lye0MgmfxF9J2Dva7wf49VOgClk2fuKQYGHw==}
     engines: {node: '>=12.0.0'}
 
-  mongoose@9.6.1:
-    resolution: {integrity: sha512-3T8/b0plM3ZJPW3WjlzVMIGJEYYTjgDPQ05Qzru3xu3/wOPSFKWYxdwUF2dl8h3NG5dVkzIuOkZdLacnlLf/sA==}
+  mongoose@9.6.2:
+    resolution: {integrity: sha512-7m8HntjkoRnwEmuPC0kdlwcZXJOQf4twumFj+PNzg/anqqZE2Er7hQslqyzy07mP3JcFjoTSgH5765PyqOXsxw==}
     engines: {node: '>=20.19.0'}
 
   mpath@0.9.0:
@@ -8611,6 +8628,11 @@ snapshots:
     dependencies:
       readable-stream: 2.3.8
 
+  lenis@1.3.23(@nuxt/kit@4.4.4(magicast@0.5.2))(vue@3.5.33):
+    optionalDependencies:
+      '@nuxt/kit': 4.4.4(magicast@0.5.2)
+      vue: 3.5.33
+
   lightgallery@2.9.0: {}
 
   lilconfig@3.1.3: {}
@@ -8834,7 +8856,7 @@ snapshots:
       - aws-crt
       - supports-color
 
-  mongoose@9.6.1(@aws-sdk/credential-providers@3.1039.0)(socks@2.8.8):
+  mongoose@9.6.2(@aws-sdk/credential-providers@3.1039.0)(socks@2.8.8):
     dependencies:
       kareem: 3.3.0
       mongodb: 7.2.0(@aws-sdk/credential-providers@3.1039.0)(socks@2.8.8)
