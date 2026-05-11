@@ -9,7 +9,7 @@ export default defineEventHandler(async event => {
 
     const token = getCookie(event, 'token')
     if (token) {
-        let decoded = verifyToken(token as string)
+        let decoded = verifyToken(token as string) as { _id: string }
 
         const user = User.findById({
             _id: decoded._id,
