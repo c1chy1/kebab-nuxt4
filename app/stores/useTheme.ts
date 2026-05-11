@@ -11,9 +11,9 @@ export const useThemeStore = defineStore('theme', () => {
     const toggleTheme = ref(false);
     watch(toggleTheme, (value : boolean) => {
         if (value) {
-            theme.value = 'dark';
-        } else {
             theme.value = 'light';
+        } else {
+            theme.value = 'dark';
         }
     });
 
