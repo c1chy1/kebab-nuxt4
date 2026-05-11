@@ -1,9 +1,18 @@
 // https://nuxt.com/docs/api/configuration/nuxt-config
 export default defineNuxtConfig({
+  compatibilityDate: '2026-05-11',
   devtools: { enabled: true },
   modules: ['@nuxt/image', '@nuxt/icon','@pinia/nuxt','@formkit/nuxt','@nuxtjs/tailwindcss','lenis/nuxt','@tailwindcss/typography','nuxt-swiper','@nuxtjs/fontaine'],
   formkit: {
     autoImport: true,
+  },
+
+  css: [
+    'vue3-toastify/dist/index.css',
+  ],
+
+  build: {
+    transpile: ['vue3-toastify'],
   },
 
   vite: {
