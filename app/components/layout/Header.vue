@@ -55,16 +55,27 @@ onMounted(async () => {
     { opacity: 1, delay: 3 }
   )
 
-  const tl = gsap.timeline({ repeat: -1, yoyo: true, delay: 3 })
-  tl.add('start')
-    .to('#banner', 0.70, { y: 150, ease: 'Circ.ease' })
-    .to('#banner', 0.10, {
+  const tl = gsap.timeline({ repeat: -1, delay: 3 })
+  tl
+    .to('#banner', { duration: 0.65, y: 150, ease: 'power2.in' })
+    .to('#banner', {
+      duration: 0.10,
       scaleY: 0.8,
       transformOrigin: 'center bottom',
       borderBottomLeftRadius: '40%',
       borderBottomRightRadius: '40%',
-      ease: 'Circ.ease',
-    }, '-=.05')
+      ease: 'none',
+    })
+    .to('#banner', {
+      duration: 0.10,
+      scaleY: 1,
+      transformOrigin: 'center bottom',
+      borderBottomLeftRadius: '50%',
+      borderBottomRightRadius: '50%',
+      ease: 'none',
+    })
+    .to('#banner', { duration: 0.65, y: 0, ease: 'power2.out' })
+    .set('#banner', { clearProps: 'scaleY,transformOrigin,borderBottomLeftRadius,borderBottomRightRadius' })
 })
 </script>
 
