@@ -1,9 +1,10 @@
 <template>
   <VueLenis ref="lenisRef" root>
   <div
-      :data-theme="themeStore.theme"
+      :data-theme="theme"
       class="duration-700 transition-all">
     <AccountDashboard v-if="user.isLoggedIn"/>
+    <AccountCart/>
     <main>
       <NuxtPage/>
     </main>
@@ -18,6 +19,7 @@ import {useCartStore} from "@/stores/useCart";
 import gsap from 'gsap'
 
 const themeStore = useThemeStore()
+const { theme } = storeToRefs(themeStore)
 const user = useUserStore()
 
 const {loadCart} = useCartStore()
@@ -44,8 +46,8 @@ onMounted(async () => {
     await user.getMyOrders()
     await user.me()
   }
-  themeStore.theme = localStorage.getItem('daisyui-theme') || 'dark';
-  themeStore.toggleTheme = themeStore.theme === 'dark';
+  theme.value = localStorage.getItem('daisyui-theme') || 'dark';
+  themeStore.toggleTheme = theme.value === 'dark';
   if (process.client) {
     window.scrollTo(0, 0);
     loadCart()
