@@ -1,13 +1,16 @@
+import tailwindcss from '@tailwindcss/vite'
+
 // https://nuxt.com/docs/api/configuration/nuxt-config
 export default defineNuxtConfig({
   compatibilityDate: '2026-05-11',
   devtools: { enabled: true },
-  modules: ['@nuxt/image', '@nuxt/icon','@pinia/nuxt','@formkit/nuxt','@nuxtjs/tailwindcss','lenis/nuxt','@tailwindcss/typography','nuxt-swiper','@nuxtjs/fontaine'],
+  modules: ['@nuxt/image', '@nuxt/icon','@pinia/nuxt','@formkit/nuxt','lenis/nuxt','nuxt-swiper','@nuxtjs/fontaine'],
   formkit: {
     autoImport: true,
   },
 
   css: [
+    '~/assets/css/tailwind.css',
     'vue3-toastify/dist/index.css',
   ],
 
@@ -16,12 +19,13 @@ export default defineNuxtConfig({
   },
 
   vite: {
+    plugins: [tailwindcss()],
     optimizeDeps: {
       include: [
         'pinia',
         'vue3-toastify',
         'gsap/ScrollTrigger',
-        'gsap/Draggable'// TO DO ANOTHER PACKAGE
+        'gsap/Draggable'
       ]
     }
   },
@@ -37,10 +41,6 @@ export default defineNuxtConfig({
     public: {
       lightgalleryLicense: '',
     },
-  },
-  tailwindcss: {
-    cssPath: '~/assets/css/tailwind.scss',
-    viewer: true,
   },
   image: {
     format: ["webp"],
