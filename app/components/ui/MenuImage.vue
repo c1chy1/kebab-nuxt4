@@ -12,7 +12,7 @@ defineProps({
 <template>
   <nuxt-img
       sizes="100vw sm:50vw md:400px  xl:300px"
-      preload
+      loading="lazy"
       quality="40"
       format="webp"
       :src="src"

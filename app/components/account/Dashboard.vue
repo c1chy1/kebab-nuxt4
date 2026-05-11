@@ -268,7 +268,7 @@ onMounted(() => {
       throwProps: true,
       edgeResistance: 0.9,
       maxDuration: 0.3,
-      bounds: {maxX: closedPositionW, minX: 0},
+      bounds: {minX: closedPositionW, maxX: 0},
 
       onClick: function () {
         tl.to(maxToolbar.value, 0.5, {
@@ -316,7 +316,7 @@ onMounted(() => {
 
         let x = ref(<number>gsap.getProperty(sidebar.value, "x"))
 
-        if (x.value > drag[0].minX / 2) {
+        if (x.value > closedPositionW / 2) {
           tl.to(this.target, 0.3, {x: 0})
               .to(this.target, 0.3, {height: "auto"})
               .fromTo(".max li", {
