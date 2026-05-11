@@ -3,7 +3,7 @@ import mongoose, {Document, Schema, Types} from 'mongoose'
 
 
 import jwt from 'jsonwebtoken'
-/*import bcrypt from "bcrypt";*/
+import bcrypt from "bcrypt";
 
 
 type UserDocument = Document & {
@@ -53,7 +53,7 @@ const userSchema = new Schema({
 
 
         statics: {
- /*           async findByCredentials(email: string, password: string): Promise<any> {
+            async findByCredentials(email: string, password: string): Promise<any> {
                 const user = await User.findOne({ email })
 
                 if (!user)
@@ -64,7 +64,7 @@ const userSchema = new Schema({
                 if (!isMatch)
                     throw new Error('Password is incorrect!')
                 return user
-            },*/
+            },
 
             async findByEmail(email: string): Promise<any> {
                 const user = await User.findOne({ email })
@@ -89,13 +89,11 @@ const userSchema = new Schema({
 
 );
 
-/*userSchema.pre('save', async function (next) {const user = this
-
-    if (user.isModified('password')) {
-        user.password = await bcrypt.hash(user.password!, 8)
+userSchema.pre('save', async function () {
+    if (this.isModified('password')) {
+        this.password = await bcrypt.hash(this.password!, 8)
     }
-    next()
-})*/
+})
 
 const User = mongoose.model<UserDocument>("User", userSchema);
 export default User;
