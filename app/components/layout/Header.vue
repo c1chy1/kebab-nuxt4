@@ -11,7 +11,7 @@ const kebabs = [
 const swiper = useSwiper(containerRef, {
   slidesPerView: 1,
   loop: true,
-  speed: 1000,
+  speed: 1,
   effect: 'creative',
   autoplay: {
     delay: 4000,
@@ -128,6 +128,11 @@ onMounted(async () => {
           </div>
         </swiper-slide>
     </swiper-container>
+    <div class="absolute bottom-0 left-0 w-full leading-none pointer-events-none">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 80" preserveAspectRatio="none" class="w-full h-12 md:h-20">
+        <path d="M0,80 C480,0 960,0 1440,80 L1440,80 L0,80 Z" fill="white"/>
+      </svg>
+    </div>
   </header>
 </template>
 
