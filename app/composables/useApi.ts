@@ -27,7 +27,7 @@ export async function logOutUser(body: logoutReq) {
     return await useApi('/auth/logout', body)
 }
 
-export async function order(body) {
+export async function order(body:any) {
     return await useApi('/shop/order', body)
 }
 
