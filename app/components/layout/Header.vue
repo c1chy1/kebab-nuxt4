@@ -11,7 +11,7 @@ const kebabs = [
 const swiper = useSwiper(containerRef, {
   slidesPerView: 1,
   loop: true,
-  speed: 1,
+  speed: 1000,
   effect: 'creative',
   autoplay: {
     delay: 4000,
