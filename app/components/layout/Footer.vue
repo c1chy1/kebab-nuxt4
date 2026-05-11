@@ -45,9 +45,9 @@
 
   <footer class="footer footer-center leading-6  text-white flex flex-col-reverse lg:flex-row justify-between items-end pt-32 pb-6">
     <aside>
-      <p class="pt-4 lg:pt-0 text-white" >Copyright © 2024 - All right reserved by  <a href="https://c1chy.de/" target=”_blank” class="transition-all duration-500">c1chy</a></p>
+      <p class="pt-4 lg:pt-0 text-white" >Copyright © 2026 - All right reserved by  <a href="https://c1chy.de/" target=”_blank” class="transition-all duration-500">c1chy</a></p>
     </aside>
-<!--<AtomsFooterSocial/>-->
+<LayoutFooterSocial/>
 
   </footer>
 </footer>
