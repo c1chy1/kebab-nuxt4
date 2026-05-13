@@ -34,8 +34,10 @@
     <!-- MAX SIDEBAR-->
     <div ref="maxSidebar" class="max  text-sm mt-12 flex-col space-y-2 transition-all duration-700">
 
-
       <ul class="flex flex-col text-sm lg:text-base ">
+        <li v-if="store.isAdmin" class="hover:ml-4 w-full text-white bg-secondary p-2 pl-8 rounded-full  flex flex-row items-center space-x-3 transition-all duration-700">
+          <h1 >ADMIN PANEL</h1>
+        </li>
         <li class="hover:ml-4 w-full text-white bg-secondary p-2 pl-8 rounded-full  flex flex-row items-center space-x-3 transition-all duration-700">
           <UiIconUser/>
           <button
