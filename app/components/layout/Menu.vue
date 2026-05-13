@@ -12,43 +12,55 @@
     </p>
 
     <div class="flex w-full">
-      <swiper-container
-        ref="containerRef"
-        :init="false"
-        class="swiper w-full"
-      >
-        <swiper-slide
-          v-for="slide in hamburgers"
-          :key="slide.id"
-          class="hero pt-4 md:px-12"
+      <ClientOnly>
+        <swiper-container
+          ref="containerRef"
+          :init="false"
+          class="swiper w-full"
         >
-          <div
-            :class="'card-' + slide.title"
-            class="card transition-all mx-auto h-full w-10/12"
+          <swiper-slide
+            v-for="slide in hamburgers"
+            :key="slide.id"
+            class="hero pt-4 md:px-12"
           >
-            <figure class="p-2 lg:p-4 xl:p-10 h-full cursor-grab active:cursor-grabbing">
-              <uiMenuImage :src="slide.img" />
-            </figure>
-            <div class="card-body p-0 items-center text-center">
-              <h2 class="card-title text-2xl sm:text-4xl text-primary xl:mb-2.5 font-bebas uppercase">
-                {{ slide.title }}
-              </h2>
-              <p class="text-xs xl:text-[17px] leading-5 lowercase w-2/3 xl:w-full">
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-              </p>
-              <h2 class="card-title py-1 lg:py-2 text-3xl sm:text-[38px] text-primary font-bebas uppercase">
-                {{ slide.price }} €
-              </h2>
-              <div class="card-actions">
-                <button @click="cart.addItem(slide)" class="btn button-orange">
-                  Buy Now
-                </button>
+            <div
+              :class="'card-' + slide.title"
+              class="card transition-all mx-auto h-full w-10/12"
+            >
+              <figure class="p-2 lg:p-4 xl:p-10 h-full cursor-grab active:cursor-grabbing">
+                <uiMenuImage :src="slide.img" />
+              </figure>
+              <div class="card-body p-0 items-center text-center">
+                <h2 class="card-title text-2xl sm:text-4xl text-primary xl:mb-2.5 font-bebas uppercase">
+                  {{ slide.title }}
+                </h2>
+                <p class="text-xs xl:text-[17px] leading-5 lowercase w-2/3 xl:w-full">
+                  Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
+                </p>
+                <h2 class="card-title py-1 lg:py-2 text-3xl sm:text-[38px] text-primary font-bebas uppercase">
+                  {{ slide.price }} €
+                </h2>
+                <div class="card-actions">
+                  <button @click="cart.addItem(slide)" class="btn button-orange">
+                    Buy Now
+                  </button>
+                </div>
               </div>
             </div>
+            <div class="box left-1/2 bottom-1/2 absolute z-[1000]" />
+          </swiper-slide>
+        </swiper-container>
+        <template #fallback>
+          <div class="flex w-full gap-8 px-12 py-4">
+            <div v-for="i in 2" :key="i" class="w-1/2 animate-pulse">
+              <div class="bg-gray-200 rounded-xl h-64 mb-4" />
+              <div class="bg-gray-200 rounded h-6 w-1/2 mx-auto mb-2" />
+              <div class="bg-gray-200 rounded h-4 w-2/3 mx-auto mb-2" />
+              <div class="bg-gray-200 rounded h-8 w-1/3 mx-auto" />
+            </div>
           </div>
-          <div class="box left-1/2 bottom-1/2 absolute z-[1000]" />
-        </swiper-slide>
-      </swiper-container>
+        </template>
+      </ClientOnly>
     </div>
   </section>
 
