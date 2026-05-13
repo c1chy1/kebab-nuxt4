@@ -10,13 +10,14 @@ export default defineEventHandler(async (event) => {
             { email: userData.email },
         )
         const token = await user!.generateAuthToken()
-        setCookie(event, 'token', token)
+        setCookie(event, 'token', token, { httpOnly: true, maxAge: 86400 })
 
+        const { password, ...safeUser } = user!.toObject()
 
         return {
             success: true,
             message: {
-                user,
+                user: safeUser,
                 token
             },
         }

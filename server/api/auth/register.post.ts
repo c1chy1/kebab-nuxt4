@@ -13,10 +13,10 @@ export default defineEventHandler(async (event) => {
     if (!user) {
         const user = await User.create(body)
 
-        const token: string =  jwt.sign({ _id:user._id.toString() }, useRuntimeConfig().jwtSecret);
+        const token: string =  jwt.sign({ _id:user._id.toString(), role: user.role }, useRuntimeConfig().jwtSecret);
         setCookie(event,'token',token,{
-            httpOnly: false,
-            maxAge:24*60*60*1000 //1day
+            httpOnly: true,
+            maxAge: 86400
         })
 
         return {
