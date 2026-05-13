@@ -1,67 +1,77 @@
-# 🥙 Kebab Nuxt 4
+🥙 Kebab Nuxt 4
 
-Modern full-stack web application built with **Nuxt 4** focused on performance, smooth UX and secure authentication flow.
+A modern full-stack e-commerce web application built with Nuxt 4, focused on performance, security and smooth user experience.
 
-## 🚀 Tech Stack
+🚀 Tech Stack
+Frontend
+Nuxt 4
+Vue 3
+Tailwind CSS v4
+DaisyUI
+Sass
+State Management
+Pinia
+UI / Animations
+GSAP
+Lenis
+Swiper
+LightGallery
+Nuxt Image
+Nuxt Icon
+Vue3 Toastify
+Forms & Validation
+FormKit
+Backend / Database
+MongoDB
+Mongoose
+Authentication & Security
+JWT Authentication
+bcrypt
+mongoose-bcrypt
+Nuxt Security
+Protected routes & middleware
+✨ Features
+User Features
+🛒 Fully functional shopping cart
+👤 User registration & login
+🔐 JWT authentication flow
+Password hashing with bcrypt
+Toast notifications
+Responsive UI
+Admin Features
+🛠️ Admin dashboard / admin panel
+Product management system
+Protected admin routes
+Database-connected management logic
+Performance & UX
+⚡ Optimized image loading
+Smooth scrolling with Lenis
+Advanced animations with GSAP
+Clean responsive design
+🔒 Security
 
-### Frontend
+Project includes multiple security layers:
 
-* **Nuxt 4**
-* **Tailwind CSS**
-* **DaisyUI**
-* **Sass**
+password hashing
+JWT token authentication
+protected API routes
+route middleware
+security headers via Nuxt Security
+🧪 Demo Access
 
-### State Management
+Demo admin account for testing:
 
-* **Pinia**
+Email: demo@admin.com
+Password: demo123
+📌 Project Goals
 
-### UI / Animations
+This project was built to improve full-stack development skills with focus on:
 
-* **GSAP**
-* **Lenis**
-* **Swiper**
-* **LightGallery**
-* **Nuxt Image**
-* **Nuxt Icon**
+authentication systems
+database architecture
+security best practices
+state management
+scalable Nuxt applications
+UI/UX and animations
 
-### Forms & Validation
-
-* **FormKit**
-
-### Backend / Database
-
-* **MongoDB**
-* **Mongoose**
-
-### Authentication & Security
-
-* **JWT (jsonwebtoken)**
-* Password hashing with **mongoose-bcrypt**
-
-## ✨ Features
-
-* 🛒 Fully functional shopping cart system
-* 🔐 User authentication system:
-
-  * Register
-  * Login
-  * JWT session handling
-* 👤 User account flow connected with **MongoDB**
-* 🔒 Secure password hashing and authentication logic
-* ⚡ Optimized image loading and performance improvements
-* 🎨 Smooth animations and modern responsive UI
-
-## 📌 Project Highlights
-
-This project combines a modern frontend experience with backend logic and database integration.
-Built as a full-stack practice project to improve skills in:
-
-* authentication systems
-* database management
-* state management
-* animations & UI interactions
-* scalable Nuxt architecture
-
----
-
-**Built with ❤️ using Nuxt 4**
+Built with ❤️ using Nuxt 4 + MongoDB
