@@ -22,7 +22,8 @@
     "mongoose-bcrypt": "^1.11.0",
     "nuxt-swiper": "^2.0.1",
     "pinia": "^3.0.4",
-    "vue3-toastify": "^0.2.9"
+    "vue3-toastify": "^0.2.9",
+    "nuxt-security": "^2.6.0"
   },
   "devDependencies": {
     "@nuxtjs/fontaine": "^0.5.0",
