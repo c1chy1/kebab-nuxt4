@@ -17,12 +17,12 @@ useHead({
   <LayoutHeader/>
   <SectionsHome/>
   <LayoutMenu/>
-  <LayoutEvents/>
+  <SectionsEvents/>
   <SectionsGallery/>
   <section class="
-  bg-[length:10rem_22rem]
-  sm:bg-[length:18rem_35rem]
-  xl:bg-[length:24rem_40rem]
+  bg-size-[10rem_22rem]
+  sm:bg-size-[18rem_35rem]
+  xl:bg-size-[24rem_40rem]
   bg-[url('/images/register/register-left.png')] bg-no-repeat">
     <AccountLogin v-show="!user.isLoggedIn"/>
     <AccountRegister/>
