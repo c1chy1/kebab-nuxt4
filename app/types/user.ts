@@ -64,11 +64,3 @@ export interface IMethods {
 }
 
 
-
-export const Roles = {
-    admin: 1,
-    user: 2,
-} as const;
-
-export type Role = keyof typeof Roles;
-

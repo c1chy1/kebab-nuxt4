@@ -12,7 +12,7 @@ type UserDocument = Document & {
     email: string
     password: string
     profilePicture: string
-    admin: boolean,
+    role: 'user' | 'admin',
     orders: []
 }
 
@@ -39,9 +39,10 @@ const userSchema = new Schema({
             type: String,
             required: true,
         },
-        admin: {
-            type: Boolean,
-            default: false,
+        role: {
+            type: String,
+            enum: ['user', 'admin'],
+            default: 'user',
         },
         profilePicture: {
             type: String,
@@ -78,7 +79,7 @@ const userSchema = new Schema({
         methods: {
         async generateAuthToken(): Promise<string> {
                 const user = this
-                const token = jwt.sign({ _id: user._id.toString() }, useRuntimeConfig().jwtSecret)
+                const token = jwt.sign({ _id: user._id.toString(), role: user.role }, useRuntimeConfig().jwtSecret)
                 await user.save()
 
                 return token

@@ -27,10 +27,11 @@ export const useUserStore = defineStore('User', {
 
 
         async me() {
-            const data = await $fetch<Object>('/api/auth/me')
+            const data = await $fetch<any>('/api/auth/me')
             this.userInfo = data
+            this.isAdmin = data?.role === 'admin'
+            this.isLoggedIn = true
             await this.getMyOrders()
-
         },
         getMyOrders: async function () {
             const data = await $fetch<[]>('/api/shop/get-my-orders')
@@ -52,6 +53,7 @@ export const useUserStore = defineStore('User', {
                 setToken(message.token)
                 this.isLoggedIn = true
                 this.userInfo = message.user
+                this.isAdmin = message.user?.role === 'admin'
                 toast.success("Logged In")
                 await this.getMyOrders()
             } else {
@@ -70,6 +72,7 @@ export const useUserStore = defineStore('User', {
                 token.value = message.token
                 setToken(message.token)
                 this.userInfo = message.user
+                this.isAdmin = message.user?.role === 'admin'
                 this.isLoggedIn = true
                 toast.success('Register Success')
 
