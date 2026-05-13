@@ -4,11 +4,27 @@ import tailwindcss from '@tailwindcss/vite'
 export default defineNuxtConfig({
   compatibilityDate: '2026-05-11',
   devtools: { enabled: true },
-  modules: ['@nuxt/image', '@nuxt/icon','@pinia/nuxt','@formkit/nuxt','lenis/nuxt','nuxt-swiper','@nuxtjs/fontaine'],
+  modules: ['@nuxt/image', '@nuxt/icon','@pinia/nuxt','@formkit/nuxt','lenis/nuxt','nuxt-swiper','@nuxtjs/fontaine', 'nuxt-security'],
   formkit: {
     autoImport: true,
   },
-
+  security: {
+    rateLimiter: {
+      tokensPerInterval: 100,
+      interval: 60000,
+      headers: true,
+    },
+  },
+  routeRules: {
+    '/api/auth/**': {
+      security: {
+        rateLimiter: {
+          tokensPerInterval: 10,
+          interval: 60000,
+        }
+      }
+    }
+  },
   css: [
     '~/assets/css/tailwind.css',
     'vue3-toastify/dist/index.css',
