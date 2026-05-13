@@ -3,6 +3,9 @@ import {useUserStore} from "~/stores/userStore";
 
 const user = useUserStore()
 
+function showModal(id: string) {
+  document.getElementById(id)?.showModal()
+}
 </script>
 
 <template>
@@ -16,7 +19,7 @@ const user = useUserStore()
     <button
         class="button-orange mt-8 py-4 z-20 transition-all "
         :class="user.isLoggedIn ? 'cursor-not-allowed' : ''"
-        :disabled="user.isLoggedIn" onclick="register_modal.showModal()">
+        :disabled="user.isLoggedIn" @click="showModal('register_modal')">
       <span v-if="!user.isLoggedIn"> Register</span>
       <span v-else>Logged In</span>
     </button>

@@ -3,7 +3,9 @@ import {useUserStore} from "~/stores/userStore";
 
 const user = useUserStore()
 
-
+function showModal(id: string) {
+  document.getElementById(id)?.showModal()
+}
 </script>
 
 <template>
@@ -14,7 +16,7 @@ const user = useUserStore()
     <div class="text-center" >
       <h2 class="section-title">Log in  <br>To Buy</h2>
       <button v-if="!user.isLoggedIn" class="button-orange py-4 transition-all"
-              onclick="login_modal.showModal()">
+              @click="showModal('login_modal')">
         Log In
       </button>
       <dialog v-if="!user.isLoggedIn" id="login_modal" class="modal z-auto">

@@ -41,7 +41,7 @@
         <li class="hover:ml-4 w-full text-white bg-secondary p-2 pl-8 rounded-full  flex flex-row items-center space-x-3 transition-all duration-700">
           <UiIconUser/>
           <button
-              onclick="user_modal.showModal()"
+              @click="showModal('user_modal')"
               class="cursor-pointer">
             {{ store.userInfo?.username }}
           </button>
@@ -54,7 +54,7 @@
                   d="M3.75 5.25h16.5m-16.5 4.5h16.5m-16.5 4.5h16.5m-16.5 4.5h16.5"/>
           </svg>
           <button
-              onclick="settings_modal.showModal()"
+              @click="showModal('settings_modal')"
               class=" cursor-pointer">
             Settings
           </button>
@@ -68,7 +68,7 @@
           </svg>
 
           <button
-              onclick="orders_modal.showModal()"
+              @click="showModal('orders_modal')"
               class="cursor-pointer">
             Orders
           </button>
@@ -235,6 +235,11 @@ import gsap from "gsap";
 import Draggable from "gsap/Draggable";
 
 const store = useUserStore()
+
+function showModal(id: string) {
+  document.getElementById(id)?.showModal()
+}
+
 const tl = gsap.timeline()
 let mm = gsap.matchMedia();
 const sidebar = ref()
