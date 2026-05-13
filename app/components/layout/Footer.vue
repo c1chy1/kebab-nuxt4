@@ -25,7 +25,7 @@
   <div class="py-3 flex items-center uppercase">
     <UiIconLocation/>
     <a class="ml-4 lg:ml-8 text-xl lg:text-3xl text-white transition-all duration-500 cursor-pointer"
-       onclick="address.showModal()">Dammstraße, 22A, Lüdenscheid, Germany</a>
+       @click="showModal('address')">Dammstraße, 22A, Lüdenscheid, Germany</a>
     <dialog id="address" class="modal">
       <div class="modal-box text-[#3d2514]">
         <form method="dialog">
@@ -54,4 +54,7 @@
 
 </template>
 <script setup lang="ts">
+function showModal(id: string) {
+  document.getElementById(id)?.showModal()
+}
 </script>
