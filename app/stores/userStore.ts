@@ -28,6 +28,7 @@ export const useUserStore = defineStore('User', {
 
         async me() {
             const data = await $fetch<any>('/api/auth/me')
+            if (!data) return
             this.userInfo = data
             this.isAdmin = data?.role === 'admin'
             this.isLoggedIn = true
