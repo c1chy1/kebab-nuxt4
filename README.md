@@ -1,13 +1,14 @@
 # 🥙 Kebab Nuxt 4
 
-Modern full-stack web application built with **Nuxt 4** focused on performance, smooth UX and secure authentication flow.
+A modern full-stack e-commerce web application built with **Nuxt 4**, focused on performance, security and smooth user experience.
 
 ## 🚀 Tech Stack
 
 ### Frontend
 
 * **Nuxt 4**
-* **Tailwind CSS**
+* **Vue 3**
+* **Tailwind CSS v4**
 * **DaisyUI**
 * **Sass**
 
@@ -23,6 +24,7 @@ Modern full-stack web application built with **Nuxt 4** focused on performance, 
 * **LightGallery**
 * **Nuxt Image**
 * **Nuxt Icon**
+* **Vue3 Toastify**
 
 ### Forms & Validation
 
@@ -35,33 +37,67 @@ Modern full-stack web application built with **Nuxt 4** focused on performance, 
 
 ### Authentication & Security
 
-* **JWT (jsonwebtoken)**
-* Password hashing with **mongoose-bcrypt**
+* **JWT Authentication**
+* **bcrypt**
+* **mongoose-bcrypt**
+* **Nuxt Security**
+* Protected routes & middleware
 
 ## ✨ Features
 
-* 🛒 Fully functional shopping cart system
-* 🔐 User authentication system:
+### User Features
 
-  * Register
-  * Login
-  * JWT session handling
-* 👤 User account flow connected with **MongoDB**
-* 🔒 Secure password hashing and authentication logic
-* ⚡ Optimized image loading and performance improvements
-* 🎨 Smooth animations and modern responsive UI
+* 🛒 Fully functional shopping cart
+* 👤 User registration & login
+* 🔐 JWT authentication flow
+* Password hashing with bcrypt
+* Toast notifications
+* Responsive UI
 
-## 📌 Project Highlights
+### Admin Features
 
-This project combines a modern frontend experience with backend logic and database integration.
-Built as a full-stack practice project to improve skills in:
+* 🛠️ Admin dashboard / admin panel
+* Product management system
+* Protected admin routes
+* Database-connected management logic
+
+### Performance & UX
+
+* ⚡ Optimized image loading
+* Smooth scrolling with Lenis
+* Advanced animations with GSAP
+* Clean responsive design
+
+## 🔒 Security
+
+Project includes multiple security layers:
+
+* password hashing
+* JWT token authentication
+* protected API routes
+* route middleware
+* security headers via **Nuxt Security**
+
+## 🧪 Demo Access
+
+Demo admin account for testing:
+
+```bash
+Email: demo@admin.com
+Password: demo123
+```
+
+## 📌 Project Goals
+
+This project was built to improve full-stack development skills with focus on:
 
 * authentication systems
-* database management
+* database architecture
+* security best practices
 * state management
-* animations & UI interactions
-* scalable Nuxt architecture
+* scalable Nuxt applications
+* UI/UX and animations
 
 ---
 
-**Built with ❤️ using Nuxt 4**
+**Built with ❤️ using Nuxt 4 + MongoDB**
