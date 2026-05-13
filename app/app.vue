@@ -34,14 +34,13 @@ watchEffect((onInvalidate) => {
   onInvalidate(() => gsap.ticker.remove(update))
 })
 
-onBeforeMount(async () => {
-  const token = useCookie('token')
-  if (token.value) {
-    try {
-      await user.me()
-    } catch (e) {
-      useCookie('token').value = ''
-    }
+await callOnce(async () => {
+  const headers = useRequestHeaders(['cookie'])
+  const data = await $fetch<any>('/api/auth/me', { headers })
+  if (data) {
+    user.userInfo = data
+    user.isAdmin = data.role === 'admin'
+    user.isLoggedIn = true
   }
 })
 onMounted(async () => {
