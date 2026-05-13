@@ -35,17 +35,16 @@ watchEffect((onInvalidate) => {
 })
 
 onBeforeMount(async () => {
-
-  if (user.isLoggedIn) {
-    await user.getMyOrders()
-    await user.me()
+  const token = useCookie('token')
+  if (token.value) {
+    try {
+      await user.me()
+    } catch (e) {
+      useCookie('token').value = ''
+    }
   }
 })
 onMounted(async () => {
-  if (user.isLoggedIn) {
-    await user.getMyOrders()
-    await user.me()
-  }
   theme.value = localStorage.getItem('daisyui-theme') || 'dark';
   themeStore.toggleTheme = theme.value === 'dark';
   if (process.client) {
