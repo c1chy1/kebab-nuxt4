@@ -23,7 +23,7 @@
 </div>
 <div class="lg:w-1/2 font-bebas text-2xl place-items-baseline xl:place-items-end pt-20" >
   <div class="py-3 flex items-center uppercase">
-    <UiIconLocation/>
+    <Icon name="heroicons:map-pin" class="w-6 h-6 lg:w-8 lg:h-8" />
     <a class="ml-4 lg:ml-8 text-xl lg:text-3xl text-white transition-all duration-500 cursor-pointer"
        @click="showModal('address')">Dammstraße, 22A, Lüdenscheid, Germany</a>
     <dialog id="address" class="modal">
@@ -36,7 +36,7 @@
     </dialog>
   </div>
   <div class="flex uppercase">
-  <UiIconEmail />
+  <Icon name="heroicons:envelope" class="w-6 h-6 lg:w-8 lg:h-8" />
 <a href="mailto:info@companyname.com" class=" ml-4 lg:ml-8 text-xl lg:text-3xl text-white hover:text-[#ffc107] transition-all duration-500">info@companyname.com</a>
   </div>
 
