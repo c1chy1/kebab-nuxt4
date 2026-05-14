@@ -9,6 +9,7 @@ export const cartItems = ref<MenuItemType[]>([])
 export const useCartStore = defineStore('cart', {
     state: () => ({
         items: ref<MenuItemType[]>([]),
+        shouldOpen: false,
     }),
     getters: {
         totalCount(): number {
@@ -55,6 +56,7 @@ export const useCartStore = defineStore('cart', {
                 toast.success('Product Added')
             }
             this.saveCartToLocalStorage()
+            this.shouldOpen = true
         },
 
         removeItem(item: MenuItemType) {
