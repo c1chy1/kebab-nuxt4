@@ -11,10 +11,7 @@
         <button
             id="cartButton"
             class="draggable -left-4 lg:-left-6  top-1  p-1.5  sm:p-2  lg:p-3.5 transition-all duration-700 flex border-2 border-[#b9cf21] dark:border-[#0F172A] bg-secondary  hover:bg-purple-500 absolute   rounded-full text-white hover:rotate-45">
-          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" class="w-4 h-4">
-            <path
-                d="M3.75 6A2.25 2.25 0 016 3.75h2.25A2.25 2.25 0 0110.5 6v2.25a2.25 2.25 0 01-2.25 2.25H6a2.25 2.25 0 01-2.25-2.25V6zM3.75 15.75A2.25 2.25 0 016 13.5h2.25a2.25 2.25 0 012.25 2.25V18a2.25 2.25 0 01-2.25 2.25H6A2.25 2.25 0 013.75 18v-2.25zM13.5 6a2.25 2.25 0 012.25-2.25H18A2.25 2.25 0 0120.25 6v2.25A2.25 2.25 0 0118 10.5h-2.25a2.25 2.25 0 01-2.25-2.25V6zM13.5 15.75a2.25 2.25 0 012.25-2.25H18a2.25 2.25 0 012.25 2.25V18A2.25 2.25 0 0118 20.25h-2.25A2.25 2.25 0 0113.5 18v-2.25z"/>
-          </svg>
+          <Icon name="heroicons:squares-2x2" class="w-4 h-4" />
         </button>
 
         <h1 class=" sm:text-sm lg:text-lg font-bold"
@@ -48,9 +45,8 @@
               </select>
             </div>
           </div>
-          <uiIconTrash class="w-6 sm:w-7 lg:w-10  sm:mr-1 cursor-pointer self-end lg:self-center"
-                     @click="cartStore.removeItem(item)">
-          </uiIconTrash>
+          <Icon name="heroicons:trash" class="w-6 sm:w-7 lg:w-10 sm:mr-1 cursor-pointer self-end lg:self-center text-[#DC691D]"
+                @click="cartStore.removeItem(item)" />
         </li>
 
 
@@ -91,6 +87,17 @@ const items = ref()
 const select = ref()
 let tl: gsap.core.Timeline
 let mm: gsap.MatchMedia
+let closedPositionW = 0
+
+watch(() => cartStore.shouldOpen, (val) => {
+  if (!val || !cart.value || !items.value) return
+  if (gsap.getProperty(cart.value, 'x') === closedPositionW) {
+    tl.to(items.value.$el, 0.3, { backgroundColor: 'white' })
+      .to(cart.value, 0.3, { x: 0 })
+      .to(cart.value, 0.3, { height: 'auto', ease: 'power3.inOut' })
+  }
+  cartStore.shouldOpen = false
+})
 
 async function placeOrderHandler() {
   try {
@@ -111,7 +118,7 @@ onMounted(() => {
   tl = gsap.timeline()
   mm = gsap.matchMedia()
 
-  let closedPositionW = cart.value.offsetWidth - 35
+  closedPositionW = cart.value.offsetWidth - 35
 
   tl.set(cart.value, {
     x: closedPositionW

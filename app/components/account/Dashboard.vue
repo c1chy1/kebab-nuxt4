@@ -9,8 +9,9 @@
          class="max-toolbar opacity-0 top-0 sm:top-1 xl:top-2 sm:mr-4 h-10 pl-2 -right-2 lg:-right-6 transition-all duration-700 flex items-center justify-center border-2 border-[#b9cf21] absolute rounded-full ">
 
       <div class="flex items-center space-x-3 pr-2  transition-all duration-70">
-        <UiIconLogOut
-            class="fill-white hover:fill-black w-6 h-6 cursor-pointer"
+        <Icon
+            name="heroicons:arrow-right-on-rectangle"
+            class="text-white hover:text-black w-6 h-6 cursor-pointer"
             @click="store.logout()"
         />
       </div>
@@ -25,21 +26,15 @@
     <button
         id="dashboardButton"
         class="-right-4 lg:-right-6 top-1  p-1.5  sm:p-2  lg:p-3.5  transition-all duration-700 flex border-2 border-[#b9cf21] bg-secondary  hover:bg-purple-500 absolute   rounded-full text-white hover:rotate-45">
-      <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={3} stroke="currentColor"
-           class="w-4 h-4">
-        <path strokeLinecap="round" strokeLinejoin="round"
-              d="M3.75 6A2.25 2.25 0 016 3.75h2.25A2.25 2.25 0 0110.5 6v2.25a2.25 2.25 0 01-2.25 2.25H6a2.25 2.25 0 01-2.25-2.25V6zM3.75 15.75A2.25 2.25 0 016 13.5h2.25a2.25 2.25 0 012.25 2.25V18a2.25 2.25 0 01-2.25 2.25H6A2.25 2.25 0 013.75 18v-2.25zM13.5 6a2.25 2.25 0 012.25-2.25H18A2.25 2.25 0 0120.25 6v2.25A2.25 2.25 0 0118 10.5h-2.25a2.25 2.25 0 01-2.25-2.25V6zM13.5 15.75a2.25 2.25 0 012.25-2.25H18a2.25 2.25 0 012.25 2.25V18A2.25 2.25 0 0118 20.25h-2.25A2.25 2.25 0 0113.5 18v-2.25z"/>
-      </svg>
+      <Icon name="heroicons:squares-2x2" class="w-4 h-4" />
     </button>
     <!-- MAX SIDEBAR-->
     <div ref="maxSidebar" class="max  text-sm mt-12 flex-col space-y-2 transition-all duration-700">
 
       <ul class="flex flex-col text-sm lg:text-base ">
-        <li v-if="store.isAdmin" class="hover:ml-4 w-full text-white bg-secondary p-2 pl-8 rounded-full  flex flex-row items-center space-x-3 transition-all duration-700">
-          <h1 >ADMIN PANEL</h1>
-        </li>
+
         <li class="hover:ml-4 w-full text-white bg-secondary p-2 pl-8 rounded-full  flex flex-row items-center space-x-3 transition-all duration-700">
-          <UiIconUser/>
+          <Icon name="heroicons:user" class="w-4 h-4" />
           <button
               @click="showModal('user_modal')"
               class="cursor-pointer">
@@ -48,11 +43,7 @@
 
         </li>
         <li class="hover:ml-4 w-full text-white bg-secondary p-2 pl-8 rounded-full flex flex-row items-center space-x-3 transition-all duration-700">
-          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
-               stroke="currentColor" class="w-4 h-4">
-            <path stroke-linecap="round" stroke-linejoin="round"
-                  d="M3.75 5.25h16.5m-16.5 4.5h16.5m-16.5 4.5h16.5m-16.5 4.5h16.5"/>
-          </svg>
+          <Icon name="heroicons:bars-4" class="w-4 h-4" />
           <button
               @click="showModal('settings_modal')"
               class=" cursor-pointer">
@@ -60,12 +51,18 @@
           </button>
 
         </li>
+
+
+        <li v-if="store.isAdmin" class="hover:ml-4 w-full text-white bg-secondary p-2 pl-8 rounded-full  flex flex-row items-center space-x-3 transition-all duration-700">
+          <Icon name="heroicons:user-group" class="w-4 h-4" />
+          <button
+              @click="openUsersModal()"
+              class="cursor-pointer">
+            Users
+          </button>
+        </li>
         <li class="hover:ml-4 w-full text-white  bg-secondary p-2 pl-8 rounded-full flex flex-row items-center space-x-3 transition-all duration-700">
-          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
-               stroke="currentColor" class="w-4 h-4">
-            <path stroke-linecap="round" stroke-linejoin="round" d="M10.5 6a7.5 7.5 0 107.5 7.5h-7.5V6z"/>
-            <path stroke-linecap="round" stroke-linejoin="round" d="M13.5 10.5H21A7.5 7.5 0 0013.5 3v7.5z"/>
-          </svg>
+          <Icon name="heroicons:chart-pie" class="w-4 h-4" />
 
           <button
               @click="showModal('orders_modal')"
@@ -225,19 +222,141 @@
           </div>
         </div>
       </dialog>
+
+      <dialog id="users_modal" class="modal font-bold">
+        <div class="modal-box max-w-fit overflow-auto">
+          <h2 class="section-title">Users</h2>
+          <div class="w-full flex flex-col">
+            <table class="table text-xs sm:text-sm text-center">
+              <thead>
+              <tr>
+                <th>#</th>
+                <th>Avatar</th>
+                <th>Username</th>
+                <th>Email</th>
+                <th>Role</th>
+                <th></th>
+                <th></th>
+              </tr>
+              </thead>
+              <tbody>
+              <tr v-for="(user, index) in adminStore.users" :key="user._id">
+                <td>{{ index + 1 }}</td>
+                <td>
+                  <div class="flex justify-center">
+                    <div class="avatar">
+                      <div class="mask mask-squircle w-10 h-10">
+                        <img :src="user.profilePicture" alt="avatar"/>
+                      </div>
+                    </div>
+                  </div>
+                </td>
+                <td>{{ user.username }}</td>
+                <td>{{ user.email }}</td>
+                <td>
+                  <span :class="user.role === 'admin' ? 'badge badge-warning' : 'badge badge-ghost'">
+                    {{ user.role }}
+                  </span>
+                </td>
+                <td>
+                  <button
+                      class="btn btn-info btn-xs"
+                      @click="openUserOrdersModal(user)">
+                    Orders
+                  </button>
+                </td>
+                <td>
+                  <button
+                      v-if="user.role !== 'admin'"
+                      class="btn btn-error btn-xs"
+                      @click="adminStore.removeUser(user._id)">
+                    Delete
+                  </button>
+                </td>
+              </tr>
+              </tbody>
+            </table>
+          </div>
+          <div class="modal-action">
+            <form method="dialog">
+              <button class="button-orange">Back</button>
+            </form>
+          </div>
+        </div>
+
+        <dialog id="user_orders_modal" class="modal font-bold">
+          <div class="modal-box max-w-fit overflow-auto">
+            <h2 class="section-title">{{ adminStore.selectedUsername }}'s Orders</h2>
+            <div class="w-full flex flex-col">
+              <p v-if="adminStore.selectedUserOrders.length === 0" class="text-center py-4 opacity-60">No orders yet</p>
+              <table v-else class="table text-xs sm:text-sm text-center">
+                <thead>
+                <tr>
+                  <th>Order Id</th>
+                  <th>Title</th>
+                  <th>Price</th>
+                  <th>Qty</th>
+                  <th>Total</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr v-for="item in adminStore.selectedUserOrders" :key="item._id">
+                  <td>{{ item._id }}</td>
+                  <td>
+                    <div v-for="order in item.orderItems" :key="order.title">
+                      <p>{{ order.title }}</p>
+                    </div>
+                    <p>Delivery</p>
+                  </td>
+                  <td>
+                    <div v-for="order in item.orderItems" :key="order.title">
+                      <p>{{ order.price }} €</p>
+                    </div>
+                    <p>3 €</p>
+                  </td>
+                  <td class="align-baseline">
+                    <div v-for="order in item.orderItems" :key="order.title">
+                      <p>{{ order.qty }}</p>
+                    </div>
+                  </td>
+                  <td>{{ item.totalPrice }} €</td>
+                </tr>
+                </tbody>
+              </table>
+            </div>
+            <div class="modal-action">
+              <form method="dialog">
+                <button class="button-orange">Back</button>
+              </form>
+            </div>
+          </div>
+        </dialog>
+      </dialog>
     </div>
   </aside>
 </template>
 <script setup lang="ts">
 
 import {useUserStore} from "@/stores/userStore";
+import {useAdminStore} from "@/stores/adminStore";
 import gsap from "gsap";
 import Draggable from "gsap/Draggable";
 
 const store = useUserStore()
+const adminStore = useAdminStore()
 
 function showModal(id: string) {
   document.getElementById(id)?.showModal()
+}
+
+async function openUsersModal() {
+  await adminStore.getUsers()
+  showModal('users_modal')
+}
+
+async function openUserOrdersModal(user: any) {
+  await adminStore.getUserOrders(user._id, user.username ?? user.email)
+  showModal('user_orders_modal')
 }
 
 const tl = gsap.timeline()
