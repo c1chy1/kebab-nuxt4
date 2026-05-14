@@ -57,9 +57,11 @@ A modern full-stack e-commerce web application built with **Nuxt 4**, focused on
 ### Admin Features
 
 * 🛠️ Admin dashboard / admin panel
-* Product management system
-* Protected admin routes
-* Database-connected management logic
+* 📦 Order monitoring and management
+* 👥 User management (delete users)
+* 🛍️ Product management
+* 🔒 Protected admin routes
+* Database-connected admin logic
 
 ### Performance & UX
 
