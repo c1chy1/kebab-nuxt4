@@ -51,6 +51,9 @@ A modern full-stack e-commerce web application built with **Nuxt 4**, focused on
 * 👤 User registration & login
 * 🔐 JWT authentication flow
 * Password hashing with bcrypt
+* ✏️ Profile editing system
+* Change username
+* Upload profile image
 * Toast notifications
 * Responsive UI
 
@@ -58,7 +61,10 @@ A modern full-stack e-commerce web application built with **Nuxt 4**, focused on
 
 * 🛠️ Admin dashboard / admin panel
 * 📦 Order monitoring and management
-* 👥 User management (delete users)
+* 👥 User management system
+* Delete users
+* Filter users by name
+* Filter users by email
 * 🛍️ Product management
 * 🔒 Protected admin routes
 * Database-connected admin logic
