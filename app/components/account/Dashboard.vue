@@ -72,65 +72,67 @@
         </li>
       </ul>
     </div>
-    <div>
+    <Teleport to="body">
       <dialog id="user_modal" class="modal font-bold">
         <div class="modal-box">
           <h2 class="section-title">Account</h2>
-          <div class="w-full mx-auto flex justify-center">
-            <div class="">
-              <table class="table">
-                <thead>
-                <tr>
-                  <th>
-                    <label>
-                      <input type="checkbox" class="checkbox"/>
-                    </label>
-                  </th>
-                  <th>Profile Picture</th>
-                  <th>Name</th>
-                  <th>Email</th>
-                  <th></th>
-                </tr>
-                </thead>
-                <tbody>
-                <tr>
-                  <th>
-                    <label>
-                      <input type="checkbox" class="checkbox"/>
-                    </label>
-                  </th>
-                  <td>
-                    <div class="flex items-center gap-3">
-                      <div class="avatar">
-                        <div class="mask mask-squircle w-12 h-12">
-                          <img :src="store.userInfo?.profilePicture" alt="Avatar Tailwind CSS Component"/>
-                        </div>
-                      </div>
 
-                    </div>
-                  </td>
-                  <td>
-
-                    {{ store.userInfo?.username }}
-                    <!--                      <div class="text-sm opacity-50">{{store.userInfo?.city}}</div>-->
-
-                  </td>
-                  <td>{{ store.userInfo?.email }}</td>
-                  <th>
-                    <button class="btn btn-ghost btn-xs">Edit</button>
-                  </th>
-                </tr>
-                </tbody>
-
-              </table>
+          <div class="flex flex-col items-center gap-4 py-4">
+            <!-- Avatar -->
+            <div class="relative">
+              <div class="avatar">
+                <div class="mask mask-squircle w-20 h-20">
+                  <img :src="(store.userInfo as any)?.profilePicture" alt="Avatar"/>
+                </div>
+              </div>
+              <ClientOnly>
+                <label
+                    ref="avatarOverlay"
+                    class="absolute inset-0 flex items-center justify-center bg-black/50 mask mask-squircle cursor-pointer"
+                    style="opacity: 0; pointer-events: none;"
+                    title="Upload photo">
+                  <Icon name="heroicons:camera" class="w-6 h-6 text-white pointer-events-none"/>
+                  <input type="file" class="hidden" accept="image/jpeg,image/png,image/webp,image/gif" @change="handleAvatarUpload"/>
+                </label>
+              </ClientOnly>
             </div>
+            <!-- Always in DOM to avoid layout shift, animated with GSAP -->
+            <p ref="avatarHint" class="text-xs -mt-2" style="opacity: 0;">Click the avatar to upload a new photo</p>
 
+            <!-- Fields -->
+            <div class="w-full space-y-3 text-sm">
+              <div class="flex items-center gap-3 h-8">
+                <span class="opacity-50 w-14 shrink-0">Name</span>
+                <div class="flex-1 relative h-full flex items-center">
+                  <span ref="nameDisplay" class="font-normal">{{ (store.userInfo as any)?.username }}</span>
+                  <input
+                      ref="nameInput"
+                      v-model="editUsername"
+                      type="text"
+                      class="input input-bordered input-sm absolute inset-0 w-full font-normal"
+                      style="opacity: 0; pointer-events: none;"
+                  />
+                </div>
+              </div>
+              <div class="flex items-center gap-3 h-8">
+                <span class="opacity-50 w-14 shrink-0">Email</span>
+                <span class="flex-1 font-normal">{{ (store.userInfo as any)?.email }}</span>
+                <span ref="emailHint" class="text-xs italic shrink-0" style="opacity: 0;">ID · cannot change</span>
+              </div>
+            </div>
           </div>
-          <div class="modal-action">
-            <form method="dialog">
-              <!-- if there is a button in form, it will close the modal -->
-              <button class="button-orange">Back</button>
-            </form>
+
+          <div class="modal-action justify-between">
+            <template v-if="!isEditing">
+              <form method="dialog">
+                <button class="button-orange">Back</button>
+              </form>
+              <button class="button-orange" @click="startEdit">Edit</button>
+            </template>
+            <template v-else>
+              <button class="button-orange" @click="cancelEdit">Cancel</button>
+              <button class="button-orange" @click="saveProfile">Save</button>
+            </template>
           </div>
         </div>
       </dialog>
@@ -332,7 +334,7 @@
           </div>
         </dialog>
       </dialog>
-    </div>
+    </Teleport>
   </aside>
 </template>
 <script setup lang="ts">
@@ -344,6 +346,60 @@ import Draggable from "gsap/Draggable";
 
 const store = useUserStore()
 const adminStore = useAdminStore()
+
+const isEditing = ref(false)
+const editUsername = ref('')
+const avatarOverlay = ref<HTMLElement>()
+const avatarHint = ref<HTMLElement>()
+const emailHint = ref<HTMLElement>()
+const nameDisplay = ref<HTMLElement>()
+const nameInput = ref<HTMLInputElement>()
+
+function startEdit() {
+  editUsername.value = (store.userInfo as any)?.username ?? ''
+  isEditing.value = true
+  nextTick(() => {
+    gsap.to(avatarOverlay.value, { opacity: 1, pointerEvents: 'auto', duration: 0.35, ease: 'power2.out' })
+    gsap.to(avatarHint.value, { opacity: 0.5, duration: 0.35, delay: 0.1, ease: 'power2.out' })
+    gsap.to(emailHint.value, { opacity: 0.4, duration: 0.35, delay: 0.15, ease: 'power2.out' })
+    // name: tekst wyjeżdża w lewo, input wjeżdża z prawej
+    gsap.to(nameDisplay.value, { opacity: 0, x: -10, duration: 0.2, ease: 'power2.in' })
+    gsap.fromTo(nameInput.value,
+      { x: 14, opacity: 0 },
+      { x: 0, opacity: 1, pointerEvents: 'auto', duration: 0.3, delay: 0.15, ease: 'power3.out' }
+    )
+  })
+}
+
+function animateExitEdit(onComplete?: () => void) {
+  gsap.to([avatarOverlay.value, avatarHint.value, emailHint.value], {
+    opacity: 0, duration: 0.2, ease: 'power2.in',
+    onComplete: () => gsap.set(avatarOverlay.value, { pointerEvents: 'none' })
+  })
+  gsap.to(nameInput.value, { opacity: 0, x: 14, duration: 0.2, ease: 'power2.in',
+    onComplete: () => gsap.set(nameInput.value, { pointerEvents: 'none' })
+  })
+  gsap.fromTo(nameDisplay.value,
+    { x: -10, opacity: 0 },
+    { x: 0, opacity: 1, duration: 0.3, delay: 0.15, ease: 'power3.out', onComplete }
+  )
+}
+
+function cancelEdit() {
+  animateExitEdit(() => { isEditing.value = false })
+}
+
+async function saveProfile() {
+  await store.updateProfile(editUsername.value)
+  animateExitEdit()
+  isEditing.value = false
+}
+
+async function handleAvatarUpload(event: Event) {
+  const file = (event.target as HTMLInputElement).files?.[0]
+  if (!file) return
+  await store.uploadAvatar(file)
+}
 
 function showModal(id: string) {
   document.getElementById(id)?.showModal()

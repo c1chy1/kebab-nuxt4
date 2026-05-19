@@ -83,6 +83,34 @@ export const useUserStore = defineStore('User', {
 
         },
 
+        async updateProfile(username: string) {
+            const data = await $fetch<any>('/api/auth/update-profile', {
+                method: 'PATCH',
+                body: { username }
+            })
+            if (data.success) {
+                this.userInfo = data.user
+                toast.success('Profile updated')
+            } else {
+                toast.error(data.error)
+            }
+        },
+
+        async uploadAvatar(file: File) {
+            const formData = new FormData()
+            formData.append('avatar', file)
+            const data = await $fetch<any>('/api/auth/upload-avatar', {
+                method: 'POST',
+                body: formData
+            })
+            if (data.success) {
+                (this.userInfo as any).profilePicture = data.profilePicture
+                toast.success('Avatar updated')
+            } else {
+                toast.error(data.error)
+            }
+        },
+
         async logout() {
 
          function getToken() {

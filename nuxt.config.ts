@@ -42,7 +42,7 @@ export default defineNuxtConfig({
         'vue3-toastify',
         'gsap/ScrollTrigger',
         'gsap/Draggable',
-        'lightgallery'
+        'lightgallery',
       ]
     }
   },
