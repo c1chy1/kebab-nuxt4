@@ -43,15 +43,10 @@ await callOnce(async () => {
     user.isLoggedIn = true
   }
 })
-onMounted(async () => {
-  theme.value = localStorage.getItem('daisyui-theme') || 'dark';
-  themeStore.toggleTheme = theme.value === 'dark';
-  if (process.client) {
-    window.scrollTo(0, 0);
-    loadCart()
-  }
-
-});
+onMounted(() => {
+  window.scrollTo(0, 0)
+  loadCart()
+})
 
 </script>
 <style>

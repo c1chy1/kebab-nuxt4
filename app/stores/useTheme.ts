@@ -1,21 +1,21 @@
 import { defineStore } from 'pinia'
 
-
 export const useThemeStore = defineStore('theme', () => {
-    const theme = ref(null);
+    const themeCookie = useCookie<string>('daisyui-theme', {
+        maxAge: 60 * 60 * 24 * 365,
+        default: () => 'dark',
+    })
 
-    watch(theme, (value: any) => {
-        localStorage.setItem('daisyui-theme', value);
-    });
+    // theme used in app.vue as :data-theme
+    const theme = computed(() => themeCookie.value)
 
-    const toggleTheme = ref(false);
-    watch(toggleTheme, (value : boolean) => {
-        if (value) {
-            theme.value = 'light';
-        } else {
-            theme.value = 'dark';
-        }
-    });
+    // true = dark mode (checkbox checked = MOON visible), false = light mode (SUN visible)
+    const toggleTheme = computed({
+        get: () => themeCookie.value === 'dark',
+        set: (val: boolean) => {
+            themeCookie.value = val ? 'dark' : 'light'
+        },
+    })
 
-    return { theme , toggleTheme}
+    return { theme, toggleTheme }
 })
