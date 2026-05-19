@@ -1,7 +1,6 @@
+import { put } from '@vercel/blob'
 import { verifyToken } from "../../utils/jwt"
 import User from "../../db/models/User"
-import { writeFile, mkdir } from 'fs/promises'
-import { join } from 'path'
 
 export default defineEventHandler(async (event) => {
     const token = getCookie(event, 'token')
@@ -22,16 +21,16 @@ export default defineEventHandler(async (event) => {
         }
 
         const ext = file.filename?.split('.').pop()?.toLowerCase() || 'jpg'
-        const filename = `${decoded._id}.${ext}`
-        const uploadsDir = join(process.cwd(), 'public', 'uploads', 'avatars')
+        const filename = `avatars/${decoded._id}.${ext}`
 
-        await mkdir(uploadsDir, { recursive: true })
-        await writeFile(join(uploadsDir, filename), file.data)
+        const blob = await put(filename, file.data, {
+            access: 'public',
+            contentType: file.type,
+        })
 
-        const profilePicture = `/uploads/avatars/${filename}`
-        await User.findByIdAndUpdate(decoded._id, { profilePicture })
+        await User.findByIdAndUpdate(decoded._id, { profilePicture: blob.url })
 
-        return { success: true, profilePicture }
+        return { success: true, profilePicture: blob.url }
     } catch (err: any) {
         return { success: false, error: err.message }
     }
