@@ -152,7 +152,7 @@
         </div>
       </dialog>
       <dialog id="orders_modal" class="modal font-bold">
-        <div class="modal-box max-w-fit overflow-auto">
+        <div class="modal-box max-w-fit overflow-auto" data-lenis-prevent>
           <h2 class="section-title">Orders</h2>
           <div class="w-full flex flex-col ">
             <table class="table text-xs sm:text-sm  text-center">
@@ -226,11 +226,25 @@
       </dialog>
 
       <dialog id="users_modal" class="modal font-bold">
-        <div class="modal-box max-w-fit overflow-auto">
+        <div class="modal-box w-11/12 max-w-3xl overflow-y-auto" data-lenis-prevent>
           <h2 class="section-title">Users</h2>
-          <div class="w-full flex flex-col">
+          <div class="flex gap-2 mb-3">
+            <input
+                v-model="filterUsername"
+                type="text"
+                placeholder="Username..."
+                class="input input-bordered input-xs flex-1 font-normal"
+            />
+            <input
+                v-model="filterEmail"
+                type="text"
+                placeholder="Email..."
+                class="input input-bordered input-xs flex-1 font-normal"
+            />
+          </div>
+          <div class="w-full overflow-auto h-72">
             <table class="table text-xs sm:text-sm text-center">
-              <thead>
+              <thead class="sticky top-0 z-10 bg-base-100">
               <tr>
                 <th>#</th>
                 <th>Avatar</th>
@@ -242,7 +256,7 @@
               </tr>
               </thead>
               <tbody>
-              <tr v-for="(user, index) in adminStore.users" :key="user._id">
+              <tr v-for="(user, index) in filteredUsers" :key="user._id">
                 <td>{{ index + 1 }}</td>
                 <td>
                   <div class="flex justify-center">
@@ -287,7 +301,7 @@
         </div>
 
         <dialog id="user_orders_modal" class="modal font-bold">
-          <div class="modal-box max-w-fit overflow-auto">
+          <div class="modal-box max-w-fit overflow-auto" data-lenis-prevent>
             <h2 class="section-title">{{ adminStore.selectedUsername }}'s Orders</h2>
             <div class="w-full flex flex-col">
               <p v-if="adminStore.selectedUserOrders.length === 0" class="text-center py-4 opacity-60">No orders yet</p>
@@ -405,7 +419,18 @@ function showModal(id: string) {
   document.getElementById(id)?.showModal()
 }
 
+const filterUsername = ref('')
+const filterEmail = ref('')
+const filteredUsers = computed(() =>
+  adminStore.users.filter((u: any) =>
+    (u.username ?? '').toLowerCase().includes(filterUsername.value.toLowerCase()) &&
+    u.email.toLowerCase().includes(filterEmail.value.toLowerCase())
+  )
+)
+
 async function openUsersModal() {
+  filterUsername.value = ''
+  filterEmail.value = ''
   await adminStore.getUsers()
   showModal('users_modal')
 }
