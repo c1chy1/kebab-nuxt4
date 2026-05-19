@@ -3,3 +3,5 @@ allowBuilds:
   bcrypt: true
   esbuild: true
   sharp: true
+minimumReleaseAgeExclude:
+  - daisyui@5.5.20
