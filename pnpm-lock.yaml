@@ -75,6 +75,9 @@ importers:
       '@types/jsonwebtoken':
         specifier: ^9.0.10
         version: 9.0.10
+      '@vue/compiler-dom':
+        specifier: ^3.5.13
+        version: 3.5.34
       daisyui:
         specifier: ^5.5.20
         version: 5.5.20
