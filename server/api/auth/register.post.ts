@@ -1,8 +1,9 @@
 import User from "../../db/models/User"
 import jwt from 'jsonwebtoken';
+import { connectToMongoDB } from "../../plugins/mongodb"
 
 export default defineEventHandler(async (event) => {
-
+    await connectToMongoDB()
 
     const body = await readBody(event)
 

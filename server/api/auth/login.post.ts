@@ -1,7 +1,8 @@
 import User from "../../db/models/User"
-
+import { connectToMongoDB } from "../../plugins/mongodb"
 
 export default defineEventHandler(async (event) => {
+    await connectToMongoDB()
     try {
         const body = await readBody(event)
 

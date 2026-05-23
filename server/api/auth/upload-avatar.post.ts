@@ -1,8 +1,10 @@
 import { put } from '@vercel/blob'
 import { verifyToken } from "../../utils/jwt"
 import User from "../../db/models/User"
+import { connectToMongoDB } from "../../plugins/mongodb"
 
 export default defineEventHandler(async (event) => {
+    await connectToMongoDB()
     const token = getCookie(event, 'token')
     if (!token) return createError({ statusCode: 401, message: 'Unauthorized' })
 
@@ -26,6 +28,7 @@ export default defineEventHandler(async (event) => {
         const blob = await put(filename, file.data, {
             access: 'public',
             contentType: file.type,
+            allowOverwrite: true,
         })
 
         await User.findByIdAndUpdate(decoded._id, { profilePicture: blob.url })
