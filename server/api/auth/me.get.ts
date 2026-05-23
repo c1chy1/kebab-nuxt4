@@ -1,7 +1,9 @@
 import {verifyToken} from "../../utils/jwt";
 import User from "../../db/models/User";
+import { connectToMongoDB } from "../../plugins/mongodb"
 
 export default defineEventHandler( async (event) => {
+    await connectToMongoDB()
     const token = getCookie(event, 'token')
 
     if (!token) return null

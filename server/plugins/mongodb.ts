@@ -1,6 +1,24 @@
 import mongoose from 'mongoose'
 
+let isConnected = false
+
 export default defineNitroPlugin(async (nitroApp) => {
+    await connectToMongoDB()
+
+    nitroApp.hooks.hook('close', async () => {
+        if (isConnected) {
+            await mongoose.disconnect()
+            isConnected = false
+            console.log('[MongoDB] Disconnected')
+        }
+    })
+})
+
+export async function connectToMongoDB() {
+    if (isConnected && mongoose.connection.readyState === 1) {
+        return
+    }
+
     const config = useRuntimeConfig()
 
     if (!config.mongodbUri) {
@@ -9,14 +27,16 @@ export default defineNitroPlugin(async (nitroApp) => {
     }
 
     try {
-        await mongoose.connect(config.mongodbUri)
+        await mongoose.connect(config.mongodbUri, {
+            bufferCommands: false,
+            serverSelectionTimeoutMS: 10000,
+            socketTimeoutMS: 30000,
+        })
+        isConnected = true
         console.log('[MongoDB] Connected successfully')
     } catch (error) {
+        isConnected = false
         console.error('[MongoDB] Connection error:', error)
+        throw error
     }
-
-    nitroApp.hooks.hook('close', async () => {
-        await mongoose.disconnect()
-        console.log('[MongoDB] Disconnected')
-    })
-})
+}

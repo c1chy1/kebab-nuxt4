@@ -1,9 +1,10 @@
 import User from "../../db/models/User"
 import Order from "../../db/models/Order"
 import {verifyToken} from "../../utils/jwt";
-
+import { connectToMongoDB } from "../../plugins/mongodb"
 
 export default defineEventHandler(async event => {
+    await connectToMongoDB()
 
     const body = await readBody(event)
 
