@@ -14,6 +14,11 @@ export default defineNuxtConfig({
       interval: 60000,
       headers: true,
     },
+    headers: {
+      contentSecurityPolicy: {
+        'img-src': ["'self'", 'data:', '*.public.blob.vercel-storage.com', 'uxwing.com'],
+      },
+    },
   },
   routeRules: {
     '/api/auth/**': {

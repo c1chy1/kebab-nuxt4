@@ -46,7 +46,7 @@ const userSchema = new Schema({
         },
         profilePicture: {
             type: String,
-            default: "https://c1chy.lima-city.de/graphic/Webentwicklung.png",
+            default: "https://uxwing.com/wp-content/themes/uxwing/download/peoples-avatars/man-user-circle-icon.png",
         },
 
     },
