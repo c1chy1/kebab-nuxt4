@@ -27,11 +27,7 @@ export async function connectToMongoDB() {
     }
 
     try {
-        await mongoose.connect(config.mongodbUri, {
-            bufferCommands: false,
-            serverSelectionTimeoutMS: 10000,
-            socketTimeoutMS: 30000,
-        })
+        await mongoose.connect(config.mongodbUri)
         isConnected = true
         console.log('[MongoDB] Connected successfully')
     } catch (error) {
