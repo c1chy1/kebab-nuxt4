@@ -6,8 +6,9 @@
         class="md:block h-screen shadow-dark-lg background-dark-header transition-all duration-500 w-full"
       >
         <swiper-slide
-          v-for="slide in kebabs"
+          v-for="(slide, index) in kebabs"
           :key="slide"
+          :data-swiper-autoplay="index === 0 ? 6000 : 4000"
           class="hero"
         >
           <div
@@ -23,9 +24,9 @@
               />
               <div
                 id="banner"
-                class="hidden absolute overflow-hidden xl:flex items-center h-26 w-26 min-w-26
-                       md:h-40 md:min-w-40 xl:bottom-50 xl:right-30 p-2 md:p-2.5
-                       bg-[#ff6d00] rounded-full object-cover opacity-0"
+                class="hidden absolute xl:flex items-center h-26 w-26 min-w-26 min-h-26
+                       md:h-40 md:w-40 md:min-w-40 md:min-h-40 xl:bottom-50 xl:right-30 p-2 md:p-2.5
+                       bg-[#ff6d00] rounded-full [clip-path:circle(50%)] opacity-0"
               >
                 <article
                   class="relative flex flex-col items-center justify-center w-full h-full p-2.5
@@ -122,27 +123,18 @@ onMounted(async () => {
       { opacity: 1, delay: 3 }
   )
 
-  const tl = gsap.timeline({ repeat: -1, delay: 3 })
+  const tl = gsap.timeline({ repeat: -1, yoyo: true, delay: 3 })
   tl
-      .to('#banner', { duration: 0.65, y: 150, ease: 'power2.in' })
+      .to('#banner', { duration: 0.65, y: 150, ease: 'power4.in' })
       .to('#banner', {
-        duration: 0.10,
-        scaleY: 0.8,
+        duration: 0.08,
+        scaleY: 0.55,
+        scaleX: 1.25,
         transformOrigin: 'center bottom',
-        borderBottomLeftRadius: '40%',
-        borderBottomRightRadius: '40%',
-        ease: 'none',
-      })
-      .to('#banner', {
-        duration: 0.10,
-        scaleY: 1,
-        transformOrigin: 'center bottom',
-        borderBottomLeftRadius: '50%',
-        borderBottomRightRadius: '50%',
-        ease: 'none',
-      })
-      .to('#banner', { duration: 0.65, y: 0, ease: 'power2.out' })
-      .set('#banner', { clearProps: 'scaleY,transformOrigin,borderBottomLeftRadius,borderBottomRightRadius' })
+        borderBottomLeftRadius: '30%',
+        borderBottomRightRadius: '30%',
+        ease: 'power2.out',
+      }, '-=0.02')
 })
 </script>
 
