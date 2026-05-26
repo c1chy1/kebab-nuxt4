@@ -12,7 +12,7 @@
 
   </div>
   <div class="menu-mobile right-0 top-0 cursor-pointer font-mont " id="menu-mobile">
-    <div ref="bgMenu" class=" h-screen px-4 bg-menu-mobile bg-accent " id="bg-menu-mobile">
+    <div ref="bgMenu" class=" h-dvh px-4 bg-menu-mobile bg-accent " id="bg-menu-mobile">
       <ul ref="menu" class="space-y-2  w-full fixed">
         <li><nuxt-link hash="#header" @click="toggle();scrollTo('#header')" >Home</nuxt-link></li>
         <li><nuxt-link hash="#menu" @click="toggle();scrollTo('#menu')"  >Menu</nuxt-link></li>

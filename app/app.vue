@@ -52,7 +52,7 @@ onMounted(() => {
 <style>
 .main-body {
   display: flex;
-  height: calc(100vh - var(--header-height));
+  height: calc(100dvh - var(--header-height));
   overflow-x: hidden;
 }
 
