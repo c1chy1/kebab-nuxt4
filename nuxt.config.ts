@@ -45,6 +45,7 @@ export default defineNuxtConfig({
       include: [
         'pinia',
         'vue3-toastify',
+        'gsap',
         'gsap/ScrollTrigger',
         'gsap/Draggable',
         'lightgallery',
