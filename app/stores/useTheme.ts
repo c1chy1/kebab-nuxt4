@@ -3,7 +3,7 @@ import { defineStore } from 'pinia'
 export const useThemeStore = defineStore('theme', () => {
     const themeCookie = useCookie<string>('daisyui-theme', {
         maxAge: 60 * 60 * 24 * 365,
-        default: () => 'dark',
+        default: () => 'light',
     })
 
     // theme used in app.vue as :data-theme
