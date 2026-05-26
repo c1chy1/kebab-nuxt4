@@ -449,7 +449,7 @@ const maxToolbar = ref()
 onMounted(() => {
   let closedPositionW = 35 - sidebar.value.offsetWidth
   let drag: Draggable[];
-  mm.add("(max-width: 576px)", () => {
+  mm.add("(max-width: 575px)", () => {
 
     tl.set(sidebar.value, {
       x: closedPositionW
@@ -504,7 +504,7 @@ onMounted(() => {
           tl.to(maxToolbar.value, 0.5, {
             opacity: 0
           })
-          mm.add("(max-width: 576px)", () => {
+          mm.add("(max-width: 575px)", () => {
 
             tl.to(this.target, 0.3, {x: closedPositionW})
                 .to(this.target, 0.3, {height: "2.5rem"})
@@ -542,7 +542,7 @@ onMounted(() => {
           })
 
         } else {
-          mm.add("(max-width: 576px)", () => {
+          mm.add("(max-width: 575px)", () => {
 
             tl.to(maxToolbar.value, 0.3, {
               opacity: 0

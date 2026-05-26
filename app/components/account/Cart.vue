@@ -23,16 +23,14 @@
         <li
             v-for="item in cartItems"
             :key="item.id"
-            class="flex items-center">
+            class="flex items-center px-2 py-1 border-b border-gray-100 last:border-0">
           <NuxtImg
-
               :src="item.img"
               :alt="`image of ${item.title}`"
-              class="img-fluid rounded w-12 sm:w-20 lg:w-24 xl:w-32 h-10 sm:h-12 lg:h-16 xl:h-24"/>
-          <div class="text-black flex-1 mx-1 sm:mx-2 lg:mx-3 xl:mx-4">
-
-            <h2 class="font-bold text-black">{{ item.title }}</h2>
-            <div class="flex  items-center justify-between   xl:w-full 2xl:w-2/3 space-x-2.5 xl:space-x-2 ">
+              class="img-fluid rounded w-12 sm:w-20 lg:w-24 xl:w-32 h-10 sm:h-12 lg:h-16 xl:h-24 shrink-0"/>
+          <div class="text-black flex-1 mx-2 sm:mx-3 lg:mx-4 min-w-0">
+            <h2 class="font-bold text-black truncate">{{ item.title }}</h2>
+            <div class="flex items-center justify-between mt-0.5">
               <span>{{ item.price }}€</span>
               <select ref="select" class="border-2 border-black rounded-xl px-0.5 lg:px-1 cursor-pointer"
                       v-model="item.qty">
@@ -45,7 +43,7 @@
               </select>
             </div>
           </div>
-          <Icon name="heroicons:trash" class="w-6 sm:w-7 lg:w-10 sm:mr-1 cursor-pointer self-end lg:self-center text-[#DC691D]"
+          <Icon name="heroicons:trash" class="w-7 h-7 sm:w-8 sm:h-8 mr-2 shrink-0 cursor-pointer self-center text-[#DC691D]"
                 @click="cartStore.removeItem(item)" />
         </li>
 
@@ -126,7 +124,7 @@ onMounted(() => {
     height: "2.5rem", ease: "power3.inOut",
   })
 
-  mm.add("(max-width: 576px)", () => {
+  mm.add("(max-width: 575px)", () => {
 
     tl.set(cart.value, {
       x: closedPositionW
@@ -162,7 +160,7 @@ onMounted(() => {
               .to(this.target, 0.3, {height: "auto", ease: "power3.inOut"})
 
         } else {
-          mm.add("(max-width: 576px)", () => {
+          mm.add("(max-width: 575px)", () => {
             tl.to(this.target, 0.3, {x: closedPositionW})
                 .to(this.target, 0.3, {height: "2.5rem", ease: "power3.inOut"})
                 .to(items.value.$el, 0, {backgroundColor: "#ff6d00"});
@@ -185,7 +183,7 @@ onMounted(() => {
               .to(this.target, 0.3, {x: 0})
               .to(this.target, 0.3, {height: "auto"});
         } else {
-          mm.add("(max-width: 576px)", () => {
+          mm.add("(max-width: 575px)", () => {
             tl.to(this.target, 0.3, {x: closedPositionW})
                 .to(this.target, 0.3, {height: "2.5rem"})
                 .to(items.value.$el, 0, {backgroundColor: "#ff6d00"});
