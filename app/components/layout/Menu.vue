@@ -1,6 +1,6 @@
 <template>
   <section id="menu" class="pt-28 lg:pt-40 pb-12 sm:pb-20 text-center uppercase flex flex-col">
-    <h5 class="text-[22px] text-secondary w-56 mb-7 mx-auto font-bebas !bg-neutral inline-block py-4 px-6">
+    <h5 class="text-[22px] text-secondary w-56 mb-7 mx-auto font-bebas bg-neutral inline-block py-4 px-6">
       Always Tasty Burger
     </h5>
     <h2 class="section-title">Choose &amp; Enjoy</h2>
@@ -43,7 +43,7 @@
                   {{ slide.price }} €
                 </h2>
                 <div class="card-actions">
-                  <button class="btn button-orange">
+                  <button class="button-orange">
                     Buy Now
                   </button>
                 </div>
