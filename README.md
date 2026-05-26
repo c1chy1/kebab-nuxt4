@@ -7,7 +7,6 @@ A modern full-stack e-commerce web application built with **Nuxt 4**, focused on
 ### Frontend
 
 * **Nuxt 4**
-* **Vue 3**
 * **Tailwind CSS v4**
 * **DaisyUI**
 * **Sass**
