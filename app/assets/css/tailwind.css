@@ -141,7 +141,8 @@ html:has(:is(.modal-open, .modal:target, .modal-toggle:checked + .modal, .modal[
   }
 
   .form-validation {
-    @apply text-xs xl:text-sm mt-1 p-1.5 bottom-8 sm:bottom-10 xl:bottom-12 font-bebas w-full absolute text-white bg-error rounded;
+    @apply text-xs xl:text-sm mt-1 p-1.5 bottom-8 sm:bottom-10 xl:bottom-12 font-bebas w-full absolute text-black rounded;
+    background-color: rgb(232, 240, 254);
   }
 
   .scroll-top-button {
@@ -158,38 +159,39 @@ html:has(:is(.modal-open, .modal:target, .modal-toggle:checked + .modal, .modal[
     background-color: #393552;
   }
 
-  @layer base {
-    body {
-      @apply bg-primary bg-[url('/bg.png')];
-    }
-    h2, p {
-      color: oklch(0.8 0 0);
-    }
-    h5 {
-      background-color: oklch(0.3 0 0);
-    }
-
-    #events .hero-content {
-      background-color: oklch(0.8 0 0);
-      h2, p { color: oklch(0.3 0 0); }
-    }
-
-    .form-input, .form-label {
-      color: oklch(0.8 0 0);
-    }
-
-    #cart h2 {
-      color: black;
-    }
+  body {
+    @apply bg-primary bg-[url('/bg.png')];
+  }
+  h2, p {
+    color: oklch(0.8 0 0);
+  }
+  h5 {
+    background-color: oklch(0.3 0 0);
   }
 
-  @layer components {
-    .button-orange {
-      @apply bg-secondary hover:bg-[#BEBEBEFF] hover:text-primary;
-    }
-    .menu-mobile a {
-      @apply text-primary;
-    }
+  #events .hero-content {
+    background-color: oklch(0.8 0 0);
+    h2, p { color: oklch(0.3 0 0); }
+  }
+
+  .form-input, .form-label {
+    color: oklch(0.8 0 0);
+  }
+
+  #cart h2 {
+    color: black;
+  }
+
+  .button-orange {
+    @apply bg-secondary hover:bg-[#BEBEBEFF] hover:text-primary;
+  }
+  .menu-mobile a {
+    @apply text-primary;
+  }
+
+  .form-validation {
+    color: white;
+    background-color: rgb(57, 53, 82);
   }
 
   #sidebar button {
@@ -218,5 +220,9 @@ html:has(:is(.modal-open, .modal:target, .modal-toggle:checked + .modal, .modal[
 
   .sidebar {
     background: #006b00;
+  }
+
+  #header path {
+    fill: var(--color-primary);
   }
 }

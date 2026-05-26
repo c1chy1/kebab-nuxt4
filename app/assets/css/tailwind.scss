@@ -141,7 +141,8 @@ html:has(:is(.modal-open, .modal:target, .modal-toggle:checked + .modal, .modal[
   }
 
   .form-validation {
-    @apply text-xs xl:text-sm mt-1 p-1.5 bottom-8 sm:bottom-10 xl:bottom-12 font-bebas w-full absolute text-white bg-error rounded;
+    @apply text-xs xl:text-sm mt-1 p-1.5 bottom-8 sm:bottom-10 xl:bottom-12 font-bebas w-full absolute rounded text-black;
+    background-color: rgb(232, 240, 254);
   }
 
   .scroll-top-button {
@@ -176,6 +177,20 @@ html:has(:is(.modal-open, .modal:target, .modal-toggle:checked + .modal, .modal[
 
     .form-input, .form-label {
       color: oklch(0.8 0 0);
+    }
+
+    .form-validation {
+      color: white;
+      background-color: rgb(57, 53, 82);
+    }
+
+    .form-input:-webkit-autofill,
+    .form-input:-webkit-autofill:hover,
+    .form-input:-webkit-autofill:focus,
+    .form-input:-webkit-autofill:active {
+      -webkit-box-shadow: 0 0 0px 1000px oklch(30.62% 0.059 280.81) inset;
+      -webkit-text-fill-color: oklch(0.8 0 0);
+      caret-color: oklch(0.8 0 0);
     }
 
     #cart h2 {
