@@ -37,7 +37,7 @@
                          text-[30px] md:text-[60px] md:leading-20 border-2 border-dashed border-white
                          rounded-full text-white font-base font-bebas transform rotate-20"
                 >
-                  20% <span class="text-[24px] md:text-[33px] leading-5">Off</span>
+                  20% <span class="text-[24px] md:text-[33px] leading-5">{{ $t('header.discount') }}</span>
                 </article>
               </div>
             </div>
@@ -48,7 +48,7 @@
                        xl:text-[24px] text-primary border-primary font-medium font-bebas border-dashed
                        border-2 inline-block rounded-[3px] opacity-0"
               >
-                It is a good time for the great taste of kebabs
+                {{ $t('header.tagline') }}
               </h3>
               <h1
                 class="lg:mt-4 text-[38px] md:text-[44px] lg:text-[80px] xl:text-[94px] text-primary
@@ -56,18 +56,13 @@
                        drop-shadow-[4px_5px_#fee7ba] whitespace-pre-line overflow-hidden truncate
                        text-ellipsis transition-all duration-500 opacity-0"
               >
-                Turkish
-                <span class="text-[28px] md:text-[32px] xl:text-[56px] pt-4">Kebab</span>
+                {{ $t('header.title') }}
+                <span class="text-[28px] md:text-[32px] xl:text-[56px] pt-4">{{ $t('header.subtitle') }}</span>
               </h1>
             </div>
           </div>
         </swiper-slide>
     </swiper-container>
-    <div class="absolute bottom-0 left-0 w-full leading-none pointer-events-none">
-      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 80" preserveAspectRatio="none" class="w-full h-12 md:h-20">
-        <path d="M0,80 C480,0 960,0 1440,80 L1440,80 L0,80 Z" fill="white"/>
-      </svg>
-    </div>
   </header>
 </template>
 <script setup lang="ts">

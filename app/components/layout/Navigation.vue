@@ -22,22 +22,46 @@ bg-repeat-round  lg:px-12 xl:px-16  font-bebas">
         <ul ref="menu"
             class="menu menu-horizontal  hidden lg:flex justify-end gap-4 py-0 px-1 lg:text-[18px] xl:text-[24px] tracking-[3px] xl:tracking-[4px] relative uppercase transition-all duration-500">
           <li>
-            <nuxt-link hash="#header" @click="scrollTo('#header')">Home</nuxt-link>
+            <nuxt-link hash="#header" @click="scrollTo('#header')">{{ $t('nav.home') }}</nuxt-link>
           </li>
           <li>
-            <nuxt-link hash="#menu" @click="scrollTo('#menu')">Menu</nuxt-link>
+            <nuxt-link hash="#menu" @click="scrollTo('#menu')">{{ $t('nav.menu') }}</nuxt-link>
           </li>
           <li>
-            <nuxt-link hash="#events" @click="scrollTo('#events')">Events</nuxt-link>
+            <nuxt-link hash="#events" @click="scrollTo('#events')">{{ $t('nav.events') }}</nuxt-link>
           </li>
           <li>
-            <nuxt-link hash="#gallery" @click="scrollTo('#gallery')">Gallery</nuxt-link>
+            <nuxt-link hash="#gallery" @click="scrollTo('#gallery')">{{ $t('nav.gallery') }}</nuxt-link>
           </li>
           <li>
-            <nuxt-link hash="#login" @click="scrollTo('#login')">Log In</nuxt-link>
+            <nuxt-link hash="#login" @click="scrollTo('#login')">{{ $t('nav.login') }}</nuxt-link>
           </li>
           <li>
-            <nuxt-link hash="#contact" @click="scrollTo('#contact')">Contact Us</nuxt-link>
+            <nuxt-link hash="#contact" @click="scrollTo('#contact')">{{ $t('nav.contact') }}</nuxt-link>
+          </li>
+
+          <li class="relative" ref="langSwitcher">
+            <div class="dropdown dropdown-end">
+              <button tabindex="0" class="flex items-center gap-1.5 px-2 hover:bg-transparent focus:bg-transparent">
+                <Icon :name="currentFlag" class="w-6 h-6" />
+                <span class="text-sm lg:text-base">{{ locale.toUpperCase() }}</span>
+                <svg class="w-3 h-3 fill-current opacity-70" viewBox="0 0 10 6">
+                  <path d="M0 0l5 6 5-6z"/>
+                </svg>
+              </button>
+              <ul tabindex="0" class="dropdown-content menu bg-base-100/10 backdrop-blur-sm border border-white/10 rounded-lg p-1 mt-2 w-28 shadow-xl">
+                <li v-for="loc in availableLocales" :key="loc.code">
+                  <button
+                    @click="switchLocale(loc.code)"
+                    class="flex items-center gap-2 px-3 py-2 rounded hover:bg-white/10 transition-colors w-full text-left"
+                    :class="{ 'text-primary font-bold': locale === loc.code }"
+                  >
+                    <Icon :name="localeFlags[loc.code]" class="w-6 h-6" />
+                    <span class="text-sm tracking-widest">{{ loc.code.toUpperCase() }}</span>
+                  </button>
+                </li>
+              </ul>
+            </div>
           </li>
 
           <li>
@@ -60,6 +84,7 @@ bg-repeat-round  lg:px-12 xl:px-16  font-bebas">
 
 <script setup lang="ts">
 const { gsap, lazyLoadPlugin } = useGSAP();
+const { locale, locales, setLocale } = useI18n()
 
 const lenis = useLenis()
 
@@ -70,6 +95,52 @@ const navbar = ref<HTMLElement>()
 const menu = ref<HTMLElement>()
 const mobilNav = ref<HTMLElement>()
 const scrollToTopBtn = ref<HTMLElement>()
+const langSwitcher = ref<HTMLElement>()
+
+const localeFlags: Record<string, string> = {
+  en: 'circle-flags:gb',
+  de: 'circle-flags:de',
+  pl: 'circle-flags:pl',
+  tr: 'circle-flags:tr',
+}
+
+const availableLocales = computed(() =>
+  (locales.value as { code: string }[]).filter(l => l.code !== locale.value)
+)
+
+const currentFlag = computed(() => localeFlags[locale.value] ?? 'circle-flags:un')
+
+const isAnimating = ref(false)
+
+async function switchLocale(code: string) {
+  if (isAnimating.value || code === locale.value) return
+  isAnimating.value = true
+
+  const navItems = menu.value?.querySelectorAll('li a, li nuxt-link')
+
+  await gsap.to(navItems ?? [], {
+    opacity: 0,
+    y: -8,
+    duration: 0.25,
+    stagger: 0.04,
+    ease: 'power2.in',
+  })
+
+  await setLocale(code)
+
+  gsap.fromTo(
+    navItems ?? [],
+    { opacity: 0, y: 8 },
+    {
+      opacity: 1,
+      y: 0,
+      duration: 0.3,
+      stagger: 0.05,
+      ease: 'power2.out',
+      onComplete: () => { isAnimating.value = false }
+    }
+  )
+}
 
 onMounted(async () => {
   await lazyLoadPlugin("ScrollTrigger");

@@ -15,8 +15,8 @@
         </button>
 
         <h1 class=" sm:text-sm lg:text-lg font-bold"
-        >Cart</h1>
-        <span class="xl:text-base">({{ cartStore.totalCount }} items)</span>
+        >{{ $t('cart.title') }}</h1>
+        <span class="xl:text-base">({{ cartStore.totalCount }} {{ $t('cart.items') }})</span>
       </div>
 
       <transition-group name="list" tag="ul"  ref="items" class="py-2 px-0 text-black text-xs  md:text-sm  lg:text-base  xl:text-lg">
@@ -26,7 +26,7 @@
             class="flex items-center px-2 py-1 border-b border-gray-100 last:border-0">
           <NuxtImg
               :src="item.img"
-              :alt="`image of ${item.title}`"
+              :alt="`${$t('cart.imageAlt')} ${item.title}`"
               class="img-fluid rounded w-12 sm:w-20 lg:w-24 xl:w-32 h-10 sm:h-12 lg:h-16 xl:h-24 shrink-0"/>
           <div class="text-black flex-1 mx-2 sm:mx-3 lg:mx-4 min-w-0">
             <h2 class="font-bold text-black truncate">{{ item.title }}</h2>
@@ -52,19 +52,19 @@
       <div class="px-4 py-2 bg-secondary transition-colors duration-700">
 
         <div class="flex justify-between items-center">
-          <span class="text-xs lg:text-sm">Delivery:</span>
+          <span class="text-xs lg:text-sm">{{ $t('cart.delivery') }}</span>
           <span class="text-xs lg:text-sm">{{ cartStore.shippingPrice }} € </span>
         </div>
         <div class="flex justify-between items-center">
 
-          <span class="font-bold lg:text-base xl:text-xl">Total:</span>
+          <span class="font-bold lg:text-base xl:text-xl">{{ $t('cart.total') }}</span>
           <span class="font-bold lg:text-base xl:text-xl">{{ cartStore.total }} € </span>
         </div>
 
         <button
             @click="placeOrderHandler"
             class="block w-full mt-2 bg-primary hover:bg-red-600 text-white font-bold py-2 px-4 rounded">
-          Checkout
+          {{ $t('cart.checkout') }}
         </button>
       </div>
     </div>
