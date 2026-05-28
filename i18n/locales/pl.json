@@ -1,0 +1,91 @@
+{
+  "nav": {
+    "home": "Strona główna",
+    "menu": "Menu",
+    "events": "Wydarzenia",
+    "gallery": "Galeria",
+    "login": "Zaloguj się",
+    "contact": "Kontakt",
+    "delivery": "Zadzwoń i zamów +4 450 68 7474"
+  },
+  "menu": {
+    "tagline": "Zawsze smaczny burger",
+    "title": "Wybierz i delektuj się",
+    "buyNow": "Kup teraz"
+  },
+  "login": {
+    "title": "Zaloguj się,\naby kupować",
+    "button": "Zaloguj się",
+    "submitLabel": "Zaloguj się",
+    "emailLabel": "E-Mail",
+    "emailPlaceholder": "E-Mail",
+    "passwordLabel": "Hasło",
+    "passwordPlaceholder": "HASŁO",
+    "minChars": "Minimum 6 znaków",
+    "back": "Wróć"
+  },
+  "register": {
+    "title": "Utwórz konto",
+    "button": "Zarejestruj się",
+    "loggedIn": "Zalogowany",
+    "formTitle": "Rejestracja!",
+    "nameLabel": "Twoje imię",
+    "namePlaceholder": "Jan Kowalski",
+    "emailLabel": "E-Mail",
+    "emailPlaceholder": "E-Mail",
+    "passwordLabel": "Hasło",
+    "passwordPlaceholder": "Twoje hasło",
+    "symbolRequired": "Dodaj co najmniej jeden symbol",
+    "minChars": "Minimum 6 znaków",
+    "back": "Wróć",
+    "submitLabel": "Zarejestruj się"
+  },
+  "cart": {
+    "title": "Koszyk",
+    "items": "szt.",
+    "delivery": "Dostawa:",
+    "total": "Razem:",
+    "checkout": "Zamów",
+    "imageAlt": "zdjęcie"
+  },
+  "header": {
+    "tagline": "Najlepszy czas na niepowtarzalny smak kebabów",
+    "title": "Turecki",
+    "subtitle": "Kebab",
+    "discount": "Zniżki"
+  },
+  "dashboard": {
+    "account": "Konto",
+    "settings": "Ustawienia",
+    "users": "Użytkownicy",
+    "orders": "Zamówienia",
+    "back": "Wróć",
+    "edit": "Edytuj",
+    "cancel": "Anuluj",
+    "save": "Zapisz",
+    "avatarHint": "Kliknij awatar, aby wgrać nowe zdjęcie",
+    "uploadPhoto": "Prześlij zdjęcie",
+    "name": "Imię",
+    "email": "E-mail",
+    "emailHint": "ID · nie można zmienić",
+    "ordersTable": {
+      "orderId": "Nr zamówienia",
+      "title": "Nazwa",
+      "price": "Cena",
+      "quantity": "Ilość",
+      "qty": "Szt.",
+      "total": "Suma",
+      "delivery": "Dostawa",
+      "noOrders": "Brak zamówień"
+    },
+    "usersTable": {
+      "avatar": "Awatar",
+      "username": "Użytkownik",
+      "email": "E-mail",
+      "role": "Rola",
+      "usernamePlaceholder": "Użytkownik...",
+      "emailPlaceholder": "E-mail...",
+      "deleteUser": "Usuń"
+    }
+  }
+}

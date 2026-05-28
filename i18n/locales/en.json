@@ -1,0 +1,91 @@
+{
+  "nav": {
+    "home": "Home",
+    "menu": "Menu",
+    "events": "Events",
+    "gallery": "Gallery",
+    "login": "Log In",
+    "contact": "Contact Us",
+    "delivery": "Call for Delivery +4 450 68 7474"
+  },
+  "menu": {
+    "tagline": "Always Tasty Burger",
+    "title": "Choose & Enjoy",
+    "buyNow": "Buy Now"
+  },
+  "login": {
+    "title": "Log in To Buy",
+    "button": "Log In",
+    "submitLabel": "Log in",
+    "emailLabel": "E-Mail",
+    "emailPlaceholder": "E-Mail",
+    "passwordLabel": "Password",
+    "passwordPlaceholder": "PASSWORD",
+    "minChars": "Minimum 6 Characters",
+    "back": "Back"
+  },
+  "register": {
+    "title": "Create Account",
+    "button": "Register",
+    "loggedIn": "Logged In",
+    "formTitle": "Register!",
+    "nameLabel": "Your name",
+    "namePlaceholder": "Jane Doe",
+    "emailLabel": "E-Mail",
+    "emailPlaceholder": "E-Mail",
+    "passwordLabel": "Password",
+    "passwordPlaceholder": "Your password",
+    "symbolRequired": "Please include at least one symbol",
+    "minChars": "Minimum 6 Characters",
+    "back": "Back",
+    "submitLabel": "Register"
+  },
+  "cart": {
+    "title": "Cart",
+    "items": "items",
+    "delivery": "Delivery:",
+    "total": "Total:",
+    "checkout": "Checkout",
+    "imageAlt": "image of"
+  },
+  "header": {
+    "tagline": "It is a good time for the great taste of kebabs",
+    "title": "Turkish",
+    "subtitle": "Kebab",
+    "discount": "Off"
+  },
+  "dashboard": {
+    "account": "Account",
+    "settings": "Settings",
+    "users": "Users",
+    "orders": "Orders",
+    "back": "Back",
+    "edit": "Edit",
+    "cancel": "Cancel",
+    "save": "Save",
+    "avatarHint": "Click the avatar to upload a new photo",
+    "uploadPhoto": "Upload photo",
+    "name": "Name",
+    "email": "Email",
+    "emailHint": "ID · cannot change",
+    "ordersTable": {
+      "orderId": "Order Id",
+      "title": "Title",
+      "price": "Price",
+      "quantity": "Quantity",
+      "qty": "Qty",
+      "total": "Total",
+      "delivery": "Delivery",
+      "noOrders": "No orders yet"
+    },
+    "usersTable": {
+      "avatar": "Avatar",
+      "username": "Username",
+      "email": "Email",
+      "role": "Role",
+      "usernamePlaceholder": "Username...",
+      "emailPlaceholder": "Email...",
+      "deleteUser": "Delete"
+    }
+  }
+}

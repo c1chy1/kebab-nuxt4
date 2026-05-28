@@ -1,0 +1,91 @@
+{
+  "nav": {
+    "home": "Ana Sayfa",
+    "menu": "Menü",
+    "events": "Etkinlikler",
+    "gallery": "Galeri",
+    "login": "Giriş Yap",
+    "contact": "İletişim",
+    "delivery": "Teslimat için arayın +4 450 68 7474"
+  },
+  "menu": {
+    "tagline": "Her zaman lezzetli burger",
+    "title": "Seç ve Keyfini Çıkar",
+    "buyNow": "Şimdi Satın Al"
+  },
+  "login": {
+    "title": "Satın almak için\ngiriş yapın",
+    "button": "Giriş Yap",
+    "submitLabel": "Giriş Yap",
+    "emailLabel": "E-Posta",
+    "emailPlaceholder": "E-Posta",
+    "passwordLabel": "Şifre",
+    "passwordPlaceholder": "ŞİFRE",
+    "minChars": "En az 6 karakter",
+    "back": "Geri"
+  },
+  "register": {
+    "title": "Hesap Oluştur",
+    "button": "Kayıt Ol",
+    "loggedIn": "Giriş Yapıldı",
+    "formTitle": "Kayıt Ol!",
+    "nameLabel": "Adınız",
+    "namePlaceholder": "Ahmet Yılmaz",
+    "emailLabel": "E-Posta",
+    "emailPlaceholder": "E-Posta",
+    "passwordLabel": "Şifre",
+    "passwordPlaceholder": "Şifreniz",
+    "symbolRequired": "Lütfen en az bir sembol ekleyin",
+    "minChars": "En az 6 karakter",
+    "back": "Geri",
+    "submitLabel": "Kayıt Ol"
+  },
+  "cart": {
+    "title": "Sepet",
+    "items": "ürün",
+    "delivery": "Teslimat:",
+    "total": "Toplam:",
+    "checkout": "Sipariş Ver",
+    "imageAlt": "görsel"
+  },
+  "header": {
+    "tagline": "Harika kebap lezzetinin tam zamanı",
+    "title": "Türk",
+    "subtitle": "Kebabı",
+    "discount": "İndirim"
+  },
+  "dashboard": {
+    "account": "Hesap",
+    "settings": "Ayarlar",
+    "users": "Kullanıcılar",
+    "orders": "Siparişler",
+    "back": "Geri",
+    "edit": "Düzenle",
+    "cancel": "İptal",
+    "save": "Kaydet",
+    "avatarHint": "Yeni fotoğraf yüklemek için avatara tıklayın",
+    "uploadPhoto": "Fotoğraf yükle",
+    "name": "Ad",
+    "email": "E-posta",
+    "emailHint": "ID · değiştirilemez",
+    "ordersTable": {
+      "orderId": "Sipariş No",
+      "title": "Başlık",
+      "price": "Fiyat",
+      "quantity": "Miktar",
+      "qty": "Adet",
+      "total": "Toplam",
+      "delivery": "Teslimat",
+      "noOrders": "Henüz sipariş yok"
+    },
+    "usersTable": {
+      "avatar": "Avatar",
+      "username": "Kullanıcı Adı",
+      "email": "E-posta",
+      "role": "Rol",
+      "usernamePlaceholder": "Kullanıcı adı...",
+      "emailPlaceholder": "E-posta...",
+      "deleteUser": "Sil"
+    }
+  }
+}
