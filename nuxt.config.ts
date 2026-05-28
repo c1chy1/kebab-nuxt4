@@ -4,9 +4,30 @@ import tailwindcss from '@tailwindcss/vite'
 export default defineNuxtConfig({
   compatibilityDate: '2026-05-11',
   devtools: { enabled: true },
-  modules: ['@nuxt/image', '@nuxt/icon','@pinia/nuxt','@formkit/nuxt','lenis/nuxt','nuxt-swiper','@nuxtjs/fontaine', 'nuxt-security'],
+  modules: [
+    '@nuxt/image',
+    '@nuxt/icon',
+    '@pinia/nuxt',
+    '@formkit/nuxt',
+    'lenis/nuxt',
+    'nuxt-swiper',
+    '@nuxtjs/fontaine',
+    'nuxt-security',
+    '@nuxtjs/i18n',
+  ],
   formkit: {
     autoImport: true,
+  },
+  i18n: {
+    locales: [
+      { code: 'en', language: 'en-US', file: 'en.json' },
+      { code: 'de', language: 'de-DE', file: 'de.json' },
+      { code: 'pl', language: 'pl-PL', file: 'pl.json' },
+      { code: 'tr', language: 'tr-TR', file: 'tr.json' },
+    ],
+    defaultLocale: 'en',
+    strategy: 'no_prefix',
+    langDir: 'locales/',
   },
   security: {
     rateLimiter: {
