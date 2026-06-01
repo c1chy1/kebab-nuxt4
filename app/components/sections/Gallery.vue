@@ -1,7 +1,7 @@
 <template>
   <div id="gallery" class="px-4">
 
-    <h2 class="section-title  pt-28 lg:pt-44 lg:pb-8 xl:pb-16">Gallery</h2>
+    <h2 ref="titleRef" class="section-title  pt-28 lg:pt-44 lg:pb-8 xl:pb-16">{{ $t('gallery.title') }}</h2>
     <div ref="gallery" class="max-w-sm sm:max-w-2xl md:max-w-3xl lg:max-w-4xl xl:max-w-6xl  grid  sm:grid-cols-3 sm:grid-rows-2 lg:grid-cols-4 lg:grid-rows-2 mx-auto shadow-dark-sm"
 
     >
@@ -46,6 +46,8 @@ import Lightgallery from "lightgallery";
 import 'lightgallery/scss/lightgallery.scss'
 const { public: { lightgalleryLicense } } = useRuntimeConfig()
 const gallery = ref()
+const titleRef = ref<HTMLElement>()
+useLocaleTransition(titleRef)
 
 function lightGallery() {
 

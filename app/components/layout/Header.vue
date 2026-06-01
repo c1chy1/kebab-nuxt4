@@ -42,11 +42,12 @@
               </div>
             </div>
 
-            <div class="max-w-full sm:w-1/2 xl:w-full xl:text-left flex flex-col items-center lg:items-start">
+            <div ref="textRef" class="max-w-full sm:w-1/2 xl:w-full xl:text-left flex flex-col items-center lg:items-start">
               <h3
                 class="py-0 md:py-0 lg:py-2 lg:px-3 px-2 mb-4 text-[16px] md:text-[16px] lg:text-[20px]
                        xl:text-[24px] text-primary border-primary font-medium font-bebas border-dashed
-                       border-2 inline-block rounded-[3px] opacity-0"
+                       border-2 inline-block rounded-[3px]"
+                style="opacity: 0"
               >
                 {{ $t('header.tagline') }}
               </h3>
@@ -54,7 +55,8 @@
                 class="lg:mt-4 text-[38px] md:text-[44px] lg:text-[80px] xl:text-[94px] text-primary
                        font-alfa font-medium flex flex-col leading-none tracking-wider
                        drop-shadow-[4px_5px_#fee7ba] whitespace-pre-line overflow-hidden truncate
-                       text-ellipsis transition-all duration-500 opacity-0"
+                       text-ellipsis"
+                style="opacity: 0"
               >
                 {{ $t('header.title') }}
                 <span class="text-[28px] md:text-[32px] xl:text-[56px] pt-4">{{ $t('header.subtitle') }}</span>
@@ -69,6 +71,8 @@
 import gsap from 'gsap'
 
 const containerRef = ref(null)
+const textRef = ref<HTMLElement[]>([])
+useLocaleTransition(textRef, 'h1, h3')
 
 const kebabs = [
   'images/slides/1.png',

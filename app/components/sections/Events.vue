@@ -1,11 +1,13 @@
 <script setup lang="ts">
+const { t } = useI18n()
 const containerRef = ref(null)
+const eventsRef = ref<HTMLElement>()
 
-const hamburgers = [
-  { img: 'images/event/event_1.png', label: 'Discover', title: 'Upcoming Events' },
-  { img: 'images/event/event_2.png', label: 'Always Tasty', title: 'Choose & Enjoy' },
-  { img: 'images/event/event_1.png', label: 'Discover', title: 'Upcoming Events' },
-]
+const hamburgers = computed(() => [
+  { img: 'images/event/event_1.png', label: t('events.discover'), title: t('events.upcomingEvents'), desc: t('events.slide1desc') },
+  { img: 'images/event/event_2.png', label: t('events.alwaysTasty'), title: t('events.chooseEnjoy'), desc: t('events.slide2desc') },
+  { img: 'images/event/event_1.png', label: t('events.discover'), title: t('events.upcomingEvents'), desc: t('events.slide1desc') },
+])
 
 const swiper = useSwiper(containerRef, {
   effect: 'fade',
@@ -15,10 +17,12 @@ const swiper = useSwiper(containerRef, {
 })
 
 const { realIndex } = swiper
+
+useLocaleTransition(eventsRef, 'h2')
 </script>
 
 <template>
-  <section id="events" class="px-2 pt-30 lg:pt-40 sm:px-4 md:px-16 lg:px-20 lg:py-24 text-center space-y-6">
+  <section id="events" ref="eventsRef" class="px-2 pt-30 lg:pt-40 sm:px-4 md:px-16 lg:px-20 lg:py-24 text-center space-y-6">
     <ClientOnly>
       <swiper-container
           ref="containerRef"
@@ -26,8 +30,8 @@ const { realIndex } = swiper
           class="overflow-hidden hero shadow-xl relative"
       >
         <swiper-slide
-            v-for="slide in hamburgers"
-            :key="slide.title"
+            v-for="(slide, i) in hamburgers"
+            :key="i"
             class="text-left bg-white"
         >
           <div class="hero-content flex-col-reverse lg:flex-row lg:items-start lg:max-w-full">
@@ -39,9 +43,7 @@ const { realIndex } = swiper
                 {{ slide.title }}
               </h2>
               <p class="xl:text-[21px] xl:leading-8 py-6">
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et
-                dolore magna aliqua. Quis ipsum suspendisse ultrices gravida. Risus commodo viverra maecenas accumsan
-                lacus vel facilisis.
+                {{ slide.desc }}
               </p>
               <div class="flex items-center gap-3">
                 <button

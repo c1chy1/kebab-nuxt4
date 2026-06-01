@@ -4,21 +4,21 @@
       <SectionsBanner
           class="shadow-dark-sm"
           src="images/home/1.png"
-          subject="Try it today"
-          title="Most popular kebab"
+          :subject="$t('home.tryItToday')"
+          :title="$t('home.mostPopular')"
       />
     </div>
     <div class="flex flex-col flex-wrap justify-between gap-y-9 lg:gap-y-0 w-full lg:w-1/2">
       <SectionsBanner
           class="shadow-dark-sm"
           src="images/home/2.png"
-          subject="Try it today"
-          title="More fun more taste"/>
+          :subject="$t('home.tryItToday')"
+          :title="$t('home.moreFun')"/>
       <SectionsBanner
           class="shadow-dark-sm"
           src="images/home/3.png"
-          subject="Try it today"
-          title="Fresh & Chili"/>
+          :subject="$t('home.tryItToday')"
+          :title="$t('home.freshChili')"/>
     </div>
   </section>
 </template>

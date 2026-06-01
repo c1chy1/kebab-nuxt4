@@ -1,14 +1,11 @@
 <template>
-  <section id="menu" class="pt-28 lg:pt-40 pb-12 sm:pb-20 text-center uppercase flex flex-col">
+  <section id="menu" ref="menuRef" class="pt-28 lg:pt-40 pb-12 sm:pb-20 text-center uppercase flex flex-col">
     <h5 class="text-[22px] text-secondary w-56 mb-7 mx-auto font-bebas bg-neutral inline-block py-4 px-6">
-      Always Tasty Burger
+      {{ $t('menu.tagline') }}
     </h5>
-    <h2 class="section-title">Choose &amp; Enjoy</h2>
+    <h2 class="section-title">{{ $t('menu.title') }}</h2>
     <p class="text-sm xl:text-[17px] px-7 text-center lowercase">
-      Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore
-      magna aliqua.
-      <br class="hidden xl:block">
-      Quis ipsum suspendisse ultrices gravida. Risus commodo viverra maecenas accumsan lacus vel facilisis.
+      {{ $t('menu.description') }}
     </p>
 
     <div class="flex w-full">
@@ -37,14 +34,14 @@
                   {{ slide.title }}
                 </h2>
                 <p class="text-xs xl:text-[17px] leading-5 lowercase w-2/3 xl:w-full">
-                  Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
+                  {{ $t(`menu.items.${slide.id}`) }}
                 </p>
                 <h2 class="card-title py-1 lg:py-2 text-3xl sm:text-[38px] text-primary font-bebas uppercase">
                   {{ slide.price }} €
                 </h2>
                 <div class="card-actions">
                   <button class="button-orange">
-                    Buy Now
+                    {{ $t('menu.buyNow') }}
                   </button>
                 </div>
               </div>
@@ -72,6 +69,8 @@
 import { useCartStore } from '@/stores/useCart'
 
 const cart = useCartStore()
+const menuRef = ref<HTMLElement>()
+useLocaleTransition(menuRef, 'h5, h2, button.button-orange')
 
 const containerRef = ref(null)
 

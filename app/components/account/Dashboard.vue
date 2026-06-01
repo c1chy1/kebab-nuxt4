@@ -18,7 +18,7 @@
       <div
           class="pl-4 pr-1 py-1 flex items-center space-x-3 group bg-gradient-to-t dark:from-cyan-500 dark:to-blue-500 from-primary via-primary to-[#b9cf21]  rounded-full text-white  ">
         <div class="transition-all duration-700 mr-8  text-sm">
-          Account
+          {{ $t('dashboard.account') }}
         </div>
       </div>
     </div>
@@ -47,7 +47,7 @@
           <button
               @click="showModal('settings_modal')"
               class=" cursor-pointer">
-            Settings
+            {{ $t('dashboard.settings') }}
           </button>
 
         </li>
@@ -58,7 +58,7 @@
           <button
               @click="openUsersModal()"
               class="cursor-pointer">
-            Users
+            {{ $t('dashboard.users') }}
           </button>
         </li>
         <li class="hover:ml-4 w-full text-white  bg-secondary p-2 pl-8 rounded-full flex flex-row items-center space-x-3 transition-all duration-700">
@@ -67,7 +67,7 @@
           <button
               @click="showModal('orders_modal')"
               class="cursor-pointer">
-            Orders
+            {{ $t('dashboard.orders') }}
           </button>
         </li>
       </ul>
@@ -75,7 +75,7 @@
     <Teleport to="body">
       <dialog id="user_modal" class="modal font-bold">
         <div class="modal-box">
-          <h2 class="section-title">Account</h2>
+          <h2 class="section-title">{{ $t('dashboard.account') }}</h2>
 
           <div class="flex flex-col items-center gap-4 py-4">
             <!-- Avatar -->
@@ -90,19 +90,19 @@
                     ref="avatarOverlay"
                     class="absolute inset-0 flex items-center justify-center bg-black/50 mask mask-squircle cursor-pointer"
                     style="opacity: 0; pointer-events: none;"
-                    title="Upload photo">
+                    :title="$t('dashboard.uploadPhoto')">
                   <Icon name="heroicons:camera" class="w-6 h-6 text-white pointer-events-none"/>
                   <input type="file" class="hidden" accept="image/jpeg,image/png,image/webp,image/gif" @change="handleAvatarUpload"/>
                 </label>
               </ClientOnly>
             </div>
             <!-- Always in DOM to avoid layout shift, animated with GSAP -->
-            <p ref="avatarHint" class="text-xs -mt-2" style="opacity: 0;">Click the avatar to upload a new photo</p>
+            <p ref="avatarHint" class="text-xs -mt-2" style="opacity: 0;">{{ $t('dashboard.avatarHint') }}</p>
 
             <!-- Fields -->
             <div class="w-full space-y-3 text-sm">
               <div class="flex items-center gap-3 h-8">
-                <span class="opacity-50 w-14 shrink-0">Name</span>
+                <span class="opacity-50 w-14 shrink-0">{{ $t('dashboard.name') }}</span>
                 <div class="flex-1 relative h-full flex items-center">
                   <span ref="nameDisplay" class="font-normal">{{ (store.userInfo as any)?.username }}</span>
                   <input
@@ -115,9 +115,9 @@
                 </div>
               </div>
               <div class="flex items-center gap-3 h-8">
-                <span class="opacity-50 w-14 shrink-0">Email</span>
+                <span class="opacity-50 w-14 shrink-0">{{ $t('dashboard.email') }}</span>
                 <span class="flex-1 font-normal">{{ (store.userInfo as any)?.email }}</span>
-                <span ref="emailHint" class="text-xs italic shrink-0" style="opacity: 0;">ID · cannot change</span>
+                <span ref="emailHint" class="text-xs italic shrink-0" style="opacity: 0;">{{ $t('dashboard.emailHint') }}</span>
               </div>
             </div>
           </div>
@@ -125,13 +125,13 @@
           <div class="modal-action justify-between">
             <template v-if="!isEditing">
               <form method="dialog">
-                <button class="button-orange">Back</button>
+                <button class="button-orange">{{ $t('dashboard.back') }}</button>
               </form>
-              <button class="button-orange" @click="startEdit">Edit</button>
+              <button class="button-orange" @click="startEdit">{{ $t('dashboard.edit') }}</button>
             </template>
             <template v-else>
-              <button class="button-orange" @click="cancelEdit">Cancel</button>
-              <button class="button-orange" @click="saveProfile">Save</button>
+              <button class="button-orange" @click="cancelEdit">{{ $t('dashboard.cancel') }}</button>
+              <button class="button-orange" @click="saveProfile">{{ $t('dashboard.save') }}</button>
             </template>
           </div>
         </div>
@@ -139,21 +139,20 @@
 
       <dialog id="settings_modal" class="modal">
         <div class="modal-box">
-          <h2 class="section-title">Settings</h2>
+          <h2 class="section-title">{{ $t('dashboard.settings') }}</h2>
           <div class="w-full mx-auto flex justify-center">
             <UiButtonTheme/>
           </div>
           <div class="modal-action">
             <form method="dialog">
-              <!-- if there is a button in form, it will close the modal -->
-              <button class="button-orange">Back</button>
+              <button class="button-orange">{{ $t('dashboard.back') }}</button>
             </form>
           </div>
         </div>
       </dialog>
       <dialog id="orders_modal" class="modal font-bold">
         <div class="modal-box max-w-fit overflow-auto" data-lenis-prevent>
-          <h2 class="section-title">Orders</h2>
+          <h2 class="section-title">{{ $t('dashboard.orders') }}</h2>
           <div class="w-full flex flex-col ">
             <table class="table text-xs sm:text-sm  text-center">
               <thead>
@@ -163,11 +162,11 @@
                     <input type="checkbox" class="checkbox"/>
                   </label>
                 </th>-->
-                <th>Order Id</th>
-                <th>Title</th>
-                <th>Price</th>
-                <th>Quantity</th>
-                <th>Total</th>
+                <th>{{ $t('dashboard.ordersTable.orderId') }}</th>
+                <th>{{ $t('dashboard.ordersTable.title') }}</th>
+                <th>{{ $t('dashboard.ordersTable.price') }}</th>
+                <th>{{ $t('dashboard.ordersTable.quantity') }}</th>
+                <th>{{ $t('dashboard.ordersTable.total') }}</th>
               </tr>
               </thead>
               <tbody>
@@ -190,7 +189,7 @@
                     <p> {{ order.title }}</p>
 
                   </div>
-                  <p>Delivery</p>
+                  <p>{{ $t('dashboard.ordersTable.delivery') }}</p>
                 </td>
 
                 <td>
@@ -219,7 +218,7 @@
           </div>
           <div class="modal-action">
             <form method="dialog">
-              <button class="button-orange">Back</button>
+              <button class="button-orange">{{ $t('dashboard.back') }}</button>
             </form>
           </div>
         </div>
@@ -227,18 +226,18 @@
 
       <dialog id="users_modal" class="modal font-bold">
         <div class="modal-box w-11/12 max-w-3xl overflow-y-auto" data-lenis-prevent>
-          <h2 class="section-title">Users</h2>
+          <h2 class="section-title">{{ $t('dashboard.users') }}</h2>
           <div class="flex gap-2 mb-3">
             <input
                 v-model="filterUsername"
                 type="text"
-                placeholder="Username..."
+                :placeholder="$t('dashboard.usersTable.usernamePlaceholder')"
                 class="input input-bordered input-xs flex-1 font-normal"
             />
             <input
                 v-model="filterEmail"
                 type="text"
-                placeholder="Email..."
+                :placeholder="$t('dashboard.usersTable.emailPlaceholder')"
                 class="input input-bordered input-xs flex-1 font-normal"
             />
           </div>
@@ -247,10 +246,10 @@
               <thead class="sticky top-0 z-10 bg-base-100">
               <tr>
                 <th>#</th>
-                <th>Avatar</th>
-                <th>Username</th>
-                <th>Email</th>
-                <th>Role</th>
+                <th>{{ $t('dashboard.usersTable.avatar') }}</th>
+                <th>{{ $t('dashboard.usersTable.username') }}</th>
+                <th>{{ $t('dashboard.usersTable.email') }}</th>
+                <th>{{ $t('dashboard.usersTable.role') }}</th>
                 <th></th>
                 <th></th>
               </tr>
@@ -278,7 +277,7 @@
                   <button
                       class="btn btn-info btn-xs"
                       @click="openUserOrdersModal(user)">
-                    Orders
+                    {{ $t('dashboard.orders') }}
                   </button>
                 </td>
                 <td>
@@ -286,7 +285,7 @@
                       v-if="user.role !== 'admin'"
                       class="btn btn-error btn-xs"
                       @click="adminStore.removeUser(user._id)">
-                    Delete
+                    {{ $t('dashboard.usersTable.deleteUser') }}
                   </button>
                 </td>
               </tr>
@@ -295,24 +294,24 @@
           </div>
           <div class="modal-action">
             <form method="dialog">
-              <button class="button-orange">Back</button>
+              <button class="button-orange">{{ $t('dashboard.back') }}</button>
             </form>
           </div>
         </div>
 
         <dialog id="user_orders_modal" class="modal font-bold">
           <div class="modal-box max-w-fit overflow-auto" data-lenis-prevent>
-            <h2 class="section-title">{{ adminStore.selectedUsername }}'s Orders</h2>
+            <h2 class="section-title">{{ adminStore.selectedUsername }} – {{ $t('dashboard.orders') }}</h2>
             <div class="w-full flex flex-col">
-              <p v-if="adminStore.selectedUserOrders.length === 0" class="text-center py-4 opacity-60">No orders yet</p>
+              <p v-if="adminStore.selectedUserOrders.length === 0" class="text-center py-4 opacity-60">{{ $t('dashboard.ordersTable.noOrders') }}</p>
               <table v-else class="table text-xs sm:text-sm text-center">
                 <thead>
                 <tr>
-                  <th>Order Id</th>
-                  <th>Title</th>
-                  <th>Price</th>
-                  <th>Qty</th>
-                  <th>Total</th>
+                  <th>{{ $t('dashboard.ordersTable.orderId') }}</th>
+                  <th>{{ $t('dashboard.ordersTable.title') }}</th>
+                  <th>{{ $t('dashboard.ordersTable.price') }}</th>
+                  <th>{{ $t('dashboard.ordersTable.qty') }}</th>
+                  <th>{{ $t('dashboard.ordersTable.total') }}</th>
                 </tr>
                 </thead>
                 <tbody>
@@ -322,7 +321,7 @@
                     <div v-for="order in item.orderItems" :key="order.title">
                       <p>{{ order.title }}</p>
                     </div>
-                    <p>Delivery</p>
+                    <p>{{ $t('dashboard.ordersTable.delivery') }}</p>
                   </td>
                   <td>
                     <div v-for="order in item.orderItems" :key="order.title">
@@ -342,7 +341,7 @@
             </div>
             <div class="modal-action">
               <form method="dialog">
-                <button class="button-orange">Back</button>
+                <button class="button-orange">{{ $t('dashboard.back') }}</button>
               </form>
             </div>
           </div>
@@ -445,6 +444,7 @@ let mm = gsap.matchMedia();
 const sidebar = ref()
 const maxSidebar = ref()
 const maxToolbar = ref()
+useLocaleTransition(sidebar, 'li button')
 
 onMounted(() => {
   let closedPositionW = 35 - sidebar.value.offsetWidth

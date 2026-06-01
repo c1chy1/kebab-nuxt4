@@ -17,7 +17,7 @@ bg-repeat-round  lg:px-12 xl:px-16  font-bebas">
         <div class="hidden sm:flex items-center pr-20 space-x-5 lg:pt-6 lg:pr-9 ">
           <img class="animate-shake delay-500" src="/delivery-icon.png">
           <h3 class=" text-xs md:text-sm lg:text-base text-center font-semibold font-mont py-5 tracking-wider transition-all duration-500">
-            Call for Delivery +4 450 68 7474</h3>
+            {{ $t('nav.delivery') }}</h3>
         </div>
         <ul ref="menu"
             class="menu menu-horizontal  hidden lg:flex justify-end gap-4 py-0 px-1 lg:text-[18px] xl:text-[24px] tracking-[3px] xl:tracking-[4px] relative uppercase transition-all duration-500">
@@ -116,6 +116,8 @@ async function switchLocale(code: string) {
   if (isAnimating.value || code === locale.value) return
   isAnimating.value = true
 
+  setLocaleChanging(true)
+
   const navItems = menu.value?.querySelectorAll('li a, li nuxt-link')
 
   await gsap.to(navItems ?? [], {
@@ -127,6 +129,8 @@ async function switchLocale(code: string) {
   })
 
   await setLocale(code)
+
+  setLocaleChanging(false)
 
   gsap.fromTo(
     navItems ?? [],

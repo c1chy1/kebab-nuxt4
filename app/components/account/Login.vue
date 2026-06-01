@@ -2,6 +2,8 @@
 import {useUserStore} from "~/stores/userStore";
 
 const user = useUserStore()
+const loginRef = ref<HTMLElement>()
+useLocaleTransition(loginRef, 'h2, button')
 
 function showModal(id: string) {
   document.getElementById(id)?.showModal()
@@ -11,13 +13,14 @@ function showModal(id: string) {
 <template>
 
   <div
+      ref="loginRef"
       class="relative w-full mx-auto flex flex-col items-center justify-center pt-32  lg:pt-36 xl:pt-40 "
       id="login">
     <div class="text-center" >
-      <h2 class="section-title">Log in  <br>To Buy</h2>
+      <h2 class="section-title">{{ $t('login.title') }}</h2>
       <button v-if="!user.isLoggedIn" class="button-orange py-4 transition-all"
               @click="showModal('login_modal')">
-        Log In
+        {{ $t('login.button') }}
       </button>
       <dialog v-if="!user.isLoggedIn" id="login_modal" class="modal z-auto">
         <div class="modal-box">
@@ -25,7 +28,7 @@ function showModal(id: string) {
 
             <FormKit
                 type="form"
-                submit-label="Log in"
+                :submit-label="$t('login.submitLabel')"
                 messages-class="$reset hidden"
                 :submit-attrs="{
       inputClass: 'button-orange text-white mx-auto mt-6 sm:mt-10 xl:mt-12 flex justify-center ',
@@ -33,12 +36,11 @@ function showModal(id: string) {
                 @submit="user.login"
             >
               <FormKit
-
                 type="text"
                 name="email"
-                label="E-Mail"
+                :label="$t('login.emailLabel')"
                 autocomplete="username"
-                placeholder="E-Mail"
+                :placeholder="$t('login.emailPlaceholder')"
                 wrapper-class="$reset block"
                 overlay-placeholder-class="text-[#3d3d3d]"
                 label-class="form-label"
@@ -50,12 +52,11 @@ function showModal(id: string) {
                 validation-visibility="dirty"
             />
               <FormKit
-
                   type="password"
                   name="password"
                   autocomplete="current-password"
-                  label="Password"
-                  placeholder="PASSWORD"
+                  :label="$t('login.passwordLabel')"
+                  :placeholder="$t('login.passwordPlaceholder')"
                   wrapper-class="$reset block"
                   overlay-placeholder-class="text-[#3d3d3d]"
                   label-class="form-label"
@@ -65,15 +66,14 @@ function showModal(id: string) {
                   message-class="$reset form-validation"
                   validation="required|alphanumeric|length:6,16"
                   :validation-messages="{
-          length: 'Minimum 6 Characters',
+          length: $t('login.minChars'),
         }" validation-visibility="dirty"
               />
             </FormKit>
           </div>
           <div class="modal-action">
             <form method="dialog">
-              <!-- if there is a button in form, it will close the modal -->
-              <button  class="button-orange">Back</button>
+              <button  class="button-orange">{{ $t('login.back') }}</button>
             </form>
           </div>
         </div>
