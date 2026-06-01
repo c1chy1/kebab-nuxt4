@@ -119,8 +119,9 @@ async function switchLocale(code: string) {
   setLocaleChanging(true)
 
   const navItems = menu.value?.querySelectorAll('li a, li nuxt-link')
+  const flagBtn = langSwitcher.value?.querySelector('button')
 
-  await gsap.to(navItems ?? [], {
+  await gsap.to([...(navItems ?? []), flagBtn].filter(Boolean), {
     opacity: 0,
     y: -8,
     duration: 0.25,
@@ -133,7 +134,7 @@ async function switchLocale(code: string) {
   setLocaleChanging(false)
 
   gsap.fromTo(
-    navItems ?? [],
+    [...(navItems ?? []), flagBtn].filter(Boolean),
     { opacity: 0, y: 8 },
     {
       opacity: 1,
