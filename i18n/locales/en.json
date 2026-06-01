@@ -11,7 +11,16 @@
   "menu": {
     "tagline": "Always Tasty Burger",
     "title": "Choose & Enjoy",
-    "buyNow": "Buy Now"
+    "buyNow": "Buy Now",
+    "description": "Pick your favorite from our signature kebabs and burgers. Every ingredient carefully selected, every bite pure pleasure. Order in or get it delivered – quality is never compromised here.",
+    "items": {
+      "1": "Classic kebab in a crispy bun, with lettuce, tomato and our signature garlic sauce. A tried-and-true recipe that never disappoints.",
+      "2": "Double meat, double melted cheese and spicy jalapeños – for those who like it intense. Definitely not for the faint-hearted!",
+      "3": "Freshly grilled vegetables, creamy hummus and aromatic herbs. A light yet satisfying option for true food lovers.",
+      "4": "Extra-hot chili, crispy onion rings and smoky BBQ sauce. A classic kebab with a bold, fiery twist.",
+      "5": "Juicy meat marinated for 24 hours, with grilled peppers and a refreshing mint yogurt sauce. Turkish flavor in every single bite.",
+      "6": "Crispy chicken instead of traditional meat, served with coleslaw and spicy mayo. A lighter alternative that still wows on taste."
+    }
   },
   "login": {
     "title": "Log in To Buy",
@@ -53,6 +62,28 @@
     "title": "Turkish",
     "subtitle": "Kebab",
     "discount": "Off"
+  },
+  "footer": {
+    "country": "Germany",
+    "copyright": "All rights reserved",
+    "about": "We are a place where traditional Turkish cuisine meets modern flavors. Our kebab is more than food – it is a journey through the aromas of Anatolia, crafted with passion and the freshest ingredients. Visit us and taste the difference."
+  },
+  "gallery": {
+    "title": "Gallery"
+  },
+  "home": {
+    "tryItToday": "Try it today",
+    "mostPopular": "Most popular kebab",
+    "moreFun": "More fun more taste",
+    "freshChili": "Fresh & Chili"
+  },
+  "events": {
+    "discover": "Discover",
+    "upcomingEvents": "Upcoming Events",
+    "alwaysTasty": "Always Tasty",
+    "chooseEnjoy": "Choose & Enjoy",
+    "slide1desc": "We regularly host themed evenings, tastings and family-friendly events. Check our calendar and book your spot today – seats fill up fast and there is always something exciting going on!",
+    "slide2desc": "Every week our chef prepares new specials using fresh, seasonal and locally sourced ingredients. Discover a menu that evolves with the seasons – a taste that always surprises."
   },
   "dashboard": {
     "account": "Account",

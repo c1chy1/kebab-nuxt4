@@ -11,7 +11,16 @@
   "menu": {
     "tagline": "Zawsze smaczny burger",
     "title": "Wybierz i delektuj się",
-    "buyNow": "Kup teraz"
+    "buyNow": "Kup teraz",
+    "description": "Wybierz swojego faworyta spośród naszych autorskich kebabów i burgerów. Każdy składnik starannie dobrany, każdy kęs to czysta przyjemność. Zamawiaj na miejscu lub z dostawą – u nas jakość nie zna kompromisów.",
+    "items": {
+      "1": "Klasyczny kebab w chrupiącej bułce, z sałatą, pomidorem i naszym autorskim sosem czosnkowym. Sprawdzony przepis, który nigdy nie zawodzi.",
+      "2": "Podwójne mięso, double ser topiony i pikantne jalapeño – dla tych, którzy lubią mocne wrażenia. Nie dla słabych serc!",
+      "3": "Świeże warzywa grillowane, kremowy hummus i aromatyczne zioła. Lekka, ale sycąca opcja dla prawdziwych smakoszy.",
+      "4": "Extra-ostre chili, chrupiące cebulowe krążki i dymiony sos BBQ. Klasyczny kebab w nowym, ognistym wydaniu.",
+      "5": "Soczyste mięso marynowane przez 24h, z grillowaną papryką i miętowym sosem jogurtowym. Turecki smak w każdym kęsie.",
+      "6": "Crispy chicken zamiast tradycyjnego mięsa, z coleslaw i pikantnym majonezem. Lżejsza alternatywa, która zachwyca smakiem."
+    }
   },
   "login": {
     "title": "Zaloguj się,\naby kupować",
@@ -53,6 +62,28 @@
     "title": "Turecki",
     "subtitle": "Kebab",
     "discount": "Zniżki"
+  },
+  "footer": {
+    "country": "Niemcy",
+    "copyright": "Wszelkie prawa zastrzeżone",
+    "about": "Jesteśmy miejscem, gdzie tradycyjna turecka kuchnia spotyka się z nowoczesnymi smakami. Nasz kebab to więcej niż jedzenie – to podróż przez aromaty Anatolii, przyrządzona z pasją i najświeższych składników. Odwiedź nas i poczuj różnicę."
+  },
+  "gallery": {
+    "title": "Galeria"
+  },
+  "home": {
+    "tryItToday": "Spróbuj już dziś",
+    "mostPopular": "Najpopularniejszy kebab",
+    "moreFun": "Więcej zabawy, więcej smaku",
+    "freshChili": "Świeży i pikantny"
+  },
+  "events": {
+    "discover": "Odkryj",
+    "upcomingEvents": "Nadchodzące wydarzenia",
+    "alwaysTasty": "Zawsze pyszny",
+    "chooseEnjoy": "Wybierz i delektuj się",
+    "slide1desc": "Regularnie organizujemy wieczory tematyczne, degustacje i eventy dla całych rodzin. Sprawdź nasz kalendarz i zarezerwuj miejsce już dziś – ilość miejsc ograniczona, a atrakcji co nie miara!",
+    "slide2desc": "Co tydzień nowe specjały przygotowywane przez naszego szefa kuchni z lokalnych, sezonowych składników. Odkryj menu, które zmienia się razem z porami roku – smak, który zawsze zaskakuje."
   },
   "dashboard": {
     "account": "Konto",
