@@ -49,6 +49,10 @@ function showModal(id: string) {
                 messages-class="$reset relative"
                 message-class="$reset form-validation"
                 validation="required|email|"
+                :validation-messages="{
+                  required: $t('validation.required'),
+                  email: $t('validation.email'),
+                }"
                 validation-visibility="dirty"
             />
               <FormKit
@@ -66,8 +70,11 @@ function showModal(id: string) {
                   message-class="$reset form-validation"
                   validation="required|alphanumeric|length:6,16"
                   :validation-messages="{
-          length: $t('login.minChars'),
-        }" validation-visibility="dirty"
+                    required: $t('validation.required'),
+                    alphanumeric: $t('validation.alphanumeric'),
+                    length: $t('login.minChars'),
+                  }"
+                  validation-visibility="dirty"
               />
             </FormKit>
           </div>

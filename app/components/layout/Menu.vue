@@ -14,12 +14,10 @@
           ref="containerRef"
           :init="false"
           class="swiper w-full"
-          @swiperclick="handleSwiperClick"
         >
           <swiper-slide
             v-for="slide in hamburgers"
             :key="slide.id"
-            :data-id="slide.id"
             class="hero pt-4 md:px-12"
           >
             <div
@@ -40,7 +38,7 @@
                   {{ slide.price }} €
                 </h2>
                 <div class="card-actions">
-                  <button class="button-orange">
+                  <button class="button-orange" @click.stop="cart.addItem(slide)">
                     {{ $t('menu.buyNow') }}
                   </button>
                 </div>
@@ -85,23 +83,13 @@ const swiper = useSwiper(containerRef, {
   },
 })
 
-function handleSwiperClick(e: CustomEvent) {
-  const nativeEvent = e.detail?.[1] as MouseEvent | undefined
-  if (!nativeEvent) return
-  const target = nativeEvent.target as HTMLElement
-  if (!target.closest('.btn')) return
-  const slideEl = target.closest('[data-id]') as HTMLElement | null
-  if (!slideEl) return
-  const id = Number(slideEl.dataset.id)
-  const item = hamburgers.value.find(h => h.id === id)
-  if (item) cart.addItem(item)
-}
 </script>
 
 <style>
-swiper-slide .btn {
+swiper-slide .button-orange {
   pointer-events: auto;
   position: relative;
   z-index: 10;
+  cursor: pointer;
 }
 </style>

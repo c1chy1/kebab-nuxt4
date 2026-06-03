@@ -53,6 +53,9 @@ function showModal(id: string) {
                 overlay-placeholder-class="text-[#3d3d3d]"
                 :placeholder="$t('register.namePlaceholder')"
                 validation="required"
+                :validation-messages="{
+                  required: $t('validation.required'),
+                }"
                 validation-visibility="dirty"
                 outer-class="$reset m-0"
             />
@@ -70,6 +73,10 @@ function showModal(id: string) {
                 messages-class="$reset relative"
                 message-class="$reset form-validation"
                 validation="required|email|"
+                :validation-messages="{
+                  required: $t('validation.required'),
+                  email: $t('validation.email'),
+                }"
                 validation-visibility="dirty"
                 outer-class="$reset m-0"
             />
@@ -89,9 +96,10 @@ function showModal(id: string) {
                 aria-placeholder="$reset m-0 text-sm"
                 validation="required|length:6|matches:/[^a-zA-Z]/"
                 :validation-messages="{
-          matches: $t('register.symbolRequired'),
-           length: $t('register.minChars'),
-        }"
+                  required: $t('validation.required'),
+                  matches: $t('register.symbolRequired'),
+                  length: $t('register.minChars'),
+                }"
                 :placeholder="$t('register.passwordPlaceholder')"
                 validation-visibility="dirty"
             />

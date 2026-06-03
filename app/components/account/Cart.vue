@@ -76,6 +76,7 @@ import {cartItems} from "@/stores/useCart";
 import {toast} from 'vue3-toastify'
 
 const cartStore = useCartStore()
+const { t } = useI18n()
 import gsap from 'gsap'
 
 import Draggable from 'gsap/Draggable'
@@ -107,7 +108,7 @@ async function placeOrderHandler() {
     await cartStore.placeOrder(order)
     cartStore.clearCart()
   } catch (error: any) {
-    toast.error(error.data.message)
+    toast.error(t(error.data.statusMessage ?? error.data.message))
   }
 }
 
