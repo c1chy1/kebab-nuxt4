@@ -63,6 +63,7 @@ export default defineNuxtConfig({
   vite: {
     plugins: [tailwindcss()],
     optimizeDeps: {
+      force: true,
       include: [
         'pinia',
         'vue3-toastify',
