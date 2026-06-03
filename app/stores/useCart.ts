@@ -47,19 +47,20 @@ export const useCartStore = defineStore('cart', {
         },
 
         addItem(item: MenuItemType) {
+            const { $i18n } = useNuxtApp()
             const existingItem = cartItems.value.find(i => i.id === item.id)
             if (existingItem) {
                 existingItem.qty++
-                toast.success('Product Added')
             } else {
                 cartItems.value.push(item)
-                toast.success('Product Added')
             }
+            toast.success($i18n.t('toast.productAdded'))
             this.saveCartToLocalStorage()
             this.shouldOpen = true
         },
 
         removeItem(item: MenuItemType) {
+            const { $i18n } = useNuxtApp()
             const existingItemIndex = cartItems.value.findIndex(i => i.id === item.id)
 
             if (existingItemIndex !== -1) {
@@ -69,11 +70,12 @@ export const useCartStore = defineStore('cart', {
                 item.qty = 1
                 item.countInStock = 9
             }
-            toast.success('Product removed')
+            toast.success($i18n.t('toast.productRemoved'))
             this.saveCartToLocalStorage()
         },
 
         async placeOrder(order) {
+            const { $i18n } = useNuxtApp()
             try {
                 const response = await $fetch('/api/shop/order', {
                     method: 'POST',
@@ -86,7 +88,7 @@ export const useCartStore = defineStore('cart', {
                     const orderId: string = response.createdOrder._id as string
                     console.log(orderId)
 
-                    toast.success('Thank You', {
+                    toast.success($i18n.t('toast.thankYou'), {
                         "autoClose": 1000,
                         "position": "bottom-center",
                         "transition": "zoom",

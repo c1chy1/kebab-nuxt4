@@ -40,6 +40,7 @@ export const useUserStore = defineStore('User', {
 
         },
         async login(body: logInReq) {
+            const { $i18n } = useNuxtApp()
 
             function setToken(token: string): void {
                 localStorage.setItem('token', token)
@@ -55,15 +56,17 @@ export const useUserStore = defineStore('User', {
                 this.isLoggedIn = true
                 this.userInfo = message.user
                 this.isAdmin = message.user?.role === 'admin'
-                toast.success("Logged In")
+                toast.success($i18n.t('toast.loggedIn'))
                 await this.getMyOrders()
             } else {
-                toast.error(error?.message)
+                toast.error($i18n.t(error?.message))
             }
         },
 
 
         async register(body: signUpReq) {
+            const { $i18n } = useNuxtApp()
+
             function setToken(token: string): void {
                 localStorage.setItem('token', token)
             }
@@ -75,28 +78,30 @@ export const useUserStore = defineStore('User', {
                 this.userInfo = message.user
                 this.isAdmin = message.user?.role === 'admin'
                 this.isLoggedIn = true
-                toast.success('Register Success')
+                toast.success($i18n.t('toast.registerSuccess'))
 
             } else {
-                toast.error(message)
+                toast.error($i18n.t(message))
             }
 
         },
 
         async updateProfile(username: string) {
+            const { $i18n } = useNuxtApp()
             const data = await $fetch<any>('/api/auth/update-profile', {
                 method: 'PATCH',
                 body: { username }
             })
             if (data.success) {
                 this.userInfo = data.user
-                toast.success('Profile updated')
+                toast.success($i18n.t('toast.profileUpdated'))
             } else {
                 toast.error(data.error)
             }
         },
 
         async uploadAvatar(file: File) {
+            const { $i18n } = useNuxtApp()
             const formData = new FormData()
             formData.append('avatar', file)
             const data = await $fetch<any>('/api/auth/upload-avatar', {
@@ -105,13 +110,14 @@ export const useUserStore = defineStore('User', {
             })
             if (data.success) {
                 (this.userInfo as any).profilePicture = data.profilePicture
-                toast.success('Avatar updated')
+                toast.success($i18n.t('toast.avatarUpdated'))
             } else {
-                toast.error(data.error)
+                toast.error($i18n.t(data.error))
             }
         },
 
         async logout() {
+            const { $i18n } = useNuxtApp()
 
          function getToken() {
 
@@ -128,7 +134,7 @@ export const useUserStore = defineStore('User', {
                 token.value = ''
                 clearToken()
                 this.isLoggedIn = false
-                toast.success("Logged Out")
+                toast.success($i18n.t('toast.loggedOut'))
                 if (process.client) {
                     window.document.body.classList.remove("ml-12", "md:ml-60")
                     window.document.body.classList.add("ml-0", "transition-all", "duration-500")
