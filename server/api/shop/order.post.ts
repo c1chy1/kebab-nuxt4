@@ -23,7 +23,7 @@ export default defineEventHandler(async event => {
         if (orderItems && orderItems.length === 0) {
             throw createError({
                 statusCode: 400,
-                statusMessage: 'No order items',
+                statusMessage: 'errors.noOrderItems',
             })
         } else {
             const orderItemsWithProductData = orderItems.map(item => {
@@ -55,7 +55,7 @@ export default defineEventHandler(async event => {
     } else {
         throw createError({
             statusCode: 400,
-            statusMessage: 'You Need To Log In',
+            statusMessage: 'errors.youNeedToLogIn',
         })
     }
 })

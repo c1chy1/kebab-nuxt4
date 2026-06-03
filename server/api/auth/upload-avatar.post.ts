@@ -13,13 +13,13 @@ export default defineEventHandler(async (event) => {
         const formData = await readMultipartFormData(event)
 
         if (!formData || formData.length === 0) {
-            return { success: false, error: 'No file provided' }
+            return { success: false, error: 'errors.noFile' }
         }
 
         const file = formData[0]
         const allowedTypes = ['image/jpeg', 'image/png', 'image/webp', 'image/gif']
         if (!file.type || !allowedTypes.includes(file.type)) {
-            return { success: false, error: 'Invalid file type. Only JPEG, PNG, WebP and GIF allowed.' }
+            return { success: false, error: 'errors.invalidFileType' }
         }
 
         const ext = file.filename?.split('.').pop()?.toLowerCase() || 'jpg'

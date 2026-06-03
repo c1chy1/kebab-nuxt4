@@ -58,12 +58,12 @@ const userSchema = new Schema({
                 const user = await User.findOne({ email })
 
                 if (!user)
-                    throw new Error('Account not found!')
+                    throw new Error('errors.accountNotFound')
                 // 透過 bcrypt 驗證密碼
                 const isMatch = await bcrypt.compare(password, user.password!)
 
                 if (!isMatch)
-                    throw new Error('Password is incorrect!')
+                    throw new Error('errors.incorrectPassword')
                 return user
             },
 

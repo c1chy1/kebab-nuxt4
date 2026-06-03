@@ -32,7 +32,7 @@ export default defineEventHandler(async (event) => {
    else {
        return {
                  success: false,
-                 message: "Email exists !"
+                 message: "errors.emailExists"
 
             }
 
