@@ -83,7 +83,7 @@ import Draggable from 'gsap/Draggable'
 const cart = ref()
 const items = ref()
 const select = ref()
-useLocaleTransition(cart, 'h1, .bg-secondary span, .bg-secondary button')
+useLocaleTransition(cart, 'h1, #cartTrigger > span, .bg-secondary button:not(#cartButton)')
 let tl: gsap.core.Timeline
 let mm: gsap.MatchMedia
 let closedPositionW = 0

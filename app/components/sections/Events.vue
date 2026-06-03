@@ -64,20 +64,6 @@ useLocaleTransition(eventsRef, 'h2')
           </div>
         </swiper-slide>
       </swiper-container>
-
-      <template #fallback>
-        <div class="hero shadow-xl animate-pulse">
-          <div class="hero-content flex-col-reverse lg:flex-row lg:items-start lg:max-w-full w-full">
-            <div class="w-full lg:w-1/2 py-8 lg:py-16 lg:pl-12 lg:pr-7 space-y-4">
-              <div class="bg-gray-200 rounded h-7 w-1/3" />
-              <div class="bg-gray-200 rounded h-10 w-2/3" />
-              <div class="bg-gray-200 rounded h-4 w-full" />
-              <div class="bg-gray-200 rounded h-4 w-5/6" />
-            </div>
-            <div class="w-full lg:w-1/2 bg-gray-200 rounded-xl h-64 lg:h-96" />
-          </div>
-        </div>
-      </template>
     </ClientOnly>
   </section>
 </template>

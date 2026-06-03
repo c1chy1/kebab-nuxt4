@@ -49,16 +49,6 @@
             <div class="box left-1/2 bottom-1/2 absolute z-[1000]" />
           </swiper-slide>
         </swiper-container>
-        <template #fallback>
-          <div class="flex w-full gap-8 px-12 py-4">
-            <div v-for="i in 2" :key="i" class="w-1/2 animate-pulse">
-              <div class="bg-gray-200 rounded-xl h-64 mb-4" />
-              <div class="bg-gray-200 rounded h-6 w-1/2 mx-auto mb-2" />
-              <div class="bg-gray-200 rounded h-4 w-2/3 mx-auto mb-2" />
-              <div class="bg-gray-200 rounded h-8 w-1/3 mx-auto" />
-            </div>
-          </div>
-        </template>
       </ClientOnly>
     </div>
   </section>
