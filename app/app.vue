@@ -46,6 +46,14 @@ await callOnce(async () => {
 onMounted(() => {
   window.scrollTo(0, 0)
   loadCart()
+
+  document.addEventListener('visibilitychange', () => {
+    if (document.visibilityState === 'hidden') {
+      lenisRef.value?.lenis?.stop()
+    } else {
+      lenisRef.value?.lenis?.start()
+    }
+  })
 })
 
 </script>
