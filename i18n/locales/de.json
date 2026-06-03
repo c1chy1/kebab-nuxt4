@@ -85,6 +85,30 @@
     "slide1desc": "Wir veranstalten regelmäßig Themenabende, Verkostungen und Familienevents. Schauen Sie in unseren Kalender und reservieren Sie noch heute – die Plätze sind schnell vergeben und es gibt immer etwas Spannendes zu erleben!",
     "slide2desc": "Jede Woche bereitet unser Küchenchef neue Spezialitäten aus frischen, saisonalen und regionalen Zutaten zu. Entdecken Sie eine Speisekarte, die sich mit den Jahreszeiten wandelt – ein Geschmack, der immer überrascht."
   },
+  "validation": {
+    "required": "Dieses Feld ist erforderlich.",
+    "email": "Bitte geben Sie eine gültige E-Mail-Adresse ein.",
+    "alphanumeric": "Nur Buchstaben und Zahlen sind erlaubt."
+  },
+  "errors": {
+    "accountNotFound": "Konto nicht gefunden.",
+    "incorrectPassword": "Falsches Passwort.",
+    "youNeedToLogIn": "Bitte zuerst anmelden",
+    "noOrderItems": "Keine Artikel in der Bestellung",
+    "emailExists": "Diese E-Mail-Adresse ist bereits registriert",
+    "noFile": "Keine Datei hochgeladen",
+    "invalidFileType": "Ungültiger Dateityp. Erlaubt: JPEG, PNG, WebP und GIF."
+  },
+  "toast": {
+    "loggedIn": "Angemeldet",
+    "loggedOut": "Abgemeldet",
+    "registerSuccess": "Registrierung erfolgreich",
+    "profileUpdated": "Profil aktualisiert",
+    "avatarUpdated": "Avatar aktualisiert",
+    "productAdded": "Produkt hinzugefügt",
+    "productRemoved": "Produkt entfernt",
+    "thankYou": "Danke für Ihre Bestellung!"
+  },
   "dashboard": {
     "account": "Konto",
     "settings": "Einstellungen",

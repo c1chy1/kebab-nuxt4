@@ -85,6 +85,30 @@
     "slide1desc": "Düzenli olarak tematik geceler, tadım etkinlikleri ve ailece katılabileceğiniz özel organizasyonlar düzenliyoruz. Takvimimizi kontrol edin ve yerinizi bugün rezerve edin – yerler hızla dolup, her zaman heyecan verici bir şeyler oluyor!",
     "slide2desc": "Şefimiz her hafta taze, mevsimlik ve yerel malzemeler kullanarak yeni özel yemekler hazırlıyor. Mevsimlere göre değişen bir menüyü keşfedin – her zaman sürpriz yapan, benzersiz bir lezzet deneyimi."
   },
+  "validation": {
+    "required": "Bu alan zorunludur.",
+    "email": "Lütfen geçerli bir e-posta adresi girin.",
+    "alphanumeric": "Yalnızca harf ve rakamlara izin verilir."
+  },
+  "errors": {
+    "accountNotFound": "Hesap bulunamadı.",
+    "incorrectPassword": "Yanlış şifre.",
+    "youNeedToLogIn": "Önce giriş yapmanız gerekiyor",
+    "noOrderItems": "Siparişte ürün yok",
+    "emailExists": "Bu e-posta adresi zaten kayıtlı",
+    "noFile": "Dosya yüklenmedi",
+    "invalidFileType": "Geçersiz dosya türü. İzin verilenler: JPEG, PNG, WebP ve GIF."
+  },
+  "toast": {
+    "loggedIn": "Giriş yapıldı",
+    "loggedOut": "Çıkış yapıldı",
+    "registerSuccess": "Kayıt başarılı",
+    "profileUpdated": "Profil güncellendi",
+    "avatarUpdated": "Avatar güncellendi",
+    "productAdded": "Ürün eklendi",
+    "productRemoved": "Ürün kaldırıldı",
+    "thankYou": "Siparişiniz için teşekkürler!"
+  },
   "dashboard": {
     "account": "Hesap",
     "settings": "Ayarlar",

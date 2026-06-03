@@ -85,6 +85,30 @@
     "slide1desc": "Regularnie organizujemy wieczory tematyczne, degustacje i eventy dla całych rodzin. Sprawdź nasz kalendarz i zarezerwuj miejsce już dziś – ilość miejsc ograniczona, a atrakcji co nie miara!",
     "slide2desc": "Co tydzień nowe specjały przygotowywane przez naszego szefa kuchni z lokalnych, sezonowych składników. Odkryj menu, które zmienia się razem z porami roku – smak, który zawsze zaskakuje."
   },
+  "validation": {
+    "required": "To pole jest wymagane.",
+    "email": "Podaj prawidłowy adres e-mail.",
+    "alphanumeric": "Dozwolone są tylko litery i cyfry."
+  },
+  "errors": {
+    "accountNotFound": "Nie znaleziono konta.",
+    "incorrectPassword": "Nieprawidłowe hasło.",
+    "youNeedToLogIn": "Musisz się najpierw zalogować",
+    "noOrderItems": "Brak produktów w zamówieniu",
+    "emailExists": "Ten adres e-mail jest już zarejestrowany",
+    "noFile": "Nie przesłano pliku",
+    "invalidFileType": "Niedozwolony typ pliku. Dozwolone: JPEG, PNG, WebP i GIF."
+  },
+  "toast": {
+    "loggedIn": "Zalogowano",
+    "loggedOut": "Wylogowano",
+    "registerSuccess": "Rejestracja zakończona sukcesem",
+    "profileUpdated": "Profil zaktualizowany",
+    "avatarUpdated": "Awatar zaktualizowany",
+    "productAdded": "Produkt dodany",
+    "productRemoved": "Produkt usunięty",
+    "thankYou": "Dziękujemy za zamówienie!"
+  },
   "dashboard": {
     "account": "Konto",
     "settings": "Ustawienia",
