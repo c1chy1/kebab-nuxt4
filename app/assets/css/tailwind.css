@@ -141,8 +141,8 @@ html:has(:is(.modal-open, .modal:target, .modal-toggle:checked + .modal, .modal[
   }
 
   .form-validation {
-    @apply text-xs xl:text-sm mt-1 p-1.5 bottom-8 sm:bottom-10 xl:bottom-12 font-bebas w-full absolute text-black rounded;
-    background-color: rgb(232, 240, 254);
+    @apply text-xs xl:text-sm mt-1 p-1.5 bottom-8 sm:bottom-10 xl:bottom-12 font-bebas w-full absolute text-white rounded;
+    background-color: oklch(59.8891% 0.107129 2.655486 / 1)
   }
 
   .scroll-top-button {

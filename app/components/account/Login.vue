@@ -18,7 +18,7 @@ function showModal(id: string) {
       id="login">
     <div class="text-center" >
       <h2 class="section-title">{{ $t('login.title') }}</h2>
-      <button v-if="!user.isLoggedIn" class="button-orange py-4 transition-all"
+      <button v-if="!user.isLoggedIn" class="button-orange py-4 transition-all cursor-pointer"
               @click="showModal('login_modal')">
         {{ $t('login.button') }}
       </button>
@@ -31,7 +31,7 @@ function showModal(id: string) {
                 :submit-label="$t('login.submitLabel')"
                 messages-class="$reset hidden"
                 :submit-attrs="{
-      inputClass: 'button-orange text-white mx-auto mt-6 sm:mt-10 xl:mt-12 flex justify-center ',
+      inputClass: 'button-orange text-white mx-auto mt-6 sm:mt-10 xl:mt-12 flex justify-center cursor-pointer',
     }"
                 @submit="user.login"
             >
@@ -80,7 +80,7 @@ function showModal(id: string) {
           </div>
           <div class="modal-action">
             <form method="dialog">
-              <button  class="button-orange">{{ $t('login.back') }}</button>
+              <button  class="button-orange cursor-pointer">{{ $t('login.back') }}</button>
             </form>
           </div>
         </div>

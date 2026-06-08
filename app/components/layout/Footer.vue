@@ -16,15 +16,15 @@
              text-size="text-4xl sm:text-5xl lg:text-6xl"
              svg-size=" w-14 sm:w-24 "
              src="/images/contact/logo-footer.png"
-            class="space-x-8 font-bebas uppercase flex justify-center items-center transition-all duration-500"
+            class="space-x-8 font-bebas uppercase flex justify-center items-center transition-all duration-500 cursor-pointer"
   />
 <p class="text-white text-[17px]  leading-normal pt-10">{{ $t('footer.about') }}</p>
 
 </div>
 <div class="lg:w-1/2 font-bebas text-2xl place-items-baseline xl:place-items-end pt-20" >
   <div class="py-3 flex items-center uppercase">
-    <Icon name="heroicons:map-pin" class="w-6 h-6 lg:w-8 lg:h-8" />
-    <a class="ml-4 lg:ml-8 text-xl lg:text-3xl text-white transition-all duration-500 cursor-pointer"
+    <Icon name="heroicons:map-pin" class="w-6 h-6 lg:w-8 lg:h-8 text-white" />
+    <a class="ml-4 lg:ml-8 text-xl lg:text-3xl text-white transition-all duration-500 cursor-pointer hover:text-[#ffc107]"
        @click="showModal('address')">Dammstraße, 22A, Lüdenscheid, {{ $t('footer.country') }}</a>
     <dialog id="address" class="modal">
       <div class="modal-box text-[#3d2514]">
@@ -36,7 +36,7 @@
     </dialog>
   </div>
   <div class="flex uppercase">
-  <Icon name="heroicons:envelope" class="w-6 h-6 lg:w-8 lg:h-8" />
+  <Icon name="heroicons:envelope" class="w-6 h-6 lg:w-8 lg:h-8 text-white" />
 <a href="mailto:info@companyname.com" class=" ml-4 lg:ml-8 text-xl lg:text-3xl text-white hover:text-[#ffc107] transition-all duration-500">info@companyname.com</a>
   </div>
 

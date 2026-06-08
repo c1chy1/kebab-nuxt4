@@ -20,7 +20,7 @@ function showModal(id: string) {
       {{ $t('register.title') }}
     </h2>
     <button
-        class="button-orange mt-8 py-4 z-20 transition-all "
+        class="button-orange mt-8 py-4 z-20 transition-all cursor-pointer"
         :class="user.isLoggedIn ? 'cursor-not-allowed' : ''"
         :disabled="user.isLoggedIn" @click="showModal('register_modal')">
       <span v-if="!user.isLoggedIn">{{ $t('register.button') }}</span>
@@ -33,11 +33,11 @@ function showModal(id: string) {
               :submit-label="$t('register.submitLabel')"
               messages-class="$reset hidden"
               :submit-attrs="{
-              inputClass: 'button-orange text-white mx-auto mt-6 sm:mt-10 xl:mt-12 flex justify-center'}"
+              inputClass: 'button-orange text-white mx-auto mt-6 sm:mt-10 xl:mt-12 flex justify-center cursor-pointer'}"
               @submit="user.register"
               #default="{ value }"
           >
-            <h2 class="font-bold py-1 text-primary text-xl sm:text-2xl xl:text-4xl uppercase transition-all duration-500">
+            <h2 class="font-bold py-1 text-primary text-xl sm:text-2xl xl:text-4xl uppercase transition-all duration-500 ">
               {{ $t('register.formTitle') }}</h2>
             <hr />
             <FormKit
@@ -75,7 +75,6 @@ function showModal(id: string) {
                 validation="required|email|"
                 :validation-messages="{
                   required: $t('validation.required'),
-                  email: $t('validation.email'),
                 }"
                 validation-visibility="dirty"
                 outer-class="$reset m-0"
@@ -106,7 +105,7 @@ function showModal(id: string) {
           </FormKit>
         <div class="modal-action">
           <form method="dialog">
-            <button  class="button-orange mb-4">{{ $t('register.back') }}</button>
+            <button  class="button-orange mb-4 cursor-pointer">{{ $t('register.back') }}</button>
           </form>
         </div>
       </div>
