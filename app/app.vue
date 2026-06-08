@@ -6,7 +6,11 @@
     <AccountDashboard v-if="user.isLoggedIn"/>
     <AccountCart/>
     <main>
-      <NuxtPage/>
+      <div :class="['transition-opacity duration-700', showPage ? 'opacity-100' : 'opacity-0']">
+        <NuxtPage />
+      </div>
+      <LanguageIntro v-if="!lang" />
+      <AppIntro v-else-if="showIntro" :lang="lang" @fading="showPage = true" @done="showIntro = false" />
     </main>
 
   </div>
@@ -17,6 +21,13 @@ import {useThemeStore} from '@/stores/useTheme'
 import {useUserStore} from "@/stores/userStore";
 import {useCartStore} from "@/stores/useCart";
 import gsap from 'gsap'
+
+const showIntro = ref(true)
+const showPage = ref(false)
+const lang = ref(null)
+
+const { introComplete } = useIntroState()
+watch(showPage, (val) => { if (val) introComplete.value = true })
 
 const themeStore = useThemeStore()
 const { theme } = storeToRefs(themeStore)
@@ -46,6 +57,10 @@ await callOnce(async () => {
 onMounted(() => {
   window.scrollTo(0, 0)
   loadCart()
+
+  window.addEventListener('language-selected', (e: CustomEvent) => {
+    lang.value = (e as CustomEvent).detail
+  })
 
   document.addEventListener('visibilitychange', () => {
     if (document.visibilityState === 'hidden') {
