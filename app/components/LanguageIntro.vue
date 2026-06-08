@@ -31,6 +31,7 @@
 import { ref, onMounted } from 'vue'
 import { gsap } from 'gsap'
 
+const { setLocale } = useI18n()
 const selected = ref(null)
 const root = ref()
 const radius = ref(130)
@@ -51,6 +52,7 @@ const languages = [
 ]
 function select(lang) {
   selected.value = lang.code
+  setLocale(lang.code)
 
   const tl = gsap.timeline()
 
