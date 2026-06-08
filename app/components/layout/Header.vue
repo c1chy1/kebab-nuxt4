@@ -85,7 +85,7 @@ const swiper = useSwiper(containerRef, {
   speed: 1000,
   effect: 'creative',
   autoplay: {
-    delay: 4000,
+    delay: 8000,
     disableOnInteraction: true,
   },
   creativeEffect: {
@@ -99,13 +99,13 @@ const swiper = useSwiper(containerRef, {
   },
 })
 
-onMounted(async () => {
-  await nextTick()
+const { introComplete } = useIntroState()
 
+function runAnimations() {
   gsap.fromTo(
       '#header h1',
       { opacity: 0, ease: 'power3.inOut' },
-      { duration: 0.5, opacity: 1, delay: 1, ease: 'power3.inOut' }
+      { duration: 0.5, opacity: 1, delay: 0.3, ease: 'power3.inOut' }
   )
 
   gsap.fromTo(
@@ -117,16 +117,16 @@ onMounted(async () => {
   gsap.fromTo(
       '#header h3',
       { y: 0, ease: 'power3.inOut' },
-      { duration: 0.5, opacity: 1, y: 0, delay: 0.7, ease: 'power3.inOut', stagger: 0.1 }
+      { duration: 0.5, opacity: 1, y: 0, delay: 0.2, ease: 'power3.inOut', stagger: 0.1 }
   )
 
   gsap.fromTo(
       ['#banner', '.shadow'],
       { opacity: 0 },
-      { opacity: 1, delay: 3 }
+      { opacity: 1, delay: 2 }
   )
 
-  const tl = gsap.timeline({ repeat: -1, yoyo: true, delay: 3 })
+  const tl = gsap.timeline({ repeat: -1, yoyo: true, delay: 2 })
   tl
       .to('#banner', { duration: 0.65, y: 150, ease: 'power4.in' })
       .to('#banner', {
@@ -138,6 +138,17 @@ onMounted(async () => {
         borderBottomRightRadius: '30%',
         ease: 'power2.out',
       }, '-=0.02')
+}
+
+onMounted(async () => {
+  await nextTick()
+  if (introComplete.value) {
+    runAnimations()
+  } else {
+    const stop = watch(introComplete, (val) => {
+      if (val) { runAnimations(); stop() }
+    })
+  }
 })
 </script>
 
