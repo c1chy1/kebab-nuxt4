@@ -5,3 +5,4 @@ allowBuilds:
   sharp: true
 minimumReleaseAgeExclude:
   - daisyui@5.5.20
+  - '@tailwindcss/typography@0.5.20'
