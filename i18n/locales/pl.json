@@ -141,6 +141,11 @@
       "usernamePlaceholder": "Użytkownik...",
       "emailPlaceholder": "E-mail...",
       "deleteUser": "Usuń"
+    },
+    "products": "Produkty",
+    "productsTable": {
+      "title": "Nazwa",
+      "price": "Cena"
     }
   }
 }

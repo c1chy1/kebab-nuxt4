@@ -141,6 +141,11 @@
       "usernamePlaceholder": "Kullanıcı adı...",
       "emailPlaceholder": "E-posta...",
       "deleteUser": "Sil"
+    },
+    "products": "Ürünler",
+    "productsTable": {
+      "title": "Ad",
+      "price": "Fiyat"
     }
   }
 }
