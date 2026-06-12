@@ -16,7 +16,7 @@
           class="swiper w-full"
         >
           <swiper-slide
-            v-for="slide in hamburgers"
+            v-for="slide in (hamburgers ?? [])"
             :key="slide.id"
             class="hero pt-4 md:px-12"
           >
@@ -55,21 +55,20 @@
 </template>
 <script setup lang="ts">
 import { useCartStore } from '@/stores/useCart'
+import { useAdminStore } from '@/stores/adminStore'
 
 const cart = useCartStore()
+const adminStore = useAdminStore()
 const menuRef = ref<HTMLElement>()
 useLocaleTransition(menuRef, 'h5, h2, button.button-orange')
 
 const containerRef = ref(null)
 
-const hamburgers = ref([
-  { id: 1, img: 'images/menu-slides/menu_1.png', title: 'Hamburger1', price: 11, countInStock: 9, qty: 1 },
-  { id: 2, img: 'images/menu-slides/menu_2.png', title: 'Hamburger2', price: 12, countInStock: 9, qty: 1 },
-  { id: 3, img: 'images/menu-slides/menu_3.png', title: 'Hamburger3', price: 10, countInStock: 9, qty: 1 },
-  { id: 4, img: 'images/menu-slides/menu_4.png', title: 'Hamburger4', price: 13, countInStock: 9, qty: 1 },
-  { id: 5, img: 'images/menu-slides/menu_2.png', title: 'Hamburger5', price: 15, countInStock: 9, qty: 1 },
-  { id: 6, img: 'images/menu-slides/menu_3.png', title: 'Hamburger6', price: 12, countInStock: 9, qty: 1 },
-])
+if (!adminStore.products.length) {
+  await adminStore.getProducts()
+}
+
+const hamburgers = computed(() => adminStore.products)
 
 const swiper = useSwiper(containerRef, {
   loop: true,

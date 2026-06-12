@@ -5,6 +5,7 @@ export const useAdminStore = defineStore('admin', {
         users: [] as any[],
         selectedUserOrders: [] as any[],
         selectedUsername: '' as string,
+        products: [] as any[],
     }),
     actions: {
         async getUsers() {
@@ -24,6 +25,18 @@ export const useAdminStore = defineStore('admin', {
             })
             this.selectedUserOrders = data
             this.selectedUsername = username
+        },
+        async getProducts() {
+            const data = await $fetch<any[]>('/api/products')
+            this.products = data
+        },
+        async updateProduct(id: number, title: string, price: number) {
+            const updated = await $fetch<any>('/api/admin/update-product', {
+                method: 'PUT',
+                body: { id, title, price },
+            })
+            const index = this.products.findIndex(p => p.id === id)
+            if (index !== -1) this.products[index] = updated
         },
     },
 })
