@@ -22,9 +22,13 @@ import {useUserStore} from "@/stores/userStore";
 import {useCartStore} from "@/stores/useCart";
 import gsap from 'gsap'
 
+const { setLocale } = useI18n()
+
 const showIntro = ref(true)
 const showPage = ref(false)
-const lang = ref(null)
+const langCookie = useCookie('preferred-lang')
+const lang = ref<string | null>(langCookie.value ?? null)
+if (langCookie.value) await setLocale(langCookie.value)
 
 const { introComplete } = useIntroState()
 watch(showPage, (val) => { if (val) introComplete.value = true })
@@ -59,7 +63,8 @@ onMounted(() => {
   loadCart()
 
   window.addEventListener('language-selected', (e: CustomEvent) => {
-    lang.value = (e as CustomEvent).detail
+    lang.value = e.detail
+    $fetch('/api/set-lang', { method: 'POST', body: { lang: e.detail } })
   })
 
   document.addEventListener('visibilitychange', () => {

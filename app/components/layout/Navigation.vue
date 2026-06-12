@@ -130,6 +130,7 @@ async function switchLocale(code: string) {
   })
 
   await setLocale(code)
+  window.dispatchEvent(new CustomEvent('language-selected', { detail: code }))
 
   setLocaleChanging(false)
 

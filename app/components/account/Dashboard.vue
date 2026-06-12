@@ -61,6 +61,14 @@
             {{ $t('dashboard.users') }}
           </button>
         </li>
+        <li v-if="store.isAdmin" class="hover:ml-4 w-full text-white bg-secondary p-2 pl-8 rounded-full  flex flex-row items-center space-x-3 transition-all duration-700">
+          <Icon name="heroicons:pencil-square" class="w-4 h-4" />
+          <button
+              @click="openProductsModal()"
+              class="cursor-pointer">
+            {{ $t('dashboard.products') }}
+          </button>
+        </li>
         <li class="hover:ml-4 w-full text-white  bg-secondary p-2 pl-8 rounded-full flex flex-row items-center space-x-3 transition-all duration-700">
           <Icon name="heroicons:chart-pie" class="w-4 h-4" />
 
@@ -347,6 +355,56 @@
           </div>
         </dialog>
       </dialog>
+      <dialog id="products_modal" class="modal font-bold">
+        <div class="modal-box w-11/12 max-w-2xl overflow-y-auto" data-lenis-prevent>
+          <h2 class="section-title">{{ $t('dashboard.products') }}</h2>
+          <div class="w-full overflow-auto">
+            <table class="table text-xs sm:text-sm text-center">
+              <thead class="sticky top-0 z-10 bg-base-100">
+              <tr>
+                <th>#</th>
+                <th>{{ $t('dashboard.productsTable.title') }}</th>
+                <th>{{ $t('dashboard.productsTable.price') }}</th>
+                <th></th>
+              </tr>
+              </thead>
+              <tbody>
+              <tr v-for="product in adminStore.products" :key="product.id">
+                <td>{{ product.id }}</td>
+                <td>
+                  <input
+                      v-model="product.title"
+                      type="text"
+                      class="input input-bordered input-xs w-full font-normal"
+                  />
+                </td>
+                <td>
+                  <input
+                      v-model.number="product.price"
+                      type="number"
+                      min="0"
+                      step="0.01"
+                      class="input input-bordered input-xs w-20 font-normal"
+                  />
+                </td>
+                <td>
+                  <button
+                      class="btn btn-success btn-xs"
+                      @click="saveProduct(product)">
+                    {{ $t('dashboard.save') }}
+                  </button>
+                </td>
+              </tr>
+              </tbody>
+            </table>
+          </div>
+          <div class="modal-action">
+            <form method="dialog">
+              <button class="button-orange">{{ $t('dashboard.back') }}</button>
+            </form>
+          </div>
+        </div>
+      </dialog>
     </Teleport>
   </aside>
 </template>
@@ -437,6 +495,15 @@ async function openUsersModal() {
 async function openUserOrdersModal(user: any) {
   await adminStore.getUserOrders(user._id, user.username ?? user.email)
   showModal('user_orders_modal')
+}
+
+async function openProductsModal() {
+  await adminStore.getProducts()
+  showModal('products_modal')
+}
+
+async function saveProduct(product: any) {
+  await adminStore.updateProduct(product.id, product.title, product.price)
 }
 
 const tl = gsap.timeline()

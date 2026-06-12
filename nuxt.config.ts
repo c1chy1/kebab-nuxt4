@@ -4,6 +4,9 @@ import tailwindcss from '@tailwindcss/vite'
 export default defineNuxtConfig({
   compatibilityDate: '2026-05-11',
   devtools: { enabled: true },
+  experimental: {
+    appManifest: false,
+  },
   modules: [
     '@nuxt/image',
     '@nuxt/icon',
@@ -14,7 +17,55 @@ export default defineNuxtConfig({
     '@nuxtjs/fontaine',
     'nuxt-security',
     '@nuxtjs/i18n',
+    '@vite-pwa/nuxt',
   ],
+  // @ts-ignore — types generated after nuxt prepare
+  pwa: {
+    manifest: {
+      name: 'Burger House',
+      short_name: 'BurgerHouse',
+      description: 'The best burgers in town',
+      theme_color: '#1a1a1a',
+      background_color: '#1a1a1a',
+      display: 'standalone',
+      start_url: '/',
+      scope: '/',
+      orientation: 'any',
+      lang: 'pl',
+      icons: [
+        {
+          src: 'icons/icon-192.png',
+          sizes: '192x192',
+          type: 'image/png',
+          purpose: 'any maskable',
+        },
+        {
+          src: 'icons/icon-512.png',
+          sizes: '512x512',
+          type: 'image/png',
+          purpose: 'any maskable',
+        },
+      ],
+    },
+    workbox: {
+      navigateFallback: '/',
+      globPatterns: ['**/*.{js,css,html,ico,png,svg,webp,woff2}'],
+      cleanupOutdatedCaches: true,
+      runtimeCaching: [
+        {
+          urlPattern: /^\/api\/products$/,
+          handler: 'NetworkFirst',
+          options: {
+            cacheName: 'api-products',
+            expiration: { maxEntries: 1, maxAgeSeconds: 60 * 60 },
+          },
+        },
+      ],
+    },
+    devOptions: {
+      enabled: false,
+    },
+  },
   formkit: {
     autoImport: true,
   },
@@ -28,6 +79,7 @@ export default defineNuxtConfig({
     defaultLocale: 'en',
     strategy: 'no_prefix',
     langDir: 'locales/',
+    detectBrowserLanguage: false,
   },
   security: {
     rateLimiter: {
@@ -38,6 +90,7 @@ export default defineNuxtConfig({
     headers: {
       contentSecurityPolicy: {
         'img-src': ["'self'", 'data:', '*.public.blob.vercel-storage.com', 'uxwing.com'],
+        'worker-src': ["'self'"],
       },
     },
   },
@@ -71,6 +124,7 @@ export default defineNuxtConfig({
         'gsap/ScrollTrigger',
         'gsap/Draggable',
         'lightgallery',
+        'workbox-window',
       ]
     }
   },
