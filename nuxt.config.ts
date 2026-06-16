@@ -34,33 +34,35 @@ export default defineNuxtConfig({
       lang: 'pl',
       icons: [
         {
-          src: 'icons/icon-192.png',
+          src: 'icons/logo-192.png',
           sizes: '192x192',
           type: 'image/png',
-          purpose: 'any maskable',
+          purpose: 'any',
         },
         {
-          src: 'icons/icon-512.png',
+          src: 'icons/logo-192.png',
+          sizes: '192x192',
+          type: 'image/png',
+          purpose: 'maskable',
+        },
+        {
+          src: 'icons/logo-512.png',
           sizes: '512x512',
           type: 'image/png',
-          purpose: 'any maskable',
+          purpose: 'any',
+        },
+        {
+          src: 'icons/logo-512.png',
+          sizes: '512x512',
+          type: 'image/png',
+          purpose: 'maskable',
         },
       ],
     },
     workbox: {
-      navigateFallback: '/',
       globPatterns: ['**/*.{js,css,html,ico,png,svg,webp,woff2}'],
       cleanupOutdatedCaches: true,
-      runtimeCaching: [
-        {
-          urlPattern: /^\/api\/products$/,
-          handler: 'NetworkFirst',
-          options: {
-            cacheName: 'api-products',
-            expiration: { maxEntries: 1, maxAgeSeconds: 60 * 60 },
-          },
-        },
-      ],
+      navigateFallback: null,
     },
     devOptions: {
       enabled: false,
@@ -79,7 +81,12 @@ export default defineNuxtConfig({
     defaultLocale: 'en',
     strategy: 'no_prefix',
     langDir: 'locales/',
-    detectBrowserLanguage: false,
+    detectBrowserLanguage: {
+      useCookie: true,
+      cookieKey: 'preferred-lang',
+      redirectOn: 'root',
+      cookieCrossOrigin: false,
+    },
   },
   security: {
     rateLimiter: {
@@ -92,6 +99,18 @@ export default defineNuxtConfig({
         'img-src': ["'self'", 'data:', '*.public.blob.vercel-storage.com', 'uxwing.com'],
         'worker-src': ["'self'"],
       },
+    },
+  },
+  app: {
+    head: {
+      link: [
+        { rel: 'manifest', href: '/manifest.webmanifest' },
+        { rel: 'apple-touch-icon', href: '/icons/logo-192.png' },
+      ],
+      meta: [
+        { name: 'theme-color', content: '#1a1a1a' },
+        { name: 'mobile-web-app-capable', content: 'yes' },
+      ],
     },
   },
   routeRules: {
