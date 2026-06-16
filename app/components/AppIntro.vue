@@ -1,17 +1,9 @@
 <script setup>
 import { gsap } from 'gsap'
 
-const props = defineProps({ lang: String })
+defineProps({ lang: String })
 const emit = defineEmits(['fading', 'done'])
 const root = ref()
-
-const greetings = {
-  pl: 'Witamy!',
-  de: 'Willkommen!',
-  tr: 'Hoş geldiniz!',
-  en: 'Welcome!',
-}
-const greeting = computed(() => greetings[props.lang] ?? 'Welcome!')
 
 onMounted(() => {
   const tl = gsap.timeline()
@@ -78,7 +70,7 @@ onMounted(() => {
       class="fixed inset-0 z-50 flex items-center justify-center bg-base-100"
   >
     <div class="flex flex-col items-center gap-8">
-    <p class="intro-greeting font-bebas text-4xl sm:text-6xl tracking-widest text-primary">{{ greeting }}</p>
+    <p class="intro-greeting font-bebas text-4xl sm:text-6xl tracking-widest text-primary">{{ $t('intro.greeting') }}</p>
     <div class="burger flex flex-col items-center gap-1">
 
       <!-- top bun -->

@@ -22,13 +22,12 @@ import {useUserStore} from "@/stores/userStore";
 import {useCartStore} from "@/stores/useCart";
 import gsap from 'gsap'
 
-const { setLocale } = useI18n()
-
 const showIntro = ref(true)
 const showPage = ref(false)
-const langCookie = useCookie('preferred-lang')
-const lang = ref<string | null>(langCookie.value ?? null)
-if (langCookie.value) await setLocale(langCookie.value)
+// lang-chosen: ustawiany tylko gdy user ŚWIADOMIE wybrał język (LanguageIntro/Navigation)
+// preferred-lang: zarządzany przez i18n automatycznie
+const langChosenCookie = useCookie('lang-chosen', { maxAge: 60 * 60 * 24 * 365 })
+const lang = ref<string | null>(langChosenCookie.value ?? null)
 
 const { introComplete } = useIntroState()
 watch(showPage, (val) => { if (val) introComplete.value = true })
@@ -64,7 +63,7 @@ onMounted(() => {
 
   window.addEventListener('language-selected', (e: CustomEvent) => {
     lang.value = e.detail
-    $fetch('/api/set-lang', { method: 'POST', body: { lang: e.detail } })
+    langChosenCookie.value = e.detail
   })
 
   document.addEventListener('visibilitychange', () => {

@@ -1,4 +1,10 @@
 {
+  "intro": {
+    "greeting": "Willkommen!"
+  },
+  "pwa": {
+    "install": "App installieren"
+  },
   "nav": {
     "home": "Startseite",
     "menu": "Menü",

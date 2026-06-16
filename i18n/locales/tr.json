@@ -1,4 +1,10 @@
 {
+  "intro": {
+    "greeting": "Hoş geldiniz!"
+  },
+  "pwa": {
+    "install": "Uygulamayı yükle"
+  },
   "nav": {
     "home": "Ana Sayfa",
     "menu": "Menü",

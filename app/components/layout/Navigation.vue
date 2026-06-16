@@ -85,6 +85,7 @@ bg-repeat-round  lg:px-12 xl:px-16  font-bebas">
 <script setup lang="ts">
 const { gsap, lazyLoadPlugin } = useGSAP();
 const { locale, locales, setLocale } = useI18n()
+const langChosenCookie = useCookie('lang-chosen', { maxAge: 60 * 60 * 24 * 365 })
 
 const lenis = useLenis()
 
@@ -129,8 +130,8 @@ async function switchLocale(code: string) {
     ease: 'power2.in',
   })
 
+  langChosenCookie.value = code
   await setLocale(code)
-  window.dispatchEvent(new CustomEvent('language-selected', { detail: code }))
 
   setLocaleChanging(false)
 
