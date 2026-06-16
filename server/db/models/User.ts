@@ -14,6 +14,8 @@ type UserDocument = Document & {
     profilePicture: string
     role: 'user' | 'admin',
     orders: []
+    street?: string
+    city?: string
 }
 
 type OrderSchemaDocument = Document & {
@@ -47,6 +49,14 @@ const userSchema = new Schema({
         profilePicture: {
             type: String,
             default: "https://uxwing.com/wp-content/themes/uxwing/download/peoples-avatars/man-user-circle-icon.png",
+        },
+        street: {
+            type: String,
+            required: false,
+        },
+        city: {
+            type: String,
+            required: false,
         },
 
     },

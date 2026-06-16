@@ -52,6 +52,10 @@
     "passwordPlaceholder": "Twoje hasło",
     "symbolRequired": "Dodaj co najmniej jeden symbol",
     "minChars": "Minimum 6 znaków",
+    "streetLabel": "Ulica",
+    "streetPlaceholder": "ul. Kwiatowa 12",
+    "cityLabel": "Miasto",
+    "cityPlaceholder": "Warszawa",
     "back": "Wróć",
     "submitLabel": "Zarejestruj się"
   },

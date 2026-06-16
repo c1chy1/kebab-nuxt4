@@ -36,6 +36,8 @@ export interface UserRequestBody {
 export interface signUpReq {
     email: string,
     password: string,
+    street?: string,
+    city?: string,
 }
 
 export interface getUserRes{

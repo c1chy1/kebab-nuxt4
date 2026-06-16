@@ -52,6 +52,10 @@
     "passwordPlaceholder": "Your password",
     "symbolRequired": "Please include at least one symbol",
     "minChars": "Minimum 6 Characters",
+    "streetLabel": "Street",
+    "streetPlaceholder": "12 Flower Street",
+    "cityLabel": "City",
+    "cityPlaceholder": "Berlin",
     "back": "Back",
     "submitLabel": "Register"
   },

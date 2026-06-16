@@ -52,6 +52,10 @@
     "passwordPlaceholder": "Şifreniz",
     "symbolRequired": "Lütfen en az bir sembol ekleyin",
     "minChars": "En az 6 karakter",
+    "streetLabel": "Sokak",
+    "streetPlaceholder": "Çiçek Sokak 12",
+    "cityLabel": "Şehir",
+    "cityPlaceholder": "İstanbul",
     "back": "Geri",
     "submitLabel": "Kayıt Ol"
   },

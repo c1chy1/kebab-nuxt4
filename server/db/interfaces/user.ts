@@ -7,6 +7,8 @@ interface IUser extends Document {
     uuid?:string
     token?: string
     profileImage?: string
+    street?: string
+    city?: string
     created_at: Date;
     updated_at: Date;
     [key: string]: any;

@@ -52,6 +52,10 @@
     "passwordPlaceholder": "Ihr Passwort",
     "symbolRequired": "Bitte mindestens ein Sonderzeichen eingeben",
     "minChars": "Mindestens 6 Zeichen",
+    "streetLabel": "Straße",
+    "streetPlaceholder": "Blumenstraße 12",
+    "cityLabel": "Stadt",
+    "cityPlaceholder": "Berlin",
     "back": "Zurück",
     "submitLabel": "Registrieren"
   },
