@@ -127,6 +127,32 @@
                 <span class="flex-1 font-normal">{{ (store.userInfo as any)?.email }}</span>
                 <span ref="emailHint" class="text-xs italic shrink-0" style="opacity: 0;">{{ $t('dashboard.emailHint') }}</span>
               </div>
+              <div class="flex items-center gap-3 h-8">
+                <span class="opacity-50 w-14 shrink-0">{{ $t('register.streetLabel') }}</span>
+                <div class="flex-1 relative h-full flex items-center">
+                  <span ref="streetDisplay" class="font-normal">{{ (store.userInfo as any)?.street }}</span>
+                  <input
+                      ref="streetInput"
+                      v-model="editStreet"
+                      type="text"
+                      class="input input-bordered input-sm absolute inset-0 w-full font-normal"
+                      style="opacity: 0; pointer-events: none;"
+                  />
+                </div>
+              </div>
+              <div class="flex items-center gap-3 h-8">
+                <span class="opacity-50 w-14 shrink-0">{{ $t('register.cityLabel') }}</span>
+                <div class="flex-1 relative h-full flex items-center">
+                  <span ref="cityDisplay" class="font-normal">{{ (store.userInfo as any)?.city }}</span>
+                  <input
+                      ref="cityInput"
+                      v-model="editCity"
+                      type="text"
+                      class="input input-bordered input-sm absolute inset-0 w-full font-normal"
+                      style="opacity: 0; pointer-events: none;"
+                  />
+                </div>
+              </div>
             </div>
           </div>
 
@@ -420,24 +446,41 @@ const adminStore = useAdminStore()
 
 const isEditing = ref(false)
 const editUsername = ref('')
+const editStreet = ref('')
+const editCity = ref('')
 const avatarOverlay = ref<HTMLElement>()
 const avatarHint = ref<HTMLElement>()
 const emailHint = ref<HTMLElement>()
 const nameDisplay = ref<HTMLElement>()
 const nameInput = ref<HTMLInputElement>()
+const streetDisplay = ref<HTMLElement>()
+const streetInput = ref<HTMLInputElement>()
+const cityDisplay = ref<HTMLElement>()
+const cityInput = ref<HTMLInputElement>()
 
 function startEdit() {
   editUsername.value = (store.userInfo as any)?.username ?? ''
+  editStreet.value = (store.userInfo as any)?.street ?? ''
+  editCity.value = (store.userInfo as any)?.city ?? ''
   isEditing.value = true
   nextTick(() => {
     gsap.to(avatarOverlay.value, { opacity: 1, pointerEvents: 'auto', duration: 0.35, ease: 'power2.out' })
     gsap.to(avatarHint.value, { opacity: 0.5, duration: 0.35, delay: 0.1, ease: 'power2.out' })
     gsap.to(emailHint.value, { opacity: 0.4, duration: 0.35, delay: 0.15, ease: 'power2.out' })
-    // name: tekst wyjeżdża w lewo, input wjeżdża z prawej
     gsap.to(nameDisplay.value, { opacity: 0, x: -10, duration: 0.2, ease: 'power2.in' })
     gsap.fromTo(nameInput.value,
       { x: 14, opacity: 0 },
       { x: 0, opacity: 1, pointerEvents: 'auto', duration: 0.3, delay: 0.15, ease: 'power3.out' }
+    )
+    gsap.to(streetDisplay.value, { opacity: 0, x: -10, duration: 0.2, ease: 'power2.in' })
+    gsap.fromTo(streetInput.value,
+      { x: 14, opacity: 0 },
+      { x: 0, opacity: 1, pointerEvents: 'auto', duration: 0.3, delay: 0.2, ease: 'power3.out' }
+    )
+    gsap.to(cityDisplay.value, { opacity: 0, x: -10, duration: 0.2, ease: 'power2.in' })
+    gsap.fromTo(cityInput.value,
+      { x: 14, opacity: 0 },
+      { x: 0, opacity: 1, pointerEvents: 'auto', duration: 0.3, delay: 0.25, ease: 'power3.out' }
     )
   })
 }
@@ -454,6 +497,14 @@ function animateExitEdit(onComplete?: () => void) {
     { x: -10, opacity: 0 },
     { x: 0, opacity: 1, duration: 0.3, delay: 0.15, ease: 'power3.out', onComplete }
   )
+  gsap.to(streetInput.value, { opacity: 0, x: 14, duration: 0.2, ease: 'power2.in',
+    onComplete: () => gsap.set(streetInput.value, { pointerEvents: 'none' })
+  })
+  gsap.fromTo(streetDisplay.value, { x: -10, opacity: 0 }, { x: 0, opacity: 1, duration: 0.3, delay: 0.15, ease: 'power3.out' })
+  gsap.to(cityInput.value, { opacity: 0, x: 14, duration: 0.2, ease: 'power2.in',
+    onComplete: () => gsap.set(cityInput.value, { pointerEvents: 'none' })
+  })
+  gsap.fromTo(cityDisplay.value, { x: -10, opacity: 0 }, { x: 0, opacity: 1, duration: 0.3, delay: 0.15, ease: 'power3.out' })
 }
 
 function cancelEdit() {
@@ -461,7 +512,7 @@ function cancelEdit() {
 }
 
 async function saveProfile() {
-  await store.updateProfile(editUsername.value)
+  await store.updateProfile(editUsername.value, editStreet.value, editCity.value)
   animateExitEdit()
   isEditing.value = false
 }

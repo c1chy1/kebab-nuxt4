@@ -13,7 +13,7 @@ export default defineEventHandler(async (event) => {
 
         const user = await User.findByIdAndUpdate(
             decoded._id,
-            { username: body.username },
+            { username: body.username, street: body.street, city: body.city },
             { returnDocument: 'after' }
         )
 

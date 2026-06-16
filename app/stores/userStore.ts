@@ -86,11 +86,11 @@ export const useUserStore = defineStore('User', {
 
         },
 
-        async updateProfile(username: string) {
+        async updateProfile(username: string, street?: string, city?: string) {
             const { $i18n } = useNuxtApp()
             const data = await $fetch<any>('/api/auth/update-profile', {
                 method: 'PATCH',
-                body: { username }
+                body: { username, street, city }
             })
             if (data.success) {
                 this.userInfo = data.user

@@ -102,6 +102,34 @@ function showModal(id: string) {
                 :placeholder="$t('register.passwordPlaceholder')"
                 validation-visibility="dirty"
             />
+            <FormKit
+                type="text"
+                name="street"
+                :label="$t('register.streetLabel')"
+                wrapper-class="$reset block"
+                label-class="form-label"
+                input-class="$reset form-input"
+                inner-class="$reset"
+                messages-class="$reset relative"
+                message-class="$reset form-validation"
+                overlay-placeholder-class="text-[#3d3d3d]"
+                :placeholder="$t('register.streetPlaceholder')"
+                outer-class="$reset m-0"
+            />
+            <FormKit
+                type="text"
+                name="city"
+                :label="$t('register.cityLabel')"
+                wrapper-class="$reset block"
+                label-class="form-label"
+                input-class="$reset form-input"
+                inner-class="$reset"
+                messages-class="$reset relative"
+                message-class="$reset form-validation"
+                overlay-placeholder-class="text-[#3d3d3d]"
+                :placeholder="$t('register.cityPlaceholder')"
+                outer-class="$reset m-0"
+            />
           </FormKit>
         <div class="modal-action">
           <form method="dialog">
