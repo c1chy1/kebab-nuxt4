@@ -259,7 +259,7 @@
       </dialog>
 
       <dialog id="users_modal" class="modal font-bold">
-        <div class="modal-box w-11/12 max-w-3xl overflow-y-auto" data-lenis-prevent>
+        <div class="modal-box max-w-4xl overflow-y-auto" data-lenis-prevent>
           <h2 class="section-title">{{ $t('dashboard.users') }}</h2>
           <div class="flex gap-2 mb-3">
             <input
@@ -309,7 +309,7 @@
                 </td>
                 <td>
                   <button
-                      class="btn btn-info btn-xs"
+                      class="btn btn-info btn-xs text-white cursor-pointer"
                       @click="openUserOrdersModal(user)">
                     {{ $t('dashboard.orders') }}
                   </button>
@@ -317,7 +317,7 @@
                 <td>
                   <button
                       v-if="user.role !== 'admin'"
-                      class="btn btn-error btn-xs"
+                      class="btn btn-error btn-xs cursor-pointer"
                       @click="adminStore.removeUser(user._id)">
                     {{ $t('dashboard.usersTable.deleteUser') }}
                   </button>
@@ -415,7 +415,7 @@
                 </td>
                 <td>
                   <button
-                      class="btn btn-success btn-xs"
+                      class="button-orange btn-xs cursor-pointer"
                       @click="saveProduct(product)">
                     {{ $t('dashboard.save') }}
                   </button>

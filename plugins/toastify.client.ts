@@ -10,6 +10,8 @@ export default defineNuxtPlugin((nuxtApp) => {
                     position: toast.POSITION.BOTTOM_CENTER,
                     newestOnTop: true,
                     pauseOnHover: true,
+                    toastClassName: 'my-toast',
+                    bodyClassName: 'my-toast-body'
                 } as ToastOptions)
             }
         }
