@@ -159,13 +159,13 @@
           <div class="modal-action justify-between">
             <template v-if="!isEditing">
               <form method="dialog">
-                <button class="button-orange">{{ $t('dashboard.back') }}</button>
+                <button class="button-orange cursor-pointer">{{ $t('dashboard.back') }}</button>
               </form>
-              <button class="button-orange" @click="startEdit">{{ $t('dashboard.edit') }}</button>
+              <button class="button-orange cursor-pointer" @click="startEdit">{{ $t('dashboard.edit') }}</button>
             </template>
             <template v-else>
-              <button class="button-orange" @click="cancelEdit">{{ $t('dashboard.cancel') }}</button>
-              <button class="button-orange" @click="saveProfile">{{ $t('dashboard.save') }}</button>
+              <button class="button-orange cursor-pointer" @click="cancelEdit">{{ $t('dashboard.cancel') }}</button>
+              <button class="button-orange cursor-pointer" @click="saveProfile">{{ $t('dashboard.save') }}</button>
             </template>
           </div>
         </div>
@@ -179,7 +179,7 @@
           </div>
           <div class="modal-action">
             <form method="dialog">
-              <button class="button-orange">{{ $t('dashboard.back') }}</button>
+              <button class="button-orange cursor-pointer">{{ $t('dashboard.back') }}</button>
             </form>
           </div>
         </div>
@@ -252,7 +252,7 @@
           </div>
           <div class="modal-action">
             <form method="dialog">
-              <button class="button-orange">{{ $t('dashboard.back') }}</button>
+              <button class="button-orange cursor-pointer">{{ $t('dashboard.back') }}</button>
             </form>
           </div>
         </div>
@@ -328,7 +328,7 @@
           </div>
           <div class="modal-action">
             <form method="dialog">
-              <button class="button-orange">{{ $t('dashboard.back') }}</button>
+              <button class="button-orange cursor-pointer">{{ $t('dashboard.back') }}</button>
             </form>
           </div>
         </div>
@@ -375,7 +375,7 @@
             </div>
             <div class="modal-action">
               <form method="dialog">
-                <button class="button-orange">{{ $t('dashboard.back') }}</button>
+                <button class="button-orange cursor-pointer">{{ $t('dashboard.back') }}</button>
               </form>
             </div>
           </div>
@@ -415,7 +415,7 @@
                 </td>
                 <td>
                   <button
-                      class="button-orange btn-xs cursor-pointer"
+                      class="btn btn-xs cursor-pointer"
                       @click="saveProduct(product)">
                     {{ $t('dashboard.save') }}
                   </button>
@@ -426,7 +426,7 @@
           </div>
           <div class="modal-action">
             <form method="dialog">
-              <button class="button-orange">{{ $t('dashboard.back') }}</button>
+              <button class="button-orange cursor-pointer">{{ $t('dashboard.back') }}</button>
             </form>
           </div>
         </div>
