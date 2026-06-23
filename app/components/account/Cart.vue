@@ -16,34 +16,42 @@
 
         <h1 class=" sm:text-sm lg:text-lg font-bold"
         >{{ $t('cart.title') }}</h1>
-        <span class="xl:text-base">({{ cartStore.totalCount }} {{ $t('cart.items') }})</span>
+        <span class="relative overflow-hidden inline-block align-middle">
+          <Transition :name="countTransition">
+            <span :key="cartStore.totalCount" class="xl:text-base whitespace-nowrap block">
+              ({{ cartStore.totalCount }} {{ $t('cart.items') }})
+            </span>
+          </Transition>
+        </span>
       </div>
 
       <transition-group name="list" tag="ul"  ref="items" class="py-2 px-0 text-black text-xs  md:text-sm  lg:text-base  xl:text-lg">
         <li
             v-for="item in cartItems"
             :key="item.id"
-            class="flex items-center px-2 py-1 border-b border-gray-100 last:border-0">
+            class="flex items-center px-1 py-1 border-b border-gray-100 last:border-0">
           <NuxtImg
               :src="item.img"
               :alt="`${$t('cart.imageAlt')} ${item.title}`"
               class="img-fluid rounded w-12 sm:w-20 lg:w-24 xl:w-32 h-10 sm:h-12 lg:h-16 xl:h-24 shrink-0"/>
           <div class="text-black flex-1 mx-2 sm:mx-3 lg:mx-4 min-w-0">
-            <h2 class="font-bold text-black truncate">{{ item.title }}</h2>
-            <div class="flex items-center justify-between mt-0.5">
+            <h2 class="font-bold text-xs 2xl:text-base text-black">{{ item.title }}</h2>
+            <div class="grid grid-cols-2 items-center mt-0.5">
               <span>{{ item.price }}€</span>
-              <select ref="select" class="border-2 border-black rounded-xl px-0.5 lg:px-1 cursor-pointer"
-                      v-model="item.qty">
-                <option
-                    v-for="x in item.countInStock"
-                    :key="x"
-                    :value="x">
-                  {{ x }}
-                </option>
-              </select>
+              <div class="flex justify-center">
+                <select ref="select" class="border-2 border-black rounded-xl px-0.5 lg:px-1 cursor-pointer"
+                        v-model="item.qty">
+                  <option
+                      v-for="x in item.countInStock"
+                      :key="x"
+                      :value="x">
+                    {{ x }}
+                  </option>
+                </select>
+              </div>
             </div>
           </div>
-          <Icon name="heroicons:trash" class="w-7 h-7 sm:w-8 sm:h-8 mr-2 shrink-0 cursor-pointer self-center text-[#DC691D]"
+          <Icon name="heroicons:trash" class="text-4xl mr-2 shrink-0 cursor-pointer self-center text-[#DC691D]"
                 @click="cartStore.removeItem(item)" />
         </li>
 
@@ -77,6 +85,32 @@ import {toast} from 'vue3-toastify'
 
 const cartStore = useCartStore()
 const { t } = useI18n()
+
+const countTransition = ref('count-up')
+
+// Kierunek animacji licznika — zawsze przy zmianie totalCount
+watch(() => cartStore.totalCount, (newVal, oldVal) => {
+  countTransition.value = newVal > oldVal ? 'count-up' : 'count-down'
+})
+
+// Animacja headera — tylko gdy dodano/usunięto produkt (nie zmiana qty)
+watch(() => cartItems.value?.length, (newLen, oldLen) => {
+  if (newLen === oldLen || oldLen === undefined) return
+  const trigger = document.getElementById('cartTrigger')
+  if (!trigger) return
+  const inner = trigger.querySelectorAll('h1, #cartTrigger > span')
+
+  if (newLen > oldLen) {
+    gsap.timeline()
+      .to(inner, { y: -20, opacity: 0.2, duration: 0.2, ease: 'power2.in' })
+      .to(inner, { y: 0, opacity: 1, duration: 0.35, ease: 'back.out(2)' })
+  } else {
+    gsap.fromTo(inner,
+      { y: -24, opacity: 0 },
+      { y: 0, opacity: 1, duration: 0.45, ease: 'back.out(1.5)' }
+    )
+  }
+})
 import gsap from 'gsap'
 
 import Draggable from 'gsap/Draggable'
@@ -211,6 +245,29 @@ watch(
     {deep: true},
 )
 </script>
+
+<style scoped>
+/* Dodawanie: licznik wjeżdża z dołu */
+.count-up-enter-active,
+.count-up-leave-active,
+.count-down-enter-active,
+.count-down-leave-active {
+  transition: transform 0.3s ease, opacity 0.3s ease;
+}
+.count-up-leave-active,
+.count-down-leave-active {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+}
+.count-up-enter-from { transform: translateY(100%); opacity: 0; }
+.count-up-leave-to   { transform: translateY(-100%); opacity: 0; }
+
+/* Usuwanie: licznik zjeżdża w dół */
+.count-down-enter-from { transform: translateY(-100%); opacity: 0; }
+.count-down-leave-to   { transform: translateY(100%); opacity: 0; }
+</style>
 
 <style scoped>
 .list-move,

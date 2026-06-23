@@ -1,14 +1,23 @@
 <template>
-  <section id="menu" ref="menuRef" class="pt-28 lg:pt-40 pb-12 sm:pb-20 text-center uppercase flex flex-col">
-    <h5 class="text-[22px] text-secondary w-56 mb-7 mx-auto font-bebas bg-neutral inline-block py-4 px-6">
+  <section id="menu" ref="menuRef" class="pt-28 lg:pt-40 pb-12 sm:pb-20 text-center uppercase flex flex-col items-center gap-4">
+    <h5 class="text-[22px] text-secondary w-fit mx-auto font-bebas bg-neutral py-4 px-6">
       {{ $t('menu.tagline') }}
     </h5>
     <h2 class="section-title">{{ $t('menu.title') }}</h2>
-    <p class="text-sm xl:text-[17px] px-7 text-center lowercase">
+    <p class="text-sm xl:text-[17px] max-w-4xl mx-auto lowercase">
       {{ $t('menu.description') }}
     </p>
 
-    <div class="flex w-full">
+    <div class="relative flex items-center w-full">
+      <button
+        @click="swiper.prev()"
+        class="hidden sm:flex shrink-0 z-10 items-center justify-center w-10 h-10 lg:w-12 lg:h-12 rounded-full bg-primary text-white shadow-md hover:bg-orange-600 transition-colors duration-200 mx-1 lg:mx-3"
+        aria-label="Previous"
+      >
+        <Icon name="heroicons:chevron-left" class="w-5 h-5 lg:w-6 lg:h-6" />
+      </button>
+
+      <div class="flex-1 min-w-0 overflow-hidden">
       <ClientOnly>
         <swiper-container
           ref="containerRef"
@@ -37,7 +46,7 @@
                 <h2 class="card-title py-1 lg:py-2 text-3xl sm:text-[38px] text-primary font-bebas uppercase">
                   {{ slide.price }} €
                 </h2>
-                <div class="card-actions">
+                <div class="card-actions mt-auto">
                   <button class="button-orange" @click.stop="cart.addItem(slide)">
                     {{ $t('menu.buyNow') }}
                   </button>
@@ -48,6 +57,15 @@
           </swiper-slide>
         </swiper-container>
       </ClientOnly>
+      </div>
+
+      <button
+        @click="swiper.next()"
+        class="hidden sm:flex shrink-0 z-10 items-center justify-center w-10 h-10 lg:w-12 lg:h-12 rounded-full bg-primary text-white shadow-md hover:bg-orange-600 transition-colors duration-200 mx-1 lg:mx-3"
+        aria-label="Next"
+      >
+        <Icon name="heroicons:chevron-right" class="w-5 h-5 lg:w-6 lg:h-6" />
+      </button>
     </div>
   </section>
 

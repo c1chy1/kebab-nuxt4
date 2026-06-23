@@ -1,5 +1,5 @@
 <template>
-  <section class="px-10 pt-20  lg:p-24 flex flex-col lg:flex-row gap-y-9 lg:gap-y-0 lg:gap-x-10 font-bebas  ">
+  <section class="px-10 pt-20 font-alfa lg:p-24 flex flex-col lg:flex-row gap-y-9 lg:gap-y-0 lg:gap-x-10">
     <div class=" w-full lg:w-1/2">
       <SectionsBanner
           class="shadow-dark-sm"
