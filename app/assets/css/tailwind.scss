@@ -111,7 +111,6 @@ html:has(:is(.modal-open, .modal:target, .modal-toggle:checked + .modal, .modal[
   .toast-center {
     text-align: center;
   }
-
   #register form {
     @apply w-2/3 sm:w-1/2 mx-auto;
   }

@@ -109,4 +109,8 @@ swiper-slide .button-orange {
   z-index: 10;
   cursor: pointer;
 }
+
+swiper-container::part(wrapper) {
+  align-items: flex-end;
+}
 </style>
