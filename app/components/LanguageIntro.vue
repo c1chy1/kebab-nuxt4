@@ -37,13 +37,6 @@ const root = ref()
 const radius = ref(130)
 const flagSize = ref(100)
 
-onMounted(() => {
-  if (window.innerWidth < 640) {
-    radius.value = 82
-    flagSize.value = 64
-  }
-})
-
 const languages = [
   { code: 'de', icon: 'circle-flags:de', color: '#000000' },
   { code: 'tr', icon: 'circle-flags:tr', color: '#E30A17' },
@@ -80,16 +73,24 @@ function select(lang) {
 }
 
 onMounted(() => {
-  gsap.from('.circle', {
-    scale: 0,
-    opacity: 0,
-    duration: 0.8,
-    ease: 'back.out(1.7)'
-  })
+  if (window.innerWidth < 640) {
+    radius.value = 82
+    flagSize.value = 64
+  }
+
+  gsap.fromTo('.circle',
+    { scale: 0, opacity: 0 },
+    { scale: 1, opacity: 1, duration: 0.8, ease: 'back.out(1.7)' }
+  )
 })
 </script>
 
 <style>
+/* Hide circle before GSAP initializes to prevent SSR flash */
+.circle {
+  opacity: 0;
+}
+
 .flag-item {
   filter: drop-shadow(0 10px 20px rgba(0,0,0,0.2));
 }

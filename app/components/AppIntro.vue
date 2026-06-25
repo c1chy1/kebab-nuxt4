@@ -8,44 +8,39 @@ const root = ref()
 onMounted(() => {
   const tl = gsap.timeline()
 
-  tl.from('.intro-greeting', {
-    y: -30,
-    opacity: 0,
-    duration: 0.5,
-    ease: 'power3.out'
-  })
+  tl.fromTo('.intro-greeting',
+    { y: -30, opacity: 0 },
+    { y: 0, opacity: 1, duration: 0.5, ease: 'power3.out' }
+  )
 
-  .from('.bun-top', {
-    y: -200,
-    opacity: 0,
-    duration: 0.6,
-    ease: 'back.out(1.7)'
-  })
+  .fromTo('.bun-top',
+    { y: -200, opacity: 0 },
+    { y: 0, opacity: 1, duration: 0.6, ease: 'back.out(1.7)' }
+  )
 
-      .from('.lettuce', {
-        x: -200,
-        opacity: 0,
-        duration: 0.4
-      }, '-=0.2')
+      .fromTo('.lettuce',
+        { x: -200, opacity: 0 },
+        { x: 0, opacity: 1, duration: 0.4 },
+        '-=0.2'
+      )
 
-      .from('.cheese', {
-        scale: 0,
-        rotation: 90,
-        duration: 0.4,
-        ease: 'back.out(2)'
-      }, '-=0.2')
+      .fromTo('.cheese',
+        { scale: 0, rotation: 90, opacity: 0 },
+        { scale: 1, rotation: 0, opacity: 1, duration: 0.4, ease: 'back.out(2)' },
+        '-=0.2'
+      )
 
-      .from('.patty', {
-        x: 200,
-        opacity: 0,
-        duration: 0.5
-      }, '-=0.2')
+      .fromTo('.patty',
+        { x: 200, opacity: 0 },
+        { x: 0, opacity: 1, duration: 0.5 },
+        '-=0.2'
+      )
 
-      .from('.bun-bottom', {
-        y: 200,
-        opacity: 0,
-        duration: 0.6
-      }, '-=0.3')
+      .fromTo('.bun-bottom',
+        { y: 200, opacity: 0 },
+        { y: 0, opacity: 1, duration: 0.6 },
+        '-=0.3'
+      )
 
       .to('.burger', {
         scale: 1.05,
@@ -94,6 +89,16 @@ onMounted(() => {
 </template>
 
 <style>
+/* Hide animated elements before GSAP initializes to prevent SSR flash */
+.intro-greeting,
+.bun-top,
+.lettuce,
+.cheese,
+.patty,
+.bun-bottom {
+  opacity: 0;
+}
+
 .burger > div {
   filter: drop-shadow(0 8px 10px rgba(0,0,0,0.2));
 }
