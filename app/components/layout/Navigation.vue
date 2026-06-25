@@ -49,7 +49,7 @@ bg-repeat-round  lg:px-12 xl:px-16  font-bebas">
                   <path d="M0 0l5 6 5-6z"/>
                 </svg>
               </button>
-              <ul tabindex="0" class="dropdown-content menu bg-base-100/10 backdrop-blur-sm border border-white/10 rounded-lg p-1 mt-2 w-28 shadow-xl">
+              <ul tabindex="0" class="dropdown-content menu backdrop-blur-sm border border-white/10 rounded-lg p-1 mt-2 w-28 shadow-xl">
                 <li v-for="loc in availableLocales" :key="loc.code">
                   <button
                     @click="switchLocale(loc.code)"
@@ -189,3 +189,13 @@ onMounted(async () => {
   })
 })
 </script>
+
+<style>
+nav .dropdown-content {
+  background-color: rgba(185, 207, 33, 0.88);
+}
+
+[data-theme='dark'] nav .dropdown-content {
+  background-color: rgba(189, 189, 189, 0.88);
+}
+</style>

@@ -118,7 +118,6 @@ html:has(:is(.modal-open, .modal:target, .modal-toggle:checked + .modal, .modal[
   #login form {
     @apply w-2/3 sm:w-1/2 mx-auto;
   }
-
   #contact {
     p, h2 { color: white; }
     span:hover { color: #ffc107; }
@@ -151,6 +150,7 @@ html:has(:is(.modal-open, .modal:target, .modal-toggle:checked + .modal, .modal[
   .section-title {
     @apply text-primary text-center text-2xl font-alfa sm:text-[36px] lg:text-[50px] mb-2.5 leading-tight font-medium uppercase;
   }
+
 }
 
 [data-theme='dark'] {
