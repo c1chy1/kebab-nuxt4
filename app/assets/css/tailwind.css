@@ -136,7 +136,7 @@ html:has(:is(.modal-open, .modal:target, .modal-toggle:checked + .modal, .modal[
 
 @layer components {
   .button-orange {
-    @apply py-2 px-4 xl:py-4 xl:px-10 bg-[#ff6d00] font-alfa leading-none rounded hover:bg-primary border-none uppercase text-center text-base font-medium text-white transition-all ease-out duration-300 inline-block;
+    @apply py-2 px-4 xl:py-4 xl:px-10 bg-[#c05000] font-alfa leading-none rounded hover:bg-primary border-none uppercase text-center text-base font-medium text-white transition-all ease-out duration-300 inline-block;
   }
 
   .form-label {
