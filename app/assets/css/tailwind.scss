@@ -162,14 +162,11 @@ html:has(:is(.modal-open, .modal:target, .modal-toggle:checked + .modal, .modal[
     body {
       @apply bg-primary bg-[url('/bg.png')];
     }
-    h2, p {
-      color: oklch(0.8 0 0);
-    }
     h5 {
       background-color: oklch(0.3 0 0);
     }
 
-    #events .hero-content {
+    #events .events {
       background-color: oklch(0.8 0 0);
       h2, p { color: oklch(0.3 0 0); }
     }
