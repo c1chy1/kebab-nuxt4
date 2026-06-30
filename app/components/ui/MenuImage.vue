@@ -1,10 +1,8 @@
 <script setup lang="ts">
 
 defineProps({
-
-  src: String
-
-
+  src: String,
+  alt: String,
 })
 
 </script>
@@ -16,6 +14,7 @@ defineProps({
       quality="40"
       format="webp"
       :src="src"
+      :alt="alt"
       class="z-10"/>
 </template>
 

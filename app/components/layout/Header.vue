@@ -17,6 +17,7 @@
           >
             <div class="sm:w-1/2 xl:w-full">
               <nuxt-img
+                  alt="kebab"
                 preload
                 format="webp"
                 :src="slide"
@@ -43,14 +44,14 @@
             </div>
 
             <div ref="textRef" class="max-w-full sm:w-1/2 xl:w-full xl:text-left flex flex-col items-center lg:items-start">
-              <h3
+              <p
                 class="py-0 md:py-0 lg:py-2 lg:px-3 px-2 mb-4 text-[16px] md:text-[16px] lg:text-[20px]
                        xl:text-[24px] text-primary border-primary font-medium font-bebas border-dashed
                        border-2 inline-block rounded-[3px]"
                 style="opacity: 0"
               >
                 {{ $t('header.tagline') }}
-              </h3>
+              </p>
               <h1
                 class="lg:mt-4 text-[38px] md:text-[44px] lg:text-[80px] xl:text-[94px] text-primary
                        font-alfa font-medium flex flex-col leading-none tracking-wider
@@ -72,7 +73,7 @@ import gsap from 'gsap'
 
 const containerRef = ref(null)
 const textRef = ref<HTMLElement[]>([])
-useLocaleTransition(textRef, 'h1, h3')
+useLocaleTransition(textRef, 'h1, p')
 
 const kebabs = [
   'images/slides/1.png',
@@ -115,7 +116,7 @@ function runAnimations() {
   )
 
   gsap.fromTo(
-      '#header h3',
+      '#header p',
       { y: 0, ease: 'power3.inOut' },
       { duration: 0.5, opacity: 1, y: 0, delay: 0.2, ease: 'power3.inOut', stagger: 0.1 }
   )

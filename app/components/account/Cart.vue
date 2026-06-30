@@ -7,11 +7,12 @@
 
     <div class="text-xs text-white bg-white transition-colors duration-700 rounded-lg overflow-hidden">
       <div id="cartTrigger"
-           class="draggable transition-colors duration-700 flex items-center justify-center gap-x-2 px-2 py-3  bg-secondary">
+           class="draggable transition-colors duration-700 flex items-center justify-center gap-x-2 px-2 py-3  bg-[#c05000]">
         <button
             id="cartButton"
-            class="draggable -left-4 lg:-left-6  top-1  p-1.5  sm:p-2  lg:p-3.5 transition-all duration-700 flex border-2 border-[#b9cf21] dark:border-[#0F172A] bg-secondary  hover:bg-purple-500 absolute   rounded-full text-white hover:rotate-45">
-          <Icon name="heroicons:squares-2x2" class="w-4 h-4" />
+            :aria-label="$t('cart.toggleCart')"
+            class="draggable -left-4 lg:-left-6  top-1  p-1.5  sm:p-2  lg:p-3.5 transition-all duration-700 flex border-2 border-[#b9cf21] dark:border-[#0F172A] bg-[#c05000]  hover:bg-purple-500 absolute   rounded-full text-white hover:rotate-45">
+          <Icon name="heroicons:squares-2x2" class="w-4 h-4" aria-hidden="true" />
         </button>
 
         <h1 class=" sm:text-sm lg:text-lg font-bold"

@@ -7,6 +7,7 @@
         preload
         :src="src"
         format="webp"
+        alt="burger house logo"
         :class="svgSize"
         class="stroke-current">
     </nuxt-img>

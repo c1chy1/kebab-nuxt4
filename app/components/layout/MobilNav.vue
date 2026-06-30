@@ -15,12 +15,12 @@
     <div ref="bgMenu" class=" h-dvh px-6 bg-menu-mobile bg-accent " id="bg-menu-mobile">
       <div class="fixed w-full top-[100px] z-[3]">
       <ul ref="menuContainer" class="space-y-4 text-2xl sm:text-3xl pl-6">
-        <li><nuxt-link hash="#header" @click="toggle();scrollTo('#header')">{{ $t('nav.home') }}</nuxt-link></li>
-        <li><nuxt-link hash="#menu" @click="toggle();scrollTo('#menu')">{{ $t('nav.menu') }}</nuxt-link></li>
-        <li><nuxt-link hash="#events" @click="toggle();scrollTo('#events')">{{ $t('nav.events') }}</nuxt-link></li>
-        <li><nuxt-link hash="#login" @click="toggle();scrollTo('#login')">{{ $t('nav.login') }}</nuxt-link></li>
-        <li><nuxt-link hash="#gallery" @click="toggle();scrollTo('#gallery')">{{ $t('nav.gallery') }}</nuxt-link></li>
-        <li><nuxt-link hash="#contact" @click="toggle();scrollTo('#contact')">{{ $t('nav.contact') }}</nuxt-link></li>
+        <li><a href="#header" @click.prevent="toggle();scrollTo('#header')">{{ $t('nav.home') }}</a></li>
+        <li><a href="#menu" @click.prevent="toggle();scrollTo('#menu')">{{ $t('nav.menu') }}</a></li>
+        <li><a href="#events" @click.prevent="toggle();scrollTo('#events')">{{ $t('nav.events') }}</a></li>
+        <li><a href="#login" @click.prevent="toggle();scrollTo('#login')">{{ $t('nav.login') }}</a></li>
+        <li><a href="#gallery" @click.prevent="toggle();scrollTo('#gallery')">{{ $t('nav.gallery') }}</a></li>
+        <li><a href="#contact" @click.prevent="toggle();scrollTo('#contact')">{{ $t('nav.contact') }}</a></li>
         <li>
           <div class="flex items-center gap-4 pt-2">
             <button

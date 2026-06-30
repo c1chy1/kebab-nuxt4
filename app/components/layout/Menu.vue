@@ -1,8 +1,8 @@
 <template>
   <section id="menu" ref="menuRef" class="pt-28 lg:pt-40 pb-12 sm:pb-20 text-center uppercase flex flex-col items-center gap-4">
-    <h5 class="text-[22px] text-secondary w-fit mx-auto font-bebas bg-neutral py-4 px-6">
+    <p class="text-[22px] text-neutral-content w-fit mx-auto font-bebas bg-neutral py-4 px-6">
       {{ $t('menu.tagline') }}
-    </h5>
+    </p>
     <h2 class="section-title">{{ $t('menu.title') }}</h2>
     <p class="text-sm xl:text-[17px] max-w-4xl mx-auto lowercase">
       {{ $t('menu.description') }}
@@ -34,12 +34,12 @@
               class="card transition-all mx-auto h-full w-10/12"
             >
               <figure class="p-2 lg:p-4 xl:p-10 h-full cursor-grab active:cursor-grabbing">
-                <uiMenuImage :src="slide.img" />
+                <uiMenuImage :src="slide.img" :alt="slide.title" />
               </figure>
               <div class="card-body p-0 items-center text-center">
-                <h2 class="card-title text-2xl sm:text-4xl text-primary xl:mb-2.5 font-bebas uppercase">
+                <h3 class="card-title text-2xl sm:text-4xl text-primary xl:mb-2.5 font-bebas uppercase">
                   {{ slide.title }}
-                </h2>
+                </h3>
                 <p class="text-xs xl:text-[17px] leading-5 lowercase w-2/3 xl:w-full">
                   {{ $t(`menu.items.${slide.id}`) }}
                 </p>
@@ -78,7 +78,7 @@ import { useAdminStore } from '@/stores/adminStore'
 const cart = useCartStore()
 const adminStore = useAdminStore()
 const menuRef = ref<HTMLElement>()
-useLocaleTransition(menuRef, 'h5, h2, button.button-orange')
+useLocaleTransition(menuRef, 'p, h2, h3, button.button-orange')
 
 const containerRef = ref(null)
 

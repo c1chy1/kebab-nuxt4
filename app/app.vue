@@ -22,6 +22,12 @@ import {useUserStore} from "@/stores/userStore";
 import {useCartStore} from "@/stores/useCart";
 import gsap from 'gsap'
 
+const i18nHead = useLocaleHead()
+useHead(() => ({ htmlAttrs: i18nHead.value.htmlAttrs }))
+
+const { t } = useI18n()
+useSeoMeta({ description: () => t('meta.description') })
+
 const showIntro = ref(true)
 const showPage = ref(false)
 // lang-chosen: ustawiany tylko gdy user ŚWIADOMIE wybrał język (LanguageIntro/Navigation)

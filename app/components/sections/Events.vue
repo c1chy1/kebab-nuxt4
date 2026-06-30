@@ -34,12 +34,12 @@ useLocaleTransition(eventsRef, 'h2')
             :key="i"
             class="text-left bg-white"
         >
-          <div class="flex flex-col-reverse lg:flex-row lg:items-stretch w-full p-2">
-            <div class="w-full lg:w-1/2 py-8 lg:py-16 lg:pl-12 lg:pr-7">
-              <h2 class="text-[29px] text-primary font-bebas uppercase">
+          <div class=" flex flex-col-reverse lg:flex-row lg:items-stretch w-full p-2">
+            <div class="events w-full lg:w-1/2 py-8 lg:py-16 lg:pl-12 lg:pr-7">
+              <h2 class="text-[29px] font-bebas uppercase">
                 {{ slide.label }}
               </h2>
-              <h2 class="text-[36px] lg:text-3xl mb-2.5 text-primary leading-tight font-medium font-alfa uppercase">
+              <h2 class="text-[36px] lg:text-3xl mb-2.5 leading-tight font-medium font-alfa uppercase">
                 {{ slide.title }}
               </h2>
               <p class="xl:text-[21px] xl:leading-8 py-6">
@@ -50,6 +50,7 @@ useLocaleTransition(eventsRef, 'h2')
                 loading="lazy"
                 format="webp"
                 :src="slide.img"
+                :alt="slide.title"
                 class="w-full lg:w-1/2 object-cover"
             />
           </div>
@@ -60,6 +61,8 @@ useLocaleTransition(eventsRef, 'h2')
           v-for="(_, i) in hamburgers"
           :key="i"
           @click="swiper.to(i)"
+          :aria-label="`${$t('events.goToSlide')} ${i + 1}`"
+          :aria-current="realIndex === i ? 'true' : undefined"
           class="w-4.25 h-4.25 rounded-full transition-colors duration-300 cursor-pointer"
           :class="realIndex === i ? 'bg-primary' : 'bg-gray-300'"
         />

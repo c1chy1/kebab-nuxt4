@@ -15,29 +15,29 @@ bg-repeat-round  lg:px-12 xl:px-16  font-bebas">
       </div>
       <div class="navbar-end lg:flex items-end flex-col  text-primary  w-full">
         <div class="hidden sm:flex items-center pr-20 space-x-5 lg:pt-6 lg:pr-9 ">
-          <img class="animate-shake delay-500" src="/delivery-icon.png">
+          <img alt="delivery icon" class="animate-shake delay-500" src="/delivery-icon.png">
           <h3 class=" text-xs md:text-sm lg:text-base text-center font-semibold font-mont py-5 tracking-wider transition-all duration-500">
             {{ $t('nav.delivery') }}</h3>
         </div>
         <ul ref="menu"
             class="menu menu-horizontal  hidden lg:flex justify-end gap-4 py-0 px-1 lg:text-[18px] xl:text-[24px] tracking-[3px] xl:tracking-[4px] relative uppercase transition-all duration-500">
           <li>
-            <nuxt-link hash="#header" @click="scrollTo('#header')">{{ $t('nav.home') }}</nuxt-link>
+            <a href="#header" @click.prevent="scrollTo('#header')">{{ $t('nav.home') }}</a>
           </li>
           <li>
-            <nuxt-link hash="#menu" @click="scrollTo('#menu')">{{ $t('nav.menu') }}</nuxt-link>
+            <a href="#menu" @click.prevent="scrollTo('#menu')">{{ $t('nav.menu') }}</a>
           </li>
           <li>
-            <nuxt-link hash="#events" @click="scrollTo('#events')">{{ $t('nav.events') }}</nuxt-link>
+            <a href="#events" @click.prevent="scrollTo('#events')">{{ $t('nav.events') }}</a>
           </li>
           <li>
-            <nuxt-link hash="#gallery" @click="scrollTo('#gallery')">{{ $t('nav.gallery') }}</nuxt-link>
+            <a href="#gallery" @click.prevent="scrollTo('#gallery')">{{ $t('nav.gallery') }}</a>
           </li>
           <li>
-            <nuxt-link hash="#login" @click="scrollTo('#login')">{{ $t('nav.login') }}</nuxt-link>
+            <a href="#login" @click.prevent="scrollTo('#login')">{{ $t('nav.login') }}</a>
           </li>
           <li>
-            <nuxt-link hash="#contact" @click="scrollTo('#contact')">{{ $t('nav.contact') }}</nuxt-link>
+            <a href="#contact" @click.prevent="scrollTo('#contact')">{{ $t('nav.contact') }}</a>
           </li>
 
           <li class="relative" ref="langSwitcher">
@@ -119,7 +119,7 @@ async function switchLocale(code: string) {
 
   setLocaleChanging(true)
 
-  const navItems = menu.value?.querySelectorAll('li a, li nuxt-link')
+  const navItems = menu.value?.querySelectorAll('li a')
   const flagBtn = langSwitcher.value?.querySelector('button')
 
   await gsap.to([...(navItems ?? []), flagBtn].filter(Boolean), {
