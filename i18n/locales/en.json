@@ -1,4 +1,7 @@
 {
+  "meta": {
+    "description": "Burger House – authentic Turkish kebab in Lüdenscheid, Germany. Fresh ingredients, bold Anatolian flavors. Dine in or get it delivered. Visit us today!"
+  },
   "intro": {
     "greeting": "Welcome!"
   },
@@ -65,7 +68,8 @@
     "delivery": "Delivery:",
     "total": "Total:",
     "checkout": "Checkout",
-    "imageAlt": "image of"
+    "imageAlt": "image of",
+    "toggleCart": "Toggle cart"
   },
   "header": {
     "tagline": "It is a good time for the great taste of kebabs",
@@ -79,7 +83,8 @@
     "about": "We are a place where traditional Turkish cuisine meets modern flavors. Our kebab is more than food – it is a journey through the aromas of Anatolia, crafted with passion and the freshest ingredients. Visit us and taste the difference."
   },
   "gallery": {
-    "title": "Gallery"
+    "title": "Gallery",
+    "imageAlt": "Gallery photo"
   },
   "home": {
     "tryItToday": "Try it today",
@@ -93,7 +98,8 @@
     "alwaysTasty": "Always Tasty",
     "chooseEnjoy": "Choose & Enjoy",
     "slide1desc": "We regularly host themed evenings, tastings and family-friendly events. Check our calendar and book your spot today – seats fill up fast and there is always something exciting going on!",
-    "slide2desc": "Every week our chef prepares new specials using fresh, seasonal and locally sourced ingredients. Discover a menu that evolves with the seasons – a taste that always surprises."
+    "slide2desc": "Every week our chef prepares new specials using fresh, seasonal and locally sourced ingredients. Discover a menu that evolves with the seasons – a taste that always surprises.",
+    "goToSlide": "Go to slide"
   },
   "validation": {
     "required": "This field is required.",

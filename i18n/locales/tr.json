@@ -1,4 +1,7 @@
 {
+  "meta": {
+    "description": "Burger House – Lüdenscheid'de otantik Türk kebabı. Taze malzemeler, Anadolu'nun yoğun lezzetleri. Yerinde yiyin veya teslimat alın. Bizi ziyaret edin!"
+  },
   "intro": {
     "greeting": "Hoş geldiniz!"
   },
@@ -65,7 +68,8 @@
     "delivery": "Teslimat:",
     "total": "Toplam:",
     "checkout": "Sipariş Ver",
-    "imageAlt": "görsel"
+    "imageAlt": "görsel",
+    "toggleCart": "Sepeti göster/gizle"
   },
   "header": {
     "tagline": "Harika kebap lezzetinin tam zamanı",
@@ -79,7 +83,8 @@
     "about": "Biz, geleneksel Türk mutfağının modern lezzetlerle buluştuğu bir yeriyiz. Kebabımız sadece yiyecek değil – en taze malzemeler ve tutku ile hazırlanan Anadolu aromalarında gerçek bir yolculuktur. Bizi ziyaret edin ve farkı bizzat tadın."
   },
   "gallery": {
-    "title": "Galeri"
+    "title": "Galeri",
+    "imageAlt": "Galeri fotoğrafı"
   },
   "home": {
     "tryItToday": "Bugün dene",
@@ -93,7 +98,8 @@
     "alwaysTasty": "Her Zaman Lezzetli",
     "chooseEnjoy": "Seç ve Keyfini Çıkar",
     "slide1desc": "Düzenli olarak tematik geceler, tadım etkinlikleri ve ailece katılabileceğiniz özel organizasyonlar düzenliyoruz. Takvimimizi kontrol edin ve yerinizi bugün rezerve edin – yerler hızla dolup, her zaman heyecan verici bir şeyler oluyor!",
-    "slide2desc": "Şefimiz her hafta taze, mevsimlik ve yerel malzemeler kullanarak yeni özel yemekler hazırlıyor. Mevsimlere göre değişen bir menüyü keşfedin – her zaman sürpriz yapan, benzersiz bir lezzet deneyimi."
+    "slide2desc": "Şefimiz her hafta taze, mevsimlik ve yerel malzemeler kullanarak yeni özel yemekler hazırlıyor. Mevsimlere göre değişen bir menüyü keşfedin – her zaman sürpriz yapan, benzersiz bir lezzet deneyimi.",
+    "goToSlide": "Slayta git"
   },
   "validation": {
     "required": "Bu alan zorunludur.",

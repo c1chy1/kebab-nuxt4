@@ -1,4 +1,7 @@
 {
+  "meta": {
+    "description": "Burger House – autentyczny turecki kebab w Lüdenscheid. Świeże składniki, intensywne smaki Anatolii. Zjedz na miejscu lub zamów z dostawą. Odwiedź nas!"
+  },
   "intro": {
     "greeting": "Witamy!"
   },
@@ -65,7 +68,8 @@
     "delivery": "Dostawa:",
     "total": "Razem:",
     "checkout": "Zamów",
-    "imageAlt": "zdjęcie"
+    "imageAlt": "zdjęcie",
+    "toggleCart": "Pokaż/ukryj koszyk"
   },
   "header": {
     "tagline": "Najlepszy czas na niepowtarzalny smak kebabów",
@@ -79,7 +83,8 @@
     "about": "Jesteśmy miejscem, gdzie tradycyjna turecka kuchnia spotyka się z nowoczesnymi smakami. Nasz kebab to więcej niż jedzenie – to podróż przez aromaty Anatolii, przyrządzona z pasją i najświeższych składników. Odwiedź nas i poczuj różnicę."
   },
   "gallery": {
-    "title": "Galeria"
+    "title": "Galeria",
+    "imageAlt": "Zdjęcie z galerii"
   },
   "home": {
     "tryItToday": "Spróbuj już dziś",
@@ -93,7 +98,8 @@
     "alwaysTasty": "Zawsze pyszny",
     "chooseEnjoy": "Wybierz i delektuj się",
     "slide1desc": "Regularnie organizujemy wieczory tematyczne, degustacje i eventy dla całych rodzin. Sprawdź nasz kalendarz i zarezerwuj miejsce już dziś – ilość miejsc ograniczona, a atrakcji co nie miara!",
-    "slide2desc": "Co tydzień nowe specjały przygotowywane przez naszego szefa kuchni z lokalnych, sezonowych składników. Odkryj menu, które zmienia się razem z porami roku – smak, który zawsze zaskakuje."
+    "slide2desc": "Co tydzień nowe specjały przygotowywane przez naszego szefa kuchni z lokalnych, sezonowych składników. Odkryj menu, które zmienia się razem z porami roku – smak, który zawsze zaskakuje.",
+    "goToSlide": "Przejdź do slajdu"
   },
   "validation": {
     "required": "To pole jest wymagane.",

@@ -1,4 +1,7 @@
 {
+  "meta": {
+    "description": "Burger House – authentischer türkischer Kebab in Lüdenscheid. Frische Zutaten, intensive Aromen Anatoliens. Vor Ort essen oder liefern lassen. Besuchen Sie uns!"
+  },
   "intro": {
     "greeting": "Willkommen!"
   },
@@ -65,7 +68,8 @@
     "delivery": "Lieferung:",
     "total": "Gesamt:",
     "checkout": "Bestellen",
-    "imageAlt": "Bild von"
+    "imageAlt": "Bild von",
+    "toggleCart": "Warenkorb ein-/ausblenden"
   },
   "header": {
     "tagline": "Jetzt ist die beste Zeit für den großartigen Geschmack von Kebabs",
@@ -79,7 +83,8 @@
     "about": "Wir sind ein Ort, wo traditionelle türkische Küche auf moderne Aromen trifft. Unser Kebab ist mehr als Essen – er ist eine Reise durch die Düfte Anatoliens, zubereitet mit Leidenschaft und frischsten Zutaten. Besuchen Sie uns und erleben Sie den Unterschied."
   },
   "gallery": {
-    "title": "Galerie"
+    "title": "Galerie",
+    "imageAlt": "Galeriebild"
   },
   "home": {
     "tryItToday": "Probier es heute",
@@ -93,7 +98,8 @@
     "alwaysTasty": "Immer lecker",
     "chooseEnjoy": "Wählen & genießen",
     "slide1desc": "Wir veranstalten regelmäßig Themenabende, Verkostungen und Familienevents. Schauen Sie in unseren Kalender und reservieren Sie noch heute – die Plätze sind schnell vergeben und es gibt immer etwas Spannendes zu erleben!",
-    "slide2desc": "Jede Woche bereitet unser Küchenchef neue Spezialitäten aus frischen, saisonalen und regionalen Zutaten zu. Entdecken Sie eine Speisekarte, die sich mit den Jahreszeiten wandelt – ein Geschmack, der immer überrascht."
+    "slide2desc": "Jede Woche bereitet unser Küchenchef neue Spezialitäten aus frischen, saisonalen und regionalen Zutaten zu. Entdecken Sie eine Speisekarte, die sich mit den Jahreszeiten wandelt – ein Geschmack, der immer überrascht.",
+    "goToSlide": "Gehe zu Folie"
   },
   "validation": {
     "required": "Dieses Feld ist erforderlich.",
