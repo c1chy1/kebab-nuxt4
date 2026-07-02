@@ -4,7 +4,7 @@
       id="hamburger"
       @click="toggle()"
       :class="{open : open}"
-      class=" lg:hidden  w-6 h-4 sm:w-7 md:w-8 md:h-8 top-4 sm:top-5  lg:top-8 right-4 2xl:top-8 xl:right-8 absolute"
+      class="z-[60] lg:hidden w-6 h-4 sm:w-7 md:w-8 md:h-8 top-4 sm:top-5 lg:top-8 right-4 2xl:top-8 xl:right-8 absolute"
   >
     <span class="top-1  bg-[#3d2514]"></span>
     <span class="top-3  bg-[#3d2514]"></span>
@@ -130,92 +130,3 @@ function toggle() {
 }
 
 </script>
-
-<style scoped>
-
-#hamburger{
-
-  z-index: 60;
-}
-
-#bg-menu-mobile {
-  width: 100%;
-  position: fixed;
-  top: 0;
-  z-index: 40;
-  right: -100%;
-  will-change: transform;
-}
-
-ul {
-  list-style: none;
-}
-
-ul li {
-  position: relative;
-  left: 100%;
-  cursor: pointer;
-  will-change: transform;
-}
-
-/* hang burger */
-
-#hamburger:hover span:nth-child(1) {
-  -webkit-transition: .20s ease-in-out;
-  -moz-transition: .20s ease-in-out;
-  -o-transition: .20s ease-in-out;
-  transition: .20s ease-in-out;
-}
-
-#hamburger:hover span:nth-child(3) {
-  -webkit-transition: .16s ease-in-out;
-  -moz-transition: .16s ease-in-out;
-  -o-transition: .16s ease-in-out;
-  transition: .16s ease-in-out;
-}
-
-#hamburger span {
-  z-index: 3;
-  display: block;
-  position: absolute;
-  height: 4px;
-  width: 100%;
-  border-radius: 5px;
-  opacity: 1;
-  left: 0;
-  -webkit-transform: rotate(0deg);
-  -moz-transform: rotate(0deg);
-  -o-transform: rotate(0deg);
-  transform: rotate(0deg);
-  -webkit-transition: .20s ease-in-out;
-  -moz-transition: .20s ease-in-out;
-  -o-transition: .20s ease-in-out;
-  transition: .25s ease-in-out;
-}
-
-
-#hamburger.open span:nth-child(1) {
-  top: 14px;
-  -webkit-transform: rotate(135deg);
-  -moz-transform: rotate(135deg);
-  -o-transform: rotate(135deg);
-  transform: rotate(135deg);
-}
-
-#hamburger.open span:nth-child(2) {
-  opacity: 0;
-  left: -30px;
-  -webkit-transition: .16s ease-in-out;
-  -moz-transition: .16s ease-in-out;
-  -o-transition: .16s ease-in-out;
-  transition: .16s ease-in-out;
-}
-
-#hamburger.open span:nth-child(3) {
-  top: 14px;
-  -webkit-transform: rotate(-135deg);
-  -moz-transform: rotate(-135deg);
-  -o-transform: rotate(-135deg);
-  transform: rotate(-135deg);
-}
-</style>

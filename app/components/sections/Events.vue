@@ -51,6 +51,8 @@ useLocaleTransition(eventsRef, 'h2')
                 format="webp"
                 :src="slide.img"
                 :alt="slide.title"
+                width="659"
+                height="440"
                 class="w-full lg:w-1/2 object-cover"
             />
           </div>

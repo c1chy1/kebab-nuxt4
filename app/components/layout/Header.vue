@@ -19,13 +19,15 @@
               <nuxt-img
                   alt="kebab"
                 preload
+                fetchpriority="high"
                 format="webp"
+                quality="80"
                 :src="slide"
-                width="600"
-                height="600"
-                sizes="75vw sm:50vw xl:45vw"
+                sizes="160px sm:280px md:350px xl:520px"
+                width="812"
+                height="671"
                 loading="eager"
-                class="logo-box mx-auto w-3/4 sm:w-full lg:mr-0 xl:w-11/12 cursor-grab active:cursor-grabbing opacity-0"
+                class="logo-box mx-auto w-3/4 sm:w-full lg:mr-0 xl:w-11/12 cursor-grab active:cursor-grabbing"
               />
               <div
                 id="banner"
@@ -48,7 +50,6 @@
                 class="py-0 md:py-0 lg:py-2 lg:px-3 px-2 mb-4 text-[16px] md:text-[16px] lg:text-[20px]
                        xl:text-[24px] text-primary border-primary font-medium font-bebas border-dashed
                        border-2 inline-block rounded-[3px]"
-                style="opacity: 0"
               >
                 {{ $t('header.tagline') }}
               </p>
@@ -57,7 +58,6 @@
                        font-alfa font-medium flex flex-col leading-none tracking-wider
                        drop-shadow-[4px_5px_#fee7ba] whitespace-pre-line overflow-hidden truncate
                        text-ellipsis"
-                style="opacity: 0"
               >
                 {{ $t('header.title') }}
                 <span class="text-[28px] md:text-[32px] xl:text-[56px] pt-4">{{ $t('header.subtitle') }}</span>
@@ -152,13 +152,3 @@ onMounted(async () => {
   }
 })
 </script>
-
-<style scoped>
-.shadow {
-  width: 60px;
-  height: 30px;
-  background: radial-gradient(ellipse at center, rgba(88, 24, 69, 1) 0%, rgba(237, 237, 237, 0) 50%);
-  transform: translateY(75px);
-  z-index: -1;
-}
-</style>

@@ -1,12 +1,16 @@
 <script setup lang="ts">
+import { FormKit } from '@formkit/vue'
 import {useUserStore} from "~/stores/userStore";
 
 const user = useUserStore()
 const loginRef = ref<HTMLElement>()
 useLocaleTransition(loginRef, 'h2, button')
 
+const isModalOpen = ref(false)
+
 function showModal(id: string) {
-  document.getElementById(id)?.showModal()
+  isModalOpen.value = true
+  nextTick(() => document.getElementById(id)?.showModal())
 }
 </script>
 
@@ -26,7 +30,7 @@ function showModal(id: string) {
         <div class="modal-box">
           <div class="w-full mx-auto flex justify-center">
 
-            <FormKit
+            <FormKit v-if="isModalOpen"
                 type="form"
                 :submit-label="$t('login.submitLabel')"
                 messages-class="$reset hidden"

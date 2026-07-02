@@ -13,11 +13,12 @@
         <nuxt-img
             loading="lazy"
             format="webp"
+            quality="75"
             :src="image.img"
             :alt="`${$t('gallery.imageAlt')} ${i + 1}`"
-            sizes="sm:100vw md:50vw lg:33vw"
-            width="100%"
-            height="100%"
+            sizes="lg:25vw sm:33vw 100vw"
+            width="286"
+            height="301"
             class="w-full"
         />
         <div
@@ -46,23 +47,20 @@
 
 <script lang="ts" setup>
 
-import Lightgallery from "lightgallery";
-import 'lightgallery/scss/lightgallery.scss'
 const { public: { lightgalleryLicense } } = useRuntimeConfig()
 const gallery = ref()
 const titleRef = ref<HTMLElement>()
 useLocaleTransition(titleRef)
 
-function lightGallery() {
-
+onMounted(async () => {
+  const [{ default: Lightgallery }] = await Promise.all([
+    import('lightgallery'),
+    import('lightgallery/scss/lightgallery.scss'),
+  ])
   Lightgallery(gallery.value, gallerySettings)
-}
-
-onMounted(()=>{
-
-  lightGallery()
 })
-const hamburgers = reactive([
+
+const hamburgers = [
 
   {
     img: 'images/gallery/1.png',
@@ -102,7 +100,7 @@ const hamburgers = reactive([
     img: 'images/gallery/2.png',
     title: 'Hamburger8',
   }
-])
+]
 
 const gallerySettings = {
   selector: '.img',

@@ -15,9 +15,9 @@ bg-repeat-round  lg:px-12 xl:px-16  font-bebas">
       </div>
       <div class="navbar-end lg:flex items-end flex-col  text-primary  w-full">
         <div class="hidden sm:flex items-center pr-20 space-x-5 lg:pt-6 lg:pr-9 ">
-          <img alt="delivery icon" class="animate-shake delay-500" src="/delivery-icon.png">
-          <h3 class=" text-xs md:text-sm lg:text-base text-center font-semibold font-mont py-5 tracking-wider transition-all duration-500">
-            {{ $t('nav.delivery') }}</h3>
+          <img alt="delivery icon" width="41" height="33" class="animate-shake delay-500" src="/delivery-icon.png">
+          <p class=" text-xs md:text-sm lg:text-base text-center font-semibold font-mont py-5 tracking-wider transition-all duration-500">
+            {{ $t('nav.delivery') }}</p>
         </div>
         <ul ref="menu"
             class="menu menu-horizontal  hidden lg:flex justify-end gap-4 py-0 px-1 lg:text-[18px] xl:text-[24px] tracking-[3px] xl:tracking-[4px] relative uppercase transition-all duration-500">
@@ -150,7 +150,11 @@ async function switchLocale(code: string) {
 }
 
 onMounted(async () => {
-  await lazyLoadPlugin("ScrollTrigger");
+  const ScrollTrigger = await lazyLoadPlugin("ScrollTrigger");
+
+  // Sync Lenis scroll position with ScrollTrigger (replaces gsap.ticker integration)
+  lenis.value?.on('scroll', ScrollTrigger.update)
+  gsap.ticker.lagSmoothing(0)
 
   gsap.set(scrollToTopBtn.value, {
     opacity: 0,
@@ -190,12 +194,3 @@ onMounted(async () => {
 })
 </script>
 
-<style>
-nav .dropdown-content {
-  background-color: rgba(185, 207, 33, 0.88);
-}
-
-[data-theme='dark'] nav .dropdown-content {
-  background-color: rgba(189, 189, 189, 0.88);
-}
-</style>

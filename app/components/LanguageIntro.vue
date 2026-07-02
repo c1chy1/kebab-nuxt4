@@ -2,7 +2,7 @@
 <template>
   <div
       ref="root"
-      class="fixed inset-0 flex items-center justify-center bg-base-100"
+      class="fixed inset-0 z-[60] flex items-center justify-center bg-base-100"
   >
 
     <div class="circle relative w-48 h-48 sm:w-72 sm:h-72">
@@ -77,6 +77,15 @@ onMounted(() => {
     radius.value = 82
     flagSize.value = 64
   }
+
+  // Use language selection time to prefetch critical chunks
+  prefetchComponents([
+    'LayoutNavigation',
+    'LayoutHeader',
+    'SectionsHome',
+    'LayoutMenu',
+    'LayoutFooter',
+  ])
 
   gsap.fromTo('.circle',
     { scale: 0, opacity: 0 },

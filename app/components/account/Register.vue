@@ -1,21 +1,28 @@
 <script setup lang="ts">
+import { FormKit } from '@formkit/vue'
 import {useUserStore} from "~/stores/userStore";
 
 const user = useUserStore()
 const registerRef = ref<HTMLElement>()
 useLocaleTransition(registerRef, 'h2, button')
 
+const isModalOpen = ref(false)
+
 function showModal(id: string) {
-  document.getElementById(id)?.showModal()
+  isModalOpen.value = true
+  nextTick(() => document.getElementById(id)?.showModal())
 }
 </script>
 
 <template>
   <div
       ref="registerRef"
-      class="text-center z-20 pb-12"
+      class="relative text-center z-20 pb-12"
        :class="!user.isLoggedIn ? 'h-auto pt-20' : 'h-32'"
        id="register">
+    <ClientOnly>
+      <div class="absolute inset-0 -z-10 bg-[url('/images/register/register-left.png')] bg-no-repeat bg-size-[10rem_22rem] sm:bg-size-[18rem_35rem] xl:bg-size-[24rem_40rem] pointer-events-none" aria-hidden="true" />
+    </ClientOnly>
     <h2 v-if="!user.isLoggedIn" class="section-title xl:w-3/5 mx-auto">
       {{ $t('register.title') }}
     </h2>
@@ -28,7 +35,7 @@ function showModal(id: string) {
     </button>
     <dialog v-if="!user.isLoggedIn" id="register_modal" class="modal">
       <div class="modal-box  max-h-lvh p-2 xl:p-4">
-        <FormKit
+        <FormKit v-if="isModalOpen"
               type="form"
               :submit-label="$t('register.submitLabel')"
               messages-class="$reset hidden"

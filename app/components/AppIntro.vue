@@ -6,6 +6,25 @@ const emit = defineEmits(['fading', 'done'])
 const root = ref()
 
 onMounted(() => {
+  // Preload hero image (LCP) — must be ready when intro fades out
+  useHead({
+    link: [
+      { rel: 'preload', as: 'image', href: '/_ipx/w_280&f_webp&q_80/images/slides/1.png', fetchpriority: 'high' },
+      { rel: 'preload', as: 'image', href: '/_ipx/w_520&f_webp&q_80/images/slides/1.png', fetchpriority: 'high' },
+    ]
+  })
+
+  // Prefetch non-image-heavy chunks during intro
+  prefetchComponents([
+    'SectionsEvents',
+    'SectionsGallery',
+    'AccountLogin',
+    'AccountRegister',
+    'LayoutFooter',
+    'AccountDashboard',
+    'AccountCart',
+  ])
+
   const tl = gsap.timeline()
 
   tl.fromTo('.intro-greeting',
@@ -62,7 +81,7 @@ onMounted(() => {
 <template>
   <div
       ref="root"
-      class="fixed inset-0 z-50 flex items-center justify-center bg-base-100"
+      class="fixed inset-0 z-[60] flex items-center justify-center bg-base-100"
   >
     <div class="flex flex-col items-center gap-8">
     <p class="intro-greeting font-bebas text-4xl sm:text-6xl tracking-widest text-primary">{{ $t('intro.greeting') }}</p>

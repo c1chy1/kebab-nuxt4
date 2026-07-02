@@ -9,7 +9,12 @@
 
         <nuxt-img
             loading="lazy"
+            fetchpriority="low"
             format="webp"
+            quality="75"
+            sizes="330px sm:360px md:380px lg:350px"
+            width="330"
+            height="235"
             alt=""
             :src="src"
              class="
