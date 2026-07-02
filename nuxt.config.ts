@@ -6,6 +6,7 @@ export default defineNuxtConfig({
   devtools: { enabled: true },
   experimental: {
     appManifest: false,
+    inlineSSRStyles: true,
   },
   modules: [
     '@nuxt/image',
@@ -63,13 +64,42 @@ export default defineNuxtConfig({
       globPatterns: ['**/*.{js,css,html,ico,png,svg,webp,woff2}'],
       cleanupOutdatedCaches: true,
       navigateFallback: null,
+      runtimeCaching: [
+        {
+          urlPattern: /\/_ipx\/.*/i,
+          handler: 'CacheFirst',
+          options: {
+            cacheName: 'nuxt-images',
+            expiration: { maxEntries: 80, maxAgeSeconds: 60 * 60 * 24 * 30 },
+            cacheableResponse: { statuses: [0, 200] },
+          },
+        },
+        {
+          urlPattern: /\/images\/.*/i,
+          handler: 'CacheFirst',
+          options: {
+            cacheName: 'static-images',
+            expiration: { maxEntries: 60, maxAgeSeconds: 60 * 60 * 24 * 30 },
+            cacheableResponse: { statuses: [0, 200] },
+          },
+        },
+        {
+          urlPattern: /\/fonts\/.*/i,
+          handler: 'CacheFirst',
+          options: {
+            cacheName: 'fonts',
+            expiration: { maxEntries: 10, maxAgeSeconds: 60 * 60 * 24 * 365 },
+            cacheableResponse: { statuses: [0, 200] },
+          },
+        },
+      ],
     },
     devOptions: {
       enabled: false,
     },
   },
   formkit: {
-    autoImport: true,
+    autoImport: false,
   },
   i18n: {
     locales: [
@@ -106,6 +136,10 @@ export default defineNuxtConfig({
       link: [
         { rel: 'manifest', href: '/manifest.webmanifest' },
         { rel: 'apple-touch-icon', href: '/icons/logo-192.png' },
+        { rel: 'preload', as: 'font', type: 'font/woff2', crossorigin: 'anonymous', href: '/fonts/Montserrat-Regular.woff2' },
+        { rel: 'preload', as: 'font', type: 'font/woff2', crossorigin: 'anonymous', href: '/fonts/Montserrat-Bold.woff2' },
+        { rel: 'preload', as: 'font', type: 'font/woff2', crossorigin: 'anonymous', href: '/fonts/BebasNeue.woff2' },
+        { rel: 'preload', as: 'font', type: 'font/woff2', crossorigin: 'anonymous', href: '/fonts/AlfaSlabOne-Regular.woff2' },
       ],
       meta: [
         { name: 'theme-color', content: '#1a1a1a' },
@@ -121,12 +155,17 @@ export default defineNuxtConfig({
           interval: 60000,
         }
       }
-    }
+    },
+    '/fonts/**':   { headers: { 'cache-control': 'public, max-age=31536000, immutable' } },
+    '/icons/**':   { headers: { 'cache-control': 'public, max-age=31536000, immutable' } },
+    '/images/**':  { headers: { 'cache-control': 'public, max-age=2592000' } },
+    '/_ipx/**':    { headers: { 'cache-control': 'public, max-age=2592000' } },
+    '/bg.png':     { headers: { 'cache-control': 'public, max-age=31536000, immutable' } },
+    '/logo.png':   { headers: { 'cache-control': 'public, max-age=31536000, immutable' } },
+    '/delivery-icon.png': { headers: { 'cache-control': 'public, max-age=2592000' } },
   },
   css: [
     '~/assets/css/tailwind.css',
-    'vue3-toastify/dist/index.css',
-    '~/assets/css/toastify.css',
   ],
 
   build: {
@@ -136,23 +175,17 @@ export default defineNuxtConfig({
   vite: {
     plugins: [tailwindcss()],
     optimizeDeps: {
-      force: true,
       include: [
         'pinia',
-        'vue3-toastify',
         'gsap',
         'gsap/ScrollTrigger',
-        'gsap/Draggable',
-        'lightgallery',
         'workbox-window',
       ]
     }
   },
 
   router: {
-    options: {
-      scrollBehaviorType: 'smooth'
-    }
+    options: {}
   },
   runtimeConfig: {
     mongodbUri: '',
@@ -168,7 +201,7 @@ export default defineNuxtConfig({
     plugins: ["~~/server/plugins/mongodb.ts"],
     compressPublicAssets: {
       brotli: true,
-      gzip: false,
+      gzip: true,
     },
   },
 })
