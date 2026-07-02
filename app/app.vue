@@ -3,13 +3,12 @@
   <div
       :data-theme="theme"
       class="duration-700 transition-all">
-    <AccountDashboard v-if="user.isLoggedIn"/>
-    <AccountCart/>
+    <LazyAccountDashboard v-if="user.isLoggedIn"/>
+    <LazyAccountCart/>
     <main>
-      <div :class="['transition-opacity duration-700', showPage ? 'opacity-100' : 'opacity-0']">
-        <NuxtPage />
-      </div>
-      <LanguageIntro v-if="!lang" />
+      <NuxtPage />
+      <div v-if="!showPage" class="fixed inset-0 z-[55] bg-base-100 pointer-events-none" />
+      <LazyLanguageIntro v-if="!lang" />
       <AppIntro v-else-if="showIntro" :lang="lang" @fading="showPage = true" @done="showIntro = false" />
     </main>
 
@@ -20,8 +19,6 @@
 import {useThemeStore} from '@/stores/useTheme'
 import {useUserStore} from "@/stores/userStore";
 import {useCartStore} from "@/stores/useCart";
-import gsap from 'gsap'
-
 const i18nHead = useLocaleHead()
 useHead(() => ({ htmlAttrs: i18nHead.value.htmlAttrs }))
 
@@ -30,8 +27,7 @@ useSeoMeta({ description: () => t('meta.description') })
 
 const showIntro = ref(true)
 const showPage = ref(false)
-// lang-chosen: ustawiany tylko gdy user ŚWIADOMIE wybrał język (LanguageIntro/Navigation)
-// preferred-lang: zarządzany przez i18n automatycznie
+
 const langChosenCookie = useCookie('lang-chosen', { maxAge: 60 * 60 * 24 * 365 })
 const lang = ref<string | null>(langChosenCookie.value ?? null)
 
@@ -45,14 +41,6 @@ const user = useUserStore()
 const {loadCart} = useCartStore()
 
 const lenisRef = useTemplateRef('lenisRef')
-
-watchEffect((onInvalidate) => {
-  function update(time: number) {
-    lenisRef.value?.lenis?.raf(time * 1000)
-  }
-  gsap.ticker.add(update)
-  onInvalidate(() => gsap.ticker.remove(update))
-})
 
 await callOnce(async () => {
   const headers = useRequestHeaders(['cookie'])

@@ -15,20 +15,25 @@ useHead({
 <template >
   <LayoutNavigation/>
   <LayoutHeader/>
-  <SectionsHome/>
-  <LayoutMenu/>
-  <SectionsEvents/>
-  <SectionsGallery/>
-  <section class="
-  bg-size-[10rem_22rem]
-  sm:bg-size-[18rem_35rem]
-  xl:bg-size-[24rem_40rem]
-  bg-[url('/images/register/register-left.png')] bg-no-repeat">
-    <AccountLogin v-show="!user.isLoggedIn"/>
-    <AccountRegister/>
+  <div class="[content-visibility:auto] [contain-intrinsic-size:0_600px]">
+    <LazySectionsHome/>
+  </div>
+  <div class="[content-visibility:auto] [contain-intrinsic-size:0_800px]">
+    <LazyLayoutMenu/>
+  </div>
+  <div class="[content-visibility:auto] [contain-intrinsic-size:0_600px]">
+    <LazySectionsEvents/>
+  </div>
+  <div class="[content-visibility:auto] [contain-intrinsic-size:0_600px]">
+    <LazySectionsGallery/>
+  </div>
+  <section class="[content-visibility:auto] [contain-intrinsic-size:0_400px]">
+    <LazyAccountLogin v-if="!user.isLoggedIn"/>
+    <LazyAccountRegister/>
   </section>
-
-  <LayoutFooter/>
+  <div class="[content-visibility:auto] [contain-intrinsic-size:0_300px]">
+    <LazyLayoutFooter/>
+  </div>
 
 
 </template>
