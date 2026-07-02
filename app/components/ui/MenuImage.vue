@@ -9,8 +9,11 @@ defineProps({
 
 <template>
   <nuxt-img
-      sizes="100vw sm:50vw md:400px  xl:300px"
+      sizes="290px sm:350px md:380px xl:320px"
+      width="290"
+      height="194"
       loading="lazy"
+      fetchpriority="low"
       quality="40"
       format="webp"
       :src="src"

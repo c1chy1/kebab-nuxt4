@@ -7,6 +7,8 @@
         preload
         :src="src"
         format="webp"
+        width="60"
+        height="60"
         alt="burger house logo"
         :class="svgSize"
         class="stroke-current">
