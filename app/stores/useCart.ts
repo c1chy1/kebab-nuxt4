@@ -1,6 +1,5 @@
 import {defineStore} from 'pinia'
 import type {MenuItemType} from '../types/user'
-import {toast} from "vue3-toastify";
 import {useUserStore} from "./userStore";
 
 
@@ -46,8 +45,9 @@ export const useCartStore = defineStore('cart', {
             }
         },
 
-        addItem(item: MenuItemType) {
+        async addItem(item: MenuItemType) {
             const { $i18n } = useNuxtApp()
+            const { toast } = await import('vue3-toastify')
             const existingItem = cartItems.value.find(i => i.id === item.id)
             if (existingItem) {
                 existingItem.qty++
@@ -59,8 +59,9 @@ export const useCartStore = defineStore('cart', {
             this.shouldOpen = true
         },
 
-        removeItem(item: MenuItemType) {
+        async removeItem(item: MenuItemType) {
             const { $i18n } = useNuxtApp()
+            const { toast } = await import('vue3-toastify')
             const existingItemIndex = cartItems.value.findIndex(i => i.id === item.id)
 
             if (existingItemIndex !== -1) {
@@ -76,6 +77,7 @@ export const useCartStore = defineStore('cart', {
 
         async placeOrder(order) {
             const { $i18n } = useNuxtApp()
+            const { toast } = await import('vue3-toastify')
             try {
                 const response = await $fetch('/api/shop/order', {
                     method: 'POST',

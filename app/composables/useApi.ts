@@ -1,7 +1,6 @@
 
 import type {logInReq,signUpReq,logoutReq, getUserRes} from '~/types/user'
 
-import {toast} from 'vue3-toastify'
 const useApi = async function (url: string, body: Record<string, any> = {}): Promise<any> {
     const origin = useRequestURL().origin
     return $fetch(url, {
@@ -10,9 +9,9 @@ const useApi = async function (url: string, body: Record<string, any> = {}): Pro
         body,
         credentials: 'include',
         watch: false,
-        onResponseError({ response }) {
-            // 處理請求回應發生的錯誤
-           toast.error(response.body)
+        async onResponseError({ response }) {
+            const { toast } = await import('vue3-toastify')
+            toast.error(response.body)
         },
     })
 }

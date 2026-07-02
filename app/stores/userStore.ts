@@ -1,7 +1,6 @@
 import {defineStore} from "pinia"
 import {register, logOutUser, login} from "~/composables/useApi";
 import type {logInReq, signUpReq} from '~/types/user'
-import {toast} from 'vue3-toastify'
 
 export const useUserStore = defineStore('User', {
     state: () => {
@@ -41,6 +40,7 @@ export const useUserStore = defineStore('User', {
         },
         async login(body: logInReq) {
             const { $i18n } = useNuxtApp()
+            const { toast } = await import('vue3-toastify')
 
             function setToken(token: string): void {
                 localStorage.setItem('token', token)
@@ -66,6 +66,7 @@ export const useUserStore = defineStore('User', {
 
         async register(body: signUpReq) {
             const { $i18n } = useNuxtApp()
+            const { toast } = await import('vue3-toastify')
 
             function setToken(token: string): void {
                 localStorage.setItem('token', token)
@@ -88,6 +89,7 @@ export const useUserStore = defineStore('User', {
 
         async updateProfile(username: string, street?: string, city?: string) {
             const { $i18n } = useNuxtApp()
+            const { toast } = await import('vue3-toastify')
             const data = await $fetch<any>('/api/auth/update-profile', {
                 method: 'PATCH',
                 body: { username, street, city }
@@ -102,6 +104,7 @@ export const useUserStore = defineStore('User', {
 
         async uploadAvatar(file: File) {
             const { $i18n } = useNuxtApp()
+            const { toast } = await import('vue3-toastify')
             const formData = new FormData()
             formData.append('avatar', file)
             const data = await $fetch<any>('/api/auth/upload-avatar', {
@@ -118,6 +121,7 @@ export const useUserStore = defineStore('User', {
 
         async logout() {
             const { $i18n } = useNuxtApp()
+            const { toast } = await import('vue3-toastify')
 
          function getToken() {
 
