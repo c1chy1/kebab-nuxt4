@@ -16,7 +16,7 @@ bg-repeat-round  lg:px-12 xl:px-16  font-bebas">
       <div class="navbar-end lg:flex items-end flex-col  text-primary  w-full">
         <div class="hidden sm:flex items-center pr-20 space-x-5 lg:pt-6 lg:pr-9 ">
           <img alt="delivery icon" width="41" height="33" class="animate-shake delay-500" src="/delivery-icon.png">
-          <p class=" text-xs md:text-sm lg:text-base text-center font-semibold font-mont py-5 tracking-wider transition-all duration-500">
+          <p class="text-xs text-primary md:text-sm lg:text-base text-center font-semibold font-mont py-5 tracking-wider transition-all duration-500">
             {{ $t('nav.delivery') }}</p>
         </div>
         <ul ref="menu"
@@ -132,11 +132,16 @@ async function switchLocale(code: string) {
 
   langChosenCookie.value = code
   await setLocale(code)
+  await nextTick()
 
   setLocaleChanging(false)
 
+  // Re-query after locale change — DOM may have been updated by i18n
+  const freshNavItems = menu.value?.querySelectorAll('li a')
+  const freshFlagBtn = langSwitcher.value?.querySelector('button')
+
   gsap.fromTo(
-    [...(navItems ?? []), flagBtn].filter(Boolean),
+    [...(freshNavItems ?? []), freshFlagBtn].filter(Boolean),
     { opacity: 0, y: 8 },
     {
       opacity: 1,
@@ -150,11 +155,13 @@ async function switchLocale(code: string) {
 }
 
 onMounted(async () => {
-  const ScrollTrigger = await lazyLoadPlugin("ScrollTrigger");
-
-  // Sync Lenis scroll position with ScrollTrigger (replaces gsap.ticker integration)
-  lenis.value?.on('scroll', ScrollTrigger.update)
+  // Lenis + GSAP canonical integration (autoRaf disabled on VueLenis)
+  // Set up ticker synchronously — no await needed, gsap is available immediately
+  gsap.ticker.add((time: number) => lenis.value?.raf(time * 1000))
   gsap.ticker.lagSmoothing(0)
+
+  const ScrollTrigger = await lazyLoadPlugin("ScrollTrigger");
+  lenis.value?.on('scroll', ScrollTrigger.update)
 
   gsap.set(scrollToTopBtn.value, {
     opacity: 0,

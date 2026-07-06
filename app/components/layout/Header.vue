@@ -69,8 +69,6 @@
   </header>
 </template>
 <script setup lang="ts">
-import gsap from 'gsap'
-
 const containerRef = ref(null)
 const textRef = ref<HTMLElement[]>([])
 useLocaleTransition(textRef, 'h1, p')
@@ -102,7 +100,8 @@ const swiper = useSwiper(containerRef, {
 
 const { introComplete } = useIntroState()
 
-function runAnimations() {
+async function runAnimations() {
+  const { default: gsap } = await import('gsap')
   gsap.fromTo(
       '#header h1',
       { opacity: 0, ease: 'power3.inOut' },

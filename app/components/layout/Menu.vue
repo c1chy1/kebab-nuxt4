@@ -1,6 +1,6 @@
 <template>
   <section id="menu" ref="menuRef" class="pt-28 lg:pt-40 pb-12 sm:pb-20 text-center uppercase flex flex-col items-center gap-4">
-    <p class="text-[22px] text-neutral-content w-fit mx-auto font-bebas bg-neutral py-4 px-6">
+    <p class="text-[22px] text-gray-700 w-fit mx-auto font-bebas bg-neutral py-4 px-6">
       {{ $t('menu.tagline') }}
     </p>
     <h2 class="section-title">{{ $t('menu.title') }}</h2>
