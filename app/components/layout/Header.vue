@@ -8,11 +8,12 @@
         <swiper-slide
           v-for="(slide, index) in kebabs"
           :key="slide"
+
           :data-swiper-autoplay="index === 0 ? 6000 : 4000"
-          class="hero"
+          class="hero w-11/12"
         >
           <div
-            class="h-dvh lg:px-12 xl:px-16 relative flex flex-col sm:flex-row items-center justify-center
+            class="h-dvh xl:w-5/6 relative flex flex-col sm:flex-row items-center justify-center
                    text-center lg:text-left lg:justify-center lg:flex-row-reverse uppercase"
           >
             <div class="sm:w-1/2 xl:w-full">
@@ -27,7 +28,7 @@
                 width="812"
                 height="671"
                 loading="eager"
-                class="logo-box mx-auto w-3/4 sm:w-full lg:mr-0 xl:w-11/12 cursor-grab active:cursor-grabbing"
+                class="logo-box mx-auto w-3/4 sm:w-full lg:mr-0 cursor-grab active:cursor-grabbing"
               />
               <div
                 id="banner"
@@ -49,7 +50,7 @@
               <p
                 class="py-0 md:py-0 lg:py-2 lg:px-3 px-2 mb-4 text-[16px] md:text-[16px] lg:text-[20px]
                        xl:text-[24px] text-primary border-primary font-medium font-bebas border-dashed
-                       border-2 inline-block rounded-[3px]"
+                       border-4 inline-block rounded-[3px]"
               >
                 {{ $t('header.tagline') }}
               </p>

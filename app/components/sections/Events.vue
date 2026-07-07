@@ -58,7 +58,7 @@ useLocaleTransition(eventsRef, 'h2')
           </div>
         </swiper-slide>
       </swiper-container>
-      <div class="flex items-center justify-center lg:justify-start gap-3 mt-4">
+      <div class="pagination flex items-center justify-center lg:justify-start gap-3 mt-4">
         <button
           v-for="(_, i) in hamburgers"
           :key="i"
@@ -66,7 +66,7 @@ useLocaleTransition(eventsRef, 'h2')
           :aria-label="`${$t('events.goToSlide')} ${i + 1}`"
           :aria-current="realIndex === i ? 'true' : undefined"
           class="w-4.25 h-4.25 rounded-full transition-colors duration-300 cursor-pointer"
-          :class="realIndex === i ? 'bg-primary' : 'bg-gray-300'"
+          :class="realIndex === i ? 'bg-secondary' : 'bg-gray-300'"
         />
       </div>
     </ClientOnly>

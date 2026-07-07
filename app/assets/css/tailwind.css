@@ -18,6 +18,7 @@
   --color-warning: oklch(70.67% 0.137 55.65);
   --color-error: oklch(65.55% 0.178 15.68);
   --color-base-100: oklch(100% 0 0);
+  --color-base-content: oklch(20% 0 0);
 }
 
 @plugin "daisyui/theme" {
@@ -28,6 +29,7 @@
   --color-accent: oklch(65.55% 0.178 15.68);
   --color-neutral: oklch(30.62% 0.059 280.81);
   --color-base-100: oklch(30.62% 0.059 280.81);
+  --color-base-content: oklch(80% 0 0);
   --color-info: oklch(76.42% 0.065 209.26);
   --color-success: oklch(77.32% 0.09 305.18);
   --color-warning: oklch(79.41% 0.118 73.57);
@@ -110,9 +112,6 @@ html:has(:is(.modal-open, .modal:target, .modal-toggle:checked + .modal, .modal[
 }
 
 @layer base {
-  p {
-    color: black;
-  }
   .toast-center {
     text-align: center;
   }
@@ -133,9 +132,6 @@ html:has(:is(.modal-open, .modal:target, .modal-toggle:checked + .modal, .modal[
 }
 
 @layer base {
-  .font-bebas {
-    text-transform: uppercase;
-  }
   nav .dropdown-content {
     background-color: rgba(185, 207, 33, 0.88);
   }
@@ -160,11 +156,11 @@ html:has(:is(.modal-open, .modal:target, .modal-toggle:checked + .modal, .modal[
   }
 
   .scroll-top-button {
-    @apply !absolute !bottom-0 !-left-3 bg-primary !flex !justify-center !items-center !w-11 !h-11 !rounded-full transition-all;
+    @apply !absolute xl:!-bottom-3 !left-0 bg-primary !flex !justify-center !items-center !w-11 !h-11 !rounded-full transition-all;
   }
 
   .section-title {
-    @apply text-primary text-center text-2xl font-alfa sm:text-[36px] lg:text-[50px] mb-2.5 leading-tight font-medium uppercase;
+    @apply text-center text-2xl font-alfa sm:text-[36px] lg:text-[50px] mb-2.5 leading-tight font-medium uppercase;
   }
 }
 
@@ -205,22 +201,38 @@ html:has(:is(.modal-open, .modal:target, .modal-toggle:checked + .modal, .modal[
   body {
     @apply bg-primary bg-[url('/bg.png')];
   }
-  h2, p {
-    color: oklch(0.8 0 0);
-  }
-  h5 {
+
+  .tagline {
     background-color: oklch(0.3 0 0);
-  }
+  },
 
   #events .hero-content {
     background-color: oklch(0.8 0 0);
     h2, p { color: oklch(0.3 0 0); }
   }
+  .events {
+     h2 {
+       color: oklch(.3 0 0)
+     }
+    p {
+      color: oklch(.3 0 0)
+    }
+  }
+  #menu .swiper-preview {
 
+    background-color: rgb(0, 107, 0);
+  }
+
+   #menu .swiper-next {
+
+     background-color: rgb(0, 107, 0);
+   }
   .form-input, .form-label {
     color: oklch(0.8 0 0);
   }
-
+  h2.section-title {
+    color: oklch(0.8 0 0);
+  }
   #cart h2 {
     color: black;
   }
