@@ -133,6 +133,7 @@ async function switchLocale(code: string) {
   langChosenCookie.value = code
   await setLocale(code)
   await nextTick()
+  lenis.value?.start()
 
   setLocaleChanging(false)
 

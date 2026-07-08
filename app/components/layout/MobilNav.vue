@@ -104,6 +104,7 @@ async function switchLocale(code: string) {
   })
 
   await setLocale(code)
+  lenis.value?.start()
   setLocaleChanging(false)
 
   gsap.to(navLinks ?? [], {
