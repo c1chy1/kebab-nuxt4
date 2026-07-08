@@ -204,8 +204,7 @@ html:has(:is(.modal-open, .modal:target, .modal-toggle:checked + .modal, .modal[
 
   .tagline {
     background-color: oklch(0.3 0 0);
-  },
-
+  }
   #events .hero-content {
     background-color: oklch(0.8 0 0);
     h2, p { color: oklch(0.3 0 0); }
