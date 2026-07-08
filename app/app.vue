@@ -1,5 +1,5 @@
 <template>
-  <VueLenis ref="lenisRef" root>
+  <VueLenis ref="lenisRef" root :auto-raf="false">
   <div
       :data-theme="theme"
       class="duration-700 transition-all">

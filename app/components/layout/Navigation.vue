@@ -159,7 +159,7 @@ onMounted(async () => {
   // Lenis + GSAP canonical integration (autoRaf disabled on VueLenis)
   // Set up ticker synchronously — no await needed, gsap is available immediately
   gsap.ticker.add((time: number) => lenis.value?.raf(time * 1000))
-  gsap.ticker.lagSmoothing(0)
+  gsap.ticker.lagSmoothing(500, 33)
 
   const ScrollTrigger = await lazyLoadPlugin("ScrollTrigger");
   lenis.value?.on('scroll', ScrollTrigger.update)
