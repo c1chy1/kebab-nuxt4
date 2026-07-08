@@ -7,11 +7,11 @@
 
     <div class="text-xs text-white bg-white transition-colors duration-700 rounded-lg overflow-hidden">
       <div id="cartTrigger"
-           class="draggable transition-colors duration-700 flex items-center justify-center gap-x-2 px-2 py-3  bg-[#c05000]">
+           class="draggable transition-colors duration-700 flex items-center justify-center gap-x-2 px-2 py-3  bg-secondary">
         <button
             id="cartButton"
             :aria-label="$t('cart.toggleCart')"
-            class="draggable -left-4 lg:-left-6  top-1  p-1.5  sm:p-2  lg:p-3.5 transition-all duration-700 flex border-2 border-[#b9cf21] dark:border-[#0F172A] bg-[#c05000]  hover:bg-purple-500 absolute   rounded-full text-white hover:rotate-45">
+            class="draggable -left-4 lg:-left-6  top-1  p-1.5  sm:p-2  lg:p-3.5 transition-all duration-700 flex border-2 border-[#b9cf21] dark:border-[#0F172A] bg-secondary  hover:bg-purple-500 absolute   rounded-full text-white hover:rotate-45">
           <Icon name="heroicons:squares-2x2" class="w-4 h-4" aria-hidden="true" />
         </button>
 
@@ -203,13 +203,13 @@ onMounted(() => {
           mm.add("(max-width: 575px)", () => {
             tl.to(this.target, 0.3, {x: closedPositionW})
                 .to(this.target, 0.3, {height: "2.5rem", ease: "power3.inOut"})
-                .to(items.value.$el, 0, {backgroundColor: "#ff6d00"});
+                .to(items.value.$el, 0, {backgroundColor: "#c05000"});
           });
 
           mm.add("(min-width: 576px)", () => {
             tl.to(this.target, 0.3, {x: closedPositionW})
                 .to(this.target, 0.3, {height: "3.5rem", ease: "power3.inOut"})
-                .to(items.value.$el, 0, {backgroundColor: "#ff6d00"});
+                .to(items.value.$el, 0, {backgroundColor: "#c05000"});
           });
 
         }
@@ -226,12 +226,12 @@ onMounted(() => {
           mm.add("(max-width: 575px)", () => {
             tl.to(this.target, 0.3, {x: closedPositionW})
                 .to(this.target, 0.3, {height: "2.5rem"})
-                .to(items.value.$el, 0, {backgroundColor: "#ff6d00"});
+                .to(items.value.$el, 0, {backgroundColor: "#c05000"});
           });
           mm.add("(min-width: 576px)", () => {
             tl.to(this.target, 0.3, {x: closedPositionW})
                 .to(this.target, 0.3, {height: "3.5rem"})
-                .to(items.value.$el, 0, {backgroundColor: "#ff6d00"});
+                .to(items.value.$el, 0, {backgroundColor: "#c05000"});
           });
         }
       },

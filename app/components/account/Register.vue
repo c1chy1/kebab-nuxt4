@@ -21,9 +21,9 @@ function showModal(id: string) {
        :class="!user.isLoggedIn ? 'h-auto pt-20' : 'h-32'"
        id="register">
     <ClientOnly>
-      <div class="absolute inset-0 -z-10 bg-[url('/images/register/register-left.png')] bg-no-repeat bg-size-[10rem_22rem] sm:bg-size-[18rem_35rem] xl:bg-size-[24rem_40rem] pointer-events-none" aria-hidden="true" />
+      <div class="absolute inset-0 -z-10 hidden sm:block bg-[url('/images/register/register-left.png')] bg-no-repeat sm:bg-size-[18rem_35rem] xl:bg-size-[24rem_40rem] pointer-events-none" aria-hidden="true" />
     </ClientOnly>
-    <h2 v-if="!user.isLoggedIn" class="section-title xl:w-3/5 mx-auto">
+    <h2 v-if="!user.isLoggedIn" class="section-title text-primary xl:w-3/5 mx-auto">
       {{ $t('register.title') }}
     </h2>
     <button

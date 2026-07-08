@@ -1,9 +1,9 @@
 <template>
-  <section id="menu" ref="menuRef" class="pt-28 lg:pt-40 pb-12 sm:pb-20 text-center uppercase flex flex-col items-center gap-4">
+  <section id="menu" ref="menuRef" class="px-2 pt-28 lg:pt-40 pb-12 sm:pb-20 text-center uppercase flex flex-col items-center gap-4">
     <p class="tagline text-[22px] text-secondary w-56 mb-7 mx-auto font-bebas bg-neutral inline-block py-4 px-6">
       {{ $t('menu.tagline') }}
     </p>
-    <h2 class="section-title">{{ $t('menu.title') }}</h2>
+    <h2 class="text-primary font-bold text-xl sm:text-4xl xl:text-6xl font-alfa uppercase">{{ $t('menu.title') }}</h2>
     <p class="text-sm xl:text-[17px] max-w-4xl mx-auto lowercase">
       {{ $t('menu.description') }}
     </p>
@@ -17,7 +17,16 @@
         <Icon name="heroicons:chevron-left" class="w-5 h-5 lg:w-6 lg:h-6" />
       </button>
 
-      <div class="flex-1 min-w-0 overflow-hidden">
+      <div class="flex-1 min-w-0 overflow-hidden relative">
+        <Transition name="swipe-hint-fade">
+          <div
+            v-if="showSwipeHint"
+            class="swipe-hint sm:hidden absolute inset-0 z-20 pointer-events-none flex items-center justify-between px-3"
+          >
+            <Icon name="heroicons:chevron-left" class="w-8 h-8 text-white drop-shadow-lg swipe-arrow" />
+            <Icon name="heroicons:chevron-right" class="w-8 h-8 text-white drop-shadow-lg swipe-arrow" />
+          </div>
+        </Transition>
       <ClientOnly>
         <swiper-container
           ref="containerRef"
@@ -57,7 +66,7 @@
           </swiper-slide>
         </swiper-container>
       </ClientOnly>
-      </div>
+        </div>
 
       <button
         @click="swiper.next()"
@@ -88,6 +97,8 @@ if (!adminStore.products.length) {
 
 const hamburgers = computed(() => adminStore.products)
 
+const showSwipeHint = ref(true)
+
 const swiper = useSwiper(containerRef, {
   loop: true,
   speed: 1000,
@@ -97,6 +108,10 @@ const swiper = useSwiper(containerRef, {
     640:  { slidesPerView: 2, spaceBetween: 40 },
     1024: { slidesPerView: 2 },
     1536: { slidesPerView: 3 },
+  },
+  on: {
+    slideChange: () => { showSwipeHint.value = false },
+    touchStart: () => { showSwipeHint.value = false },
   },
 })
 
@@ -112,5 +127,27 @@ swiper-slide .button-orange {
 
 swiper-container::part(wrapper) {
   align-items: flex-end;
+}
+
+.swipe-arrow {
+  animation: swipe-pulse 1.4s ease-in-out infinite;
+  opacity: 0.85;
+  filter: drop-shadow(0 2px 6px rgba(0,0,0,0.5));
+}
+
+@keyframes swipe-pulse {
+  0%, 100% { transform: translateX(0); opacity: 0.6; }
+  50%       { transform: translateX(6px); opacity: 1; }
+}
+
+.swipe-hint > .swipe-arrow:first-child {
+  animation-direction: reverse;
+}
+
+.swipe-hint-fade-leave-active {
+  transition: opacity 0.5s ease;
+}
+.swipe-hint-fade-leave-to {
+  opacity: 0;
 }
 </style>

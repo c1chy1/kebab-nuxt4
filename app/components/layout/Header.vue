@@ -24,17 +24,17 @@
                 format="webp"
                 quality="80"
                 :src="slide"
-                sizes="160px sm:280px md:350px xl:520px"
+                sizes="240px sm:280px md:350px xl:520px"
                 width="812"
                 height="671"
                 loading="eager"
-                class="logo-box mx-auto w-3/4 sm:w-full lg:mr-0 cursor-grab active:cursor-grabbing"
+                class="logo-box mx-auto sm:w-full lg:mr-0 cursor-grab active:cursor-grabbing"
               />
               <div
                 id="banner"
                 class="hidden absolute xl:flex items-center h-26 w-26 min-w-26 min-h-26
                        md:h-40 md:w-40 md:min-w-40 md:min-h-40 xl:bottom-50 xl:right-30 p-2 md:p-2.5
-                       bg-[#ff6d00] rounded-full [clip-path:circle(50%)] opacity-0"
+                       bg-[#c05000] rounded-full [clip-path:circle(50%)] opacity-0"
               >
                 <article
                   class="relative flex flex-col items-center justify-center w-full h-full p-2.5
@@ -46,17 +46,17 @@
               </div>
             </div>
 
-            <div ref="textRef" class="max-w-full sm:w-1/2 xl:w-full xl:text-left flex flex-col items-center lg:items-start">
+            <div ref="textRef" class="px-4 max-w-full sm:w-1/2 xl:w-full xl:text-left flex flex-col items-center lg:items-start">
               <p
-                class="py-0 md:py-0 lg:py-2 lg:px-3 px-2 mb-4 text-[16px] md:text-[16px] lg:text-[20px]
+                class="py-0 lg:py-2 lg:px-3 px-2 mb-4 text-[16px] md:text-[16px] lg:text-[20px]
                        xl:text-[24px] text-primary border-primary font-medium font-bebas border-dashed
-                       border-4 inline-block rounded-[3px]"
+                       border-2 xl:border-4 inline-block rounded-[3px]"
               >
                 {{ $t('header.tagline') }}
               </p>
               <h1
                 class="lg:mt-4 text-[38px] md:text-[44px] lg:text-[80px] xl:text-[94px] text-primary
-                       font-alfa font-medium flex flex-col leading-none tracking-wider
+                       font-alfa font-medium leading-none tracking-wider
                        drop-shadow-[4px_5px_#fee7ba] whitespace-pre-line overflow-hidden truncate
                        text-ellipsis"
               >

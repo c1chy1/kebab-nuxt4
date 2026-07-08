@@ -15,12 +15,12 @@
     <div ref="bgMenu" class=" h-dvh px-6 bg-menu-mobile bg-accent " id="bg-menu-mobile">
       <div class="fixed w-full top-[100px] z-[3]">
       <ul ref="menuContainer" class="space-y-4 text-2xl sm:text-3xl pl-6">
-        <li><a href="#header" @click.prevent="toggle();scrollTo('#header')">{{ $t('nav.home') }}</a></li>
-        <li><a href="#menu" @click.prevent="toggle();scrollTo('#menu')">{{ $t('nav.menu') }}</a></li>
-        <li><a href="#events" @click.prevent="toggle();scrollTo('#events')">{{ $t('nav.events') }}</a></li>
-        <li><a href="#login" @click.prevent="toggle();scrollTo('#login')">{{ $t('nav.login') }}</a></li>
-        <li><a href="#gallery" @click.prevent="toggle();scrollTo('#gallery')">{{ $t('nav.gallery') }}</a></li>
-        <li><a href="#contact" @click.prevent="toggle();scrollTo('#contact')">{{ $t('nav.contact') }}</a></li>
+        <li><a href="#header" @click.prevent="navClick('#header')">{{ $t('nav.home') }}</a></li>
+        <li><a href="#menu" @click.prevent="navClick('#menu')">{{ $t('nav.menu') }}</a></li>
+        <li><a href="#events" @click.prevent="navClick('#events')">{{ $t('nav.events') }}</a></li>
+        <li><a href="#login" @click.prevent="navClick('#login')">{{ $t('nav.login') }}</a></li>
+        <li><a href="#gallery" @click.prevent="navClick('#gallery')">{{ $t('nav.gallery') }}</a></li>
+        <li><a href="#contact" @click.prevent="navClick('#contact')">{{ $t('nav.contact') }}</a></li>
         <li>
           <div class="flex items-center gap-4 pt-2">
             <button
@@ -48,7 +48,29 @@ const { gsap } = useGSAP();
 const lenis = useLenis()
 const { locale, locales, setLocale } = useI18n()
 
-const scrollTo = (selector: string) => lenis.value?.scrollTo(selector, { offset: -80 })
+async function navClick(selector: string) {
+  if (!open.value) {
+    lenis.value?.scrollTo(selector, { offset: -80 })
+    return
+  }
+  open.value = false
+  const width = window.innerWidth
+  const items = menuContainer.value?.querySelectorAll('li')
+
+  gsap.to(items ?? [], {
+    duration: 0.35,
+    x: 0,
+    stagger: 0.03,
+    ease: 'expo.inOut',
+  })
+  await gsap.to(bgMenu.value!, {
+    duration: 0.45,
+    x: 0,
+    delay: 0.1,
+    ease: 'expo.inOut',
+  })
+  lenis.value?.scrollTo(selector, { offset: -80 })
+}
 
 const open = ref(false)
 const menuContainer = ref<HTMLElement>()
@@ -101,31 +123,11 @@ function toggle() {
   const items = menuContainer.value.querySelectorAll('li')
 
   if (open.value) {
-    gsap.to(bgMenu.value, {
-      duration: 0.7,
-      x: -width,
-      ease: 'expo.inOut',
-    })
-    gsap.to(items, {
-      duration: 0.5,
-      x: -width,
-      delay: 0.2,
-      stagger: 0.04,
-      ease: 'expo.inOut',
-    })
+    gsap.to(bgMenu.value, { duration: 0.7, x: -width, ease: 'expo.inOut' })
+    gsap.to(items, { duration: 0.5, x: -width, delay: 0.2, stagger: 0.04, ease: 'expo.inOut' })
   } else {
-    gsap.to(items, {
-      duration: 0.5,
-      x: 0,
-      stagger: 0.04,
-      ease: 'expo.inOut',
-    })
-    gsap.to(bgMenu.value!, {
-      duration: 0.7,
-      x: 0,
-      delay: 0.2,
-      ease: 'expo.inOut',
-    })
+    gsap.to(items, { duration: 0.35, x: 0, stagger: 0.03, ease: 'expo.inOut' })
+    gsap.to(bgMenu.value!, { duration: 0.45, x: 0, delay: 0.1, ease: 'expo.inOut' })
   }
 }
 

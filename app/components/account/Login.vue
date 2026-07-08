@@ -21,7 +21,7 @@ function showModal(id: string) {
       class="relative w-full mx-auto flex flex-col items-center justify-center pt-32  lg:pt-36 xl:pt-40 "
       id="login">
     <div class="text-center" >
-      <h2 class="section-title">{{ $t('login.title') }}</h2>
+      <h2 class="section-title text-primary">{{ $t('login.title') }}</h2>
       <button v-if="!user.isLoggedIn" class="button-orange py-4 transition-all cursor-pointer"
               @click="showModal('login_modal')">
         {{ $t('login.button') }}
