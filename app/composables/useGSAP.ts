@@ -2,13 +2,8 @@ import gsap from "gsap";
 
 // Lazy-loaded plugins — only loaded on demand, not bundled in main chunk
 const pluginMap = {
-/*    Draggable: () => import("gsap/Draggable"),
-    ScrollToPlugin: () => import("gsap/ScrollToPlugin"),*/
     ScrollTrigger: () => import("gsap/ScrollTrigger"),
-/*    TextPlugin: () => import("gsap/TextPlugin"),
-    DrawSVGPlugin: () => import("gsap/DrawSVGPlugin"),
-    ScrollSmoother: () => import("gsap/ScrollSmoother"),
-    SplitText: () => import("gsap/SplitText"),*/
+
 } as const;
 
 type PluginMap = typeof pluginMap;
