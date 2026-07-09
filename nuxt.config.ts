@@ -166,6 +166,7 @@ export default defineNuxtConfig({
   },
   css: [
     '~/assets/css/tailwind.css',
+    'vue3-toastify/dist/index.css',
   ],
 
   build: {

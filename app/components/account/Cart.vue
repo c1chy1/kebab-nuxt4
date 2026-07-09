@@ -202,10 +202,6 @@ async function placeOrderHandler() {
     await cartStore.placeOrder(order)
     cartStore.clearCart()
   } catch (error: any) {
-    await Promise.all([
-      import('vue3-toastify/dist/index.css'),
-      import('~/assets/css/toastify.css'),
-    ])
     const { toast } = await import('vue3-toastify')
     toast.error(t(error.data.statusMessage ?? error.data.message))
   }
