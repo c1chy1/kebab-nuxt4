@@ -26,37 +26,43 @@
         </span>
       </div>
 
-      <transition-group name="list" tag="ul"  ref="items" class="py-2 px-0 text-black text-xs  md:text-sm  lg:text-base  xl:text-lg">
+      <transition-group name="list" tag="ul" ref="items" class="py-2 px-0 text-black text-xs md:text-sm lg:text-base xl:text-lg">
         <li
             v-for="item in cartItems"
             :key="item.id"
-            class="flex items-center px-1 py-1 border-b border-gray-100 last:border-0">
-          <NuxtImg
-              :src="item.img"
-              :alt="`${$t('cart.imageAlt')} ${item.title}`"
-              class="img-fluid rounded w-12 sm:w-20 lg:w-24 xl:w-32 h-10 sm:h-12 lg:h-16 xl:h-24 shrink-0"/>
-          <div class="text-black flex-1 mx-2 sm:mx-3 lg:mx-4 min-w-0">
-            <h2 class="font-bold text-xs 2xl:text-base text-black">{{ item.title }}</h2>
-            <div class="grid grid-cols-2 items-center mt-0.5">
-              <span>{{ item.price }}€</span>
-              <div class="flex justify-center">
-                <select ref="select" class="border-2 border-black rounded-xl px-0.5 lg:px-1 cursor-pointer"
-                        v-model="item.qty">
-                  <option
-                      v-for="x in item.countInStock"
-                      :key="x"
-                      :value="x">
-                    {{ x }}
-                  </option>
-                </select>
+            class="relative overflow-hidden border-b border-gray-100 last:border-0"
+            @touchstart.passive="startSwipe($event, item)"
+            @touchmove="moveSwipe($event, item)"
+            @touchend="endSwipe($event, item)"
+            @touchcancel="cancelSwipe($event, item)"
+        >
+          <div class="absolute inset-0 bg-red-500 flex items-center justify-between px-3 pointer-events-none sm:hidden">
+            <Icon name="heroicons:trash" class="w-5 h-5 text-white" />
+            <Icon name="heroicons:trash" class="w-5 h-5 text-white" />
+          </div>
+          <div :data-swipe-id="item.id" class="swipe-content flex items-center w-full px-1 py-1 bg-white will-change-transform">
+            <NuxtImg
+                :src="item.img"
+                :alt="`${$t('cart.imageAlt')} ${item.title}`"
+                class="img-fluid rounded w-12 sm:w-20 lg:w-24 xl:w-32 h-10 sm:h-12 lg:h-16 xl:h-24 shrink-0"/>
+            <div class="text-black flex-1 mx-2 sm:mx-3 lg:mx-4 min-w-0">
+              <h2 class="font-bold text-xs 2xl:text-base text-black">{{ item.title }}</h2>
+              <div class="grid grid-cols-2 items-center mt-0.5">
+                <span>{{ item.price }}€</span>
+                <div class="flex justify-center">
+                  <select ref="select" class="border-2 border-black rounded-xl px-0.5 lg:px-1 cursor-pointer"
+                          v-model="item.qty">
+                    <option v-for="x in item.countInStock" :key="x" :value="x">{{ x }}</option>
+                  </select>
+                </div>
               </div>
             </div>
+            <!-- Trash: only on non-touch devices -->
+            <Icon v-if="!isTouch" name="heroicons:trash"
+                  class="text-4xl mr-2 shrink-0 cursor-pointer self-center text-[#DC691D]"
+                  @click="cartStore.removeItem(item)" />
           </div>
-          <Icon name="heroicons:trash" class="text-4xl mr-2 shrink-0 cursor-pointer self-center text-[#DC691D]"
-                @click="cartStore.removeItem(item)" />
         </li>
-
-
       </transition-group>
       <div class="px-4 py-2 bg-secondary transition-colors duration-700">
 
@@ -87,12 +93,10 @@ const { t } = useI18n()
 
 const countTransition = ref('count-up')
 
-// Kierunek animacji licznika — zawsze przy zmianie totalCount
 watch(() => cartStore.totalCount, (newVal, oldVal) => {
   countTransition.value = newVal > oldVal ? 'count-up' : 'count-down'
 })
 
-// Animacja headera — tylko gdy dodano/usunięto produkt (nie zmiana qty)
 watch(() => cartItems.value?.length, (newLen, oldLen) => {
   if (newLen === oldLen || oldLen === undefined) return
   const trigger = document.getElementById('cartTrigger')
@@ -118,6 +122,63 @@ const cart = ref()
 const items = ref()
 const select = ref()
 useLocaleTransition(cart, 'h1, #cartTrigger > span, .bg-secondary button:not(#cartButton)')
+
+const isTouch = ref(false)
+onMounted(() => {
+  isTouch.value = window.matchMedia('(hover: none) and (pointer: coarse)').matches
+})
+
+// Swipe-to-delete (mobile only)
+const SWIPE_THRESHOLD = 72
+const swipe = reactive({ startX: 0, startY: 0, id: null as any, horizontal: null as boolean | null })
+
+function getSwipeEl(e: TouchEvent): HTMLElement | null {
+  return (e.currentTarget as HTMLElement).querySelector<HTMLElement>('.swipe-content')
+}
+
+function startSwipe(e: TouchEvent, item: any) {
+  swipe.startX = e.touches[0].clientX
+  swipe.startY = e.touches[0].clientY
+  swipe.id = item.id
+  swipe.horizontal = null
+}
+
+function moveSwipe(e: TouchEvent, item: any) {
+  if (swipe.id !== item.id) return
+  const dx = e.touches[0].clientX - swipe.startX
+  const dy = e.touches[0].clientY - swipe.startY
+
+  if (swipe.horizontal === null && (Math.abs(dx) > 6 || Math.abs(dy) > 6)) {
+    swipe.horizontal = Math.abs(dx) > Math.abs(dy)
+  }
+  if (!swipe.horizontal) return
+
+  e.preventDefault()
+  const el = getSwipeEl(e)
+  if (el) gsap.set(el, { x: dx })
+}
+
+function endSwipe(e: TouchEvent, item: any) {
+  if (swipe.id !== item.id) return
+  const dx = e.changedTouches[0].clientX - swipe.startX
+  const el = getSwipeEl(e)
+  swipe.id = null
+
+  if (swipe.horizontal && Math.abs(dx) > SWIPE_THRESHOLD) {
+    const direction = dx > 0 ? '100%' : '-100%'
+    if (el) gsap.to(el, { x: direction, duration: 0.2, ease: 'power2.in', onComplete: () => cartStore.removeItem(item) })
+  } else {
+    if (el) gsap.to(el, { x: 0, duration: 0.25, ease: 'power2.out' })
+  }
+  swipe.horizontal = null
+}
+
+function cancelSwipe(e: TouchEvent, item: any) {
+  const el = getSwipeEl(e)
+  if (el) gsap.to(el, { x: 0, duration: 0.2 })
+  swipe.id = null
+  swipe.horizontal = null
+}
 let tl: gsap.core.Timeline
 let mm: gsap.MatchMedia
 let closedPositionW = 0
@@ -151,7 +212,7 @@ async function placeOrderHandler() {
 }
 
 
-onMounted(() => {
+onMounted(async () => {
   gsap.registerPlugin(Draggable)
   tl = gsap.timeline()
   mm = gsap.matchMedia()
@@ -181,8 +242,8 @@ onMounted(() => {
       opacity: 1
     })
   })
-  setTimeout(() => {
-    const drag = Draggable.create(cart.value, {
+  await nextTick()
+  const drag = Draggable.create(cart.value, {
       type: "x",
       zIndexBoost: true,
       throwProps: true,
@@ -195,8 +256,8 @@ onMounted(() => {
 
         if (gsap.getProperty(cart.value, "x") === closedPositionW) {
 
-          tl.to(items.value.$el, 0.3, {backgroundColor: "white"})
-              .to(this.target, 0.3, {x: 0})
+          gsap.set(items.value.$el, { backgroundColor: 'white' })
+          tl.to(this.target, 0.3, {x: 0})
               .to(this.target, 0.3, {height: "auto", ease: "power3.inOut"})
 
         } else {
@@ -219,8 +280,8 @@ onMounted(() => {
 
         if (x.value < drag[0].maxX / 2) {
 
-          tl.to(items.value.$el, 0.3, {backgroundColor: "white"})
-              .to(this.target, 0.3, {x: 0})
+          gsap.set(items.value.$el, { backgroundColor: 'white' })
+          tl.to(this.target, 0.3, {x: 0})
               .to(this.target, 0.3, {height: "auto"});
         } else {
           mm.add("(max-width: 575px)", () => {
@@ -239,7 +300,6 @@ onMounted(() => {
         x: [0, closedPositionW]
       }
     })
-  }, 1000);
 })
 watch(
     () => cartItems,

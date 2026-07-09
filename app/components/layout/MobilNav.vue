@@ -18,7 +18,7 @@
         <li><a href="#header" @click.prevent="navClick('#header')">{{ $t('nav.home') }}</a></li>
         <li><a href="#menu" @click.prevent="navClick('#menu')">{{ $t('nav.menu') }}</a></li>
         <li><a href="#events" @click.prevent="navClick('#events')">{{ $t('nav.events') }}</a></li>
-        <li><a href="#login" @click.prevent="navClick('#login')">{{ $t('nav.login') }}</a></li>
+        <li v-if="!user.isLoggedIn"><a href="#login" @click.prevent="navClick('#login')">{{ $t('nav.login') }}</a></li>
         <li><a href="#gallery" @click.prevent="navClick('#gallery')">{{ $t('nav.gallery') }}</a></li>
         <li><a href="#contact" @click.prevent="navClick('#contact')">{{ $t('nav.contact') }}</a></li>
         <li>
@@ -44,13 +44,24 @@
 </template>
 
 <script setup lang="ts">
+import { useUserStore } from '@/stores/userStore'
 const { gsap } = useGSAP();
+const user = useUserStore()
 const lenis = useLenis()
 const { locale, locales, setLocale } = useI18n()
 
+const scrollOffsets: Record<string, number> = {
+  '#header':  0,
+  '#menu':    145,
+  '#events':  -25,
+  '#gallery': 0,
+  '#login':   20,
+  '#contact': 400,
+}
+
 async function navClick(selector: string) {
   if (!open.value) {
-    lenis.value?.scrollTo(selector, { offset: -80 })
+    lenis.value?.scrollTo(selector, { offset: scrollOffsets[selector] ?? 0 })
     return
   }
   open.value = false
@@ -69,7 +80,7 @@ async function navClick(selector: string) {
     delay: 0.1,
     ease: 'expo.inOut',
   })
-  lenis.value?.scrollTo(selector, { offset: -80 })
+  lenis.value?.scrollTo(selector, { offset: scrollOffsets[selector] ?? 0 })
 }
 
 const open = ref(false)

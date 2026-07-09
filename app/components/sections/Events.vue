@@ -22,7 +22,7 @@ useLocaleTransition(eventsRef, 'h2')
 </script>
 
 <template>
-  <section id="events" ref="eventsRef" class="px-2 pt-30 lg:pt-40 sm:px-4 md:px-16 lg:px-20 lg:py-24 text-center space-y-6">
+  <section id="events" ref="eventsRef" class="px-2 pt-10 lg:pt-40 sm:px-4 md:px-16 lg:px-20 lg:py-24 text-center space-y-6">
     <ClientOnly>
       <swiper-container
           ref="containerRef"

@@ -51,7 +51,10 @@ await callOnce(async () => {
     user.isLoggedIn = true
   }
 })
-onMounted(() => {
+onMounted(async () => {
+  if (!user.isLoggedIn) {
+    await user.me()
+  }
   window.scrollTo(0, 0)
   loadCart()
 

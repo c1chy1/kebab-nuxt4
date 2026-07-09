@@ -6,10 +6,8 @@ export const useThemeStore = defineStore('theme', () => {
         default: () => 'light',
     })
 
-    // theme used in app.vue as :data-theme
     const theme = computed(() => themeCookie.value)
 
-    // true = dark mode (checkbox checked = MOON visible), false = light mode (SUN visible)
     const toggleTheme = computed({
         get: () => themeCookie.value === 'dark',
         set: (val: boolean) => {

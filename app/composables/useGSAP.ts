@@ -9,8 +9,6 @@ const pluginMap = {
 type PluginMap = typeof pluginMap;
 type Plugins = keyof PluginMap;
 
-// Resolves the module type for a given key, then picks the named export matching the key
-// this allows to have the type definitions for autocomplete in your code editor
 type PluginModule<K extends Plugins> = Awaited<ReturnType<PluginMap[K]>>;
 type PluginExport<K extends Plugins> = PluginModule<K>[K & keyof PluginModule<K>];
 

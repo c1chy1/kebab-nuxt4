@@ -1,5 +1,5 @@
 <template>
-  <section id="menu" ref="menuRef" class="px-2 pt-28 lg:pt-40 pb-12 sm:pb-20 text-center uppercase flex flex-col items-center gap-4">
+  <section id="menu" ref="menuRef" class="px-2 pt-28 lg:pt-40 pb-12 sm:pb-20 min-h-dvh text-center uppercase flex flex-col items-center justify-between gap-4">
     <p class="tagline text-[22px] text-secondary w-56 mb-7 mx-auto font-bebas bg-neutral inline-block py-4 xl:px-4">
       {{ $t('menu.tagline') }}
     </p>

@@ -564,29 +564,17 @@ const maxSidebar = ref()
 const maxToolbar = ref()
 useLocaleTransition(sidebar, 'li button')
 
-onMounted(() => {
-  let closedPositionW = 35 - sidebar.value.offsetWidth
+onMounted(async () => {
+  await nextTick()
+
+  const closedPositionW = 35 - sidebar.value.offsetWidth
+  const isMobile = window.matchMedia('(max-width: 575px)').matches
+  const initialHeight = isMobile ? '2.5rem' : '3.5rem'
+
+  gsap.set(sidebar.value, { x: closedPositionW, height: initialHeight, opacity: 1 })
+
   let drag: Draggable[];
-  mm.add("(max-width: 575px)", () => {
-
-    tl.set(sidebar.value, {
-      x: closedPositionW
-    }).set(sidebar.value, {
-      height: "2.5rem",
-      opacity: 1
-    })
-  })
-
-  mm.add("(min-width: 576px)", () => {
-    tl.set(sidebar.value, {
-      x: closedPositionW
-    }).set(sidebar.value, {
-      height: "3.5rem",
-      opacity: 1
-    })
-  })
-  setTimeout(() => {
-    drag = Draggable.create(sidebar.value, {
+  drag = Draggable.create(sidebar.value, {
       type: "x",
       zIndexBoost: true,
       trigger: ['#dashboardButton', '#dashboardTrigger'],
@@ -596,44 +584,30 @@ onMounted(() => {
       bounds: {minX: closedPositionW, maxX: 0},
 
       onClick: function () {
-        tl.to(maxToolbar.value, 0.5, {
-          opacity: 1
-        })
-
-
         if (gsap.getProperty(sidebar.value, "x") === closedPositionW) {
-
           tl.to(this.target, 0.3, {x: 0})
               .to(this.target, 0.3, {height: "auto", ease: "power3.inOut"})
+              .to(maxToolbar.value, 0.3, { opacity: 1 })
               .fromTo(".max li", {
                 x: -200,
                 opacity: 0,
-                duration: 0.1,
                 ease: "Expo.easeInOut"
               }, {
                 x: 0,
                 opacity: 1,
                 duration: 0.3,
                 stagger: 0.2,
-
               })
-
         } else {
-          tl.to(maxToolbar.value, 0.5, {
-            opacity: 0
-          })
+          gsap.set(maxToolbar.value, { opacity: 0 })
           mm.add("(max-width: 575px)", () => {
-
             tl.to(this.target, 0.3, {x: closedPositionW})
                 .to(this.target, 0.3, {height: "2.5rem"})
-
           })
-
           mm.add("(min-width: 576px)", () => {
             tl.to(this.target, 0.3, {x: closedPositionW})
                 .to(this.target, 0.3, {height: "3.5rem"})
           })
-
         }
       },
 
@@ -683,7 +657,6 @@ onMounted(() => {
         x: [0, closedPositionW]
       }
     });
-  }, 1000);
 
 })
 

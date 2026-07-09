@@ -16,7 +16,7 @@
             class="h-dvh xl:w-5/6 relative flex flex-col sm:flex-row items-center justify-center
                    text-center lg:text-left lg:justify-center lg:flex-row-reverse uppercase"
           >
-            <div class="sm:w-1/2 xl:w-full">
+            <div class="relative sm:w-1/2 xl:w-full">
               <nuxt-img
                   alt="kebab"
                 preload
@@ -32,16 +32,20 @@
               />
               <div
                 id="banner"
-                class="hidden absolute xl:flex items-center h-26 w-26 min-w-26 min-h-26
-                       md:h-40 md:w-40 md:min-w-40 md:min-h-40 xl:bottom-50 xl:right-30 p-2 md:p-2.5
-                       bg-[#c05000] rounded-full [clip-path:circle(50%)] opacity-0"
+                class="absolute flex p-1 xl:p-2 items-center justify-center will-change-transform
+                       size-18  right-[25%] top-[45%] 2xl:right-[35%] 2xl:top-[65%]
+                       sm:size-22
+                       md:size-24
+                       xl:size-40
+                       bg-[#ff6d00] rounded-full opacity-0"
               >
                 <article
-                  class="relative flex flex-col items-center justify-center w-full h-full p-2.5
-                         text-[30px] md:text-[60px] md:leading-20 border-2 border-dashed border-white
-                         rounded-full text-white font-base font-bebas transform rotate-20"
+                  class="flex flex-col items-center justify-center w-full h-full
+                         text-[22px] sm:text-[26px] md:text-[32px] 2xl:text-[58px] md:leading-[1.2]
+                         border-2 border-dashed border-white rounded-full
+                         text-white font-base font-bebas rotate-20"
                 >
-                  20% <span class="text-[24px] md:text-[33px] leading-5">{{ $t('header.discount') }}</span>
+                  20% <span class="text-[16px] sm:text-[24px] md:text-[26px] 2xl:text-[40px] leading-5 2xl:leading-10">{{ $t('header.discount') }}</span>
                 </article>
               </div>
             </div>
@@ -100,45 +104,23 @@ const swiper = useSwiper(containerRef, {
 })
 
 const { introComplete } = useIntroState()
+let bannerTimeline: gsap.core.Timeline | null = null
 
 async function runAnimations() {
   const { default: gsap } = await import('gsap')
-  gsap.fromTo(
-      '#header h1',
-      { opacity: 0, ease: 'power3.inOut' },
-      { duration: 0.5, opacity: 1, delay: 0.3, ease: 'power3.inOut' }
-  )
 
-  gsap.fromTo(
-      '#header img',
-      { opacity: 0.5, ease: 'power3.inOut' },
-      { duration: 0.5, opacity: 1, ease: 'power3.inOut' }
-  )
+  gsap.fromTo('#header h1', { opacity: 0 }, { duration: 0.5, opacity: 1, delay: 0.3, ease: 'power3.inOut' })
+  gsap.fromTo('#header img', { opacity: 0.5 }, { duration: 0.5, opacity: 1, ease: 'power3.inOut' })
+  gsap.fromTo('#header p', { opacity: 0 }, { duration: 0.5, opacity: 1, delay: 0.2, ease: 'power3.inOut', stagger: 0.1 })
+  gsap.fromTo(['#banner', '.shadow'], { opacity: 0 }, { opacity: 1, delay: 2 })
 
-  gsap.fromTo(
-      '#header p',
-      { y: 0, ease: 'power3.inOut' },
-      { duration: 0.5, opacity: 1, y: 0, delay: 0.2, ease: 'power3.inOut', stagger: 0.1 }
-  )
+  const bannerEl = document.getElementById('banner')
+  const bounceY = bannerEl ? bannerEl.offsetHeight * 0.75 : 80
 
-  gsap.fromTo(
-      ['#banner', '.shadow'],
-      { opacity: 0 },
-      { opacity: 1, delay: 2 }
-  )
-
-  const tl = gsap.timeline({ repeat: -1, yoyo: true, delay: 2 })
-  tl
-      .to('#banner', { duration: 0.65, y: 150, ease: 'power4.in' })
-      .to('#banner', {
-        duration: 0.08,
-        scaleY: 0.55,
-        scaleX: 1.25,
-        transformOrigin: 'center bottom',
-        borderBottomLeftRadius: '30%',
-        borderBottomRightRadius: '30%',
-        ease: 'power2.out',
-      }, '-=0.02')
+  bannerTimeline = gsap.timeline({ repeat: -1, yoyo: true, delay: 2 })
+  bannerTimeline
+    .to('#banner', { duration: 0.65, y: bounceY, ease: 'power4.in' })
+    .to('#banner', { duration: 0.08, scaleY: 0.6, scaleX: 1.2, transformOrigin: 'center bottom', ease: 'power2.out' }, '-=0.02')
 }
 
 onMounted(async () => {
@@ -150,5 +132,9 @@ onMounted(async () => {
       if (val) { runAnimations(); stop() }
     })
   }
+})
+
+onUnmounted(() => {
+  bannerTimeline?.kill()
 })
 </script>

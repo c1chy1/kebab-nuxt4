@@ -20,7 +20,7 @@ bg-repeat-round  lg:px-12 xl:px-16  font-bebas">
             {{ $t('nav.delivery') }}</p>
         </div>
         <ul ref="menu"
-            class="menu menu-horizontal  hidden lg:flex justify-end gap-4 py-0 px-1 lg:text-[18px] xl:text-[24px] tracking-[3px] xl:tracking-[4px] relative uppercase transition-all duration-500">
+            class="menu menu-horizontal  hidden lg:flex justify-end gap-4 py-0 px-1 sm:text-[14px] xl:text-[18px] 2xl:text-[24px] tracking-[3px] xl:tracking-[4px] relative uppercase transition-all duration-500">
           <li>
             <a href="#header" @click.prevent="scrollTo('#header')">{{ $t('nav.home') }}</a>
           </li>
@@ -33,7 +33,7 @@ bg-repeat-round  lg:px-12 xl:px-16  font-bebas">
           <li>
             <a href="#gallery" @click.prevent="scrollTo('#gallery')">{{ $t('nav.gallery') }}</a>
           </li>
-          <li>
+          <li v-if="!user.isLoggedIn">
             <a href="#login" @click.prevent="scrollTo('#login')">{{ $t('nav.login') }}</a>
           </li>
           <li>
@@ -65,7 +65,7 @@ bg-repeat-round  lg:px-12 xl:px-16  font-bebas">
           </li>
 
           <li>
-            <button ref="scrollToTopBtn" @click="scrollToTop()" class="scroll-top-button">
+            <button ref="scrollToTopBtn" @click="scrollToTop()" class="scroll-top-button sm:-bottom-4">
               <UiScrollToTop class="fill-white w-4"/>
             </button>
           </li>
@@ -83,13 +83,24 @@ bg-repeat-round  lg:px-12 xl:px-16  font-bebas">
 
 
 <script setup lang="ts">
+import { useUserStore } from '@/stores/userStore'
 const { gsap, lazyLoadPlugin } = useGSAP();
 const { locale, locales, setLocale } = useI18n()
 const langChosenCookie = useCookie('lang-chosen', { maxAge: 60 * 60 * 24 * 365 })
 
 const lenis = useLenis()
 
-const scrollTo = (selector: string) => lenis.value?.scrollTo(selector, { offset: -80 })
+const scrollOffsets: Record<string, number> = {
+  '#header':  0,
+  '#menu':    100,
+  '#events':  0,
+  '#gallery': 0,
+  '#login':   -100,
+  '#contact': 0,
+}
+
+const scrollTo = (selector: string) =>
+  lenis.value?.scrollTo(selector, { offset: scrollOffsets[selector] ?? 0 })
 const scrollToTop = () => lenis.value?.scrollTo(0)
 
 const navbar = ref<HTMLElement>()
@@ -110,6 +121,8 @@ const availableLocales = computed(() =>
 )
 
 const currentFlag = computed(() => localeFlags[locale.value] ?? 'circle-flags:un')
+
+const user = useUserStore()
 
 const isAnimating = ref(false)
 
@@ -137,7 +150,6 @@ async function switchLocale(code: string) {
 
   setLocaleChanging(false)
 
-  // Re-query after locale change — DOM may have been updated by i18n
   const freshNavItems = menu.value?.querySelectorAll('li a')
   const freshFlagBtn = langSwitcher.value?.querySelector('button')
 
@@ -156,8 +168,6 @@ async function switchLocale(code: string) {
 }
 
 onMounted(async () => {
-  // Lenis + GSAP canonical integration (autoRaf disabled on VueLenis)
-  // Set up ticker synchronously — no await needed, gsap is available immediately
   gsap.ticker.add((time: number) => lenis.value?.raf(time * 1000))
   gsap.ticker.lagSmoothing(500, 33)
 

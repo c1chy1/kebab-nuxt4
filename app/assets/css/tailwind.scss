@@ -144,7 +144,7 @@ html:has(:is(.modal-open, .modal:target, .modal-toggle:checked + .modal, .modal[
   }
 
   .scroll-top-button {
-    @apply !absolute !bottom-0 !-left-3 bg-primary !flex !justify-center !items-center !w-11 !h-11 !rounded-full transition-all;
+    @apply !absolute !-left-3 bg-primary !flex !justify-center !items-center !w-11 !h-11 !rounded-full transition-all;
   }
 
   .section-title {
