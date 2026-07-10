@@ -17,20 +17,22 @@
   --color-warning: oklch(70.67% 0.137 55.65);
   --color-error: oklch(65.55% 0.178 15.68);
   --color-base-100: oklch(100% 0 0);
+  --color-base-content: oklch(38.81% 0.141 132.11);
 }
 
 @plugin "daisyui/theme" {
   name: "dark";
   color-scheme: dark;
-  --color-primary: oklch(30.62% 0.059 280.81);
+  --color-primary: oklch(0.8 0 0);;
   --color-secondary: oklch(55.23% 0.096 67.08);
   --color-accent: oklch(65.55% 0.178 15.68);
-  --color-neutral: oklch(30.62% 0.059 280.81);
-  --color-base-100: oklch(30.62% 0.059 280.81);
+  --color-neutral: oklch(0.8 0 0);;
+  --color-base-100: oklch(0.8 0 0);;
   --color-info: oklch(76.42% 0.065 209.26);
   --color-success: oklch(77.32% 0.09 305.18);
   --color-warning: oklch(79.41% 0.118 73.57);
   --color-error: oklch(48.36% 0.123 16.34);
+  --color-base-content: oklch(0.8 0 0);
 }
 
 @theme {
@@ -146,12 +148,20 @@ html:has(:is(.modal-open, .modal:target, .modal-toggle:checked + .modal, .modal[
   .scroll-top-button {
     @apply !absolute !-left-3 bg-primary !flex !justify-center !items-center !w-11 !h-11 !rounded-full transition-all;
   }
-
   .section-title {
-    @apply text-primary text-center text-2xl font-alfa sm:text-[36px] lg:text-[50px] mb-2.5 leading-tight font-medium uppercase;
+    @apply  text-center text-2xl font-alfa sm:text-[36px] lg:text-[50px] mb-2.5 leading-tight font-medium uppercase;
   }
 
 }
+
+.section-title {
+  color: var(--color-primary) !important;
+}
+
+[data-theme='dark'] .section-title {
+  color: oklch(0.8 0 0) !important;
+}
+
 
 [data-theme='dark'] {
   html {
@@ -201,6 +211,7 @@ html:has(:is(.modal-open, .modal:target, .modal-toggle:checked + .modal, .modal[
     .menu-mobile a {
       @apply text-primary;
     }
+
   }
 
   #sidebar button {
@@ -210,6 +221,10 @@ html:has(:is(.modal-open, .modal:target, .modal-toggle:checked + .modal, .modal[
   #theme svg {
     fill: oklch(0.8 0 0);
   }
+  .modal-box {
+    background-color: #393552;
+  }
+
 
   .background-dark-header {
     background: rgb(142, 31, 31, 0.5);

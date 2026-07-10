@@ -164,8 +164,16 @@ html:has(:is(.modal-open, .modal:target, .modal-toggle:checked + .modal, .modal[
   }
 }
 
-/* MobilNav — przeniesione z scoped żeby były inlinowane przez inlineSSRStyles */
+.section-title {
+  color: var(--color-primary) !important;
+}
+
+[data-theme='dark'] .section-title {
+  color: oklch(0.8 0 0) !important;
+}
+
 #bg-menu-mobile {
+  background-color: oklch(84.4776% 0.151405 80.341749 / 1);
   width: 100%;
   position: fixed;
   top: 0;
@@ -175,6 +183,11 @@ html:has(:is(.modal-open, .modal:target, .modal-toggle:checked + .modal, .modal[
 }
 #bg-menu-mobile ul { list-style: none; }
 #bg-menu-mobile ul li { position: relative; left: 100%; cursor: pointer; will-change: transform; }
+#hamburger::before {
+  content: '';
+  position: absolute;
+  inset: -14px;
+}
 #hamburger span {
   z-index: 3;
   display: block;
@@ -209,13 +222,21 @@ html:has(:is(.modal-open, .modal:target, .modal-toggle:checked + .modal, .modal[
     background-color: oklch(0.8 0 0);
     h2, p { color: oklch(0.3 0 0); }
   }
+  .card-title {
+    color: oklch(0.8 0 0);
+  }
   .events {
+
+    background-color: oklch(0.8 0 0);
      h2 {
        color: oklch(.3 0 0)
      }
     p {
       color: oklch(.3 0 0)
     }
+  }
+  #bg-menu-mobile {
+  background-color: oklch(0.8 0 0);
   }
   #menu {
     .swiper-preview {
@@ -259,6 +280,10 @@ html:has(:is(.modal-open, .modal:target, .modal-toggle:checked + .modal, .modal[
 
   #theme svg {
     fill: oklch(0.8 0 0);
+  }
+
+  .modal-box {
+    background-color: #393552;
   }
 
   .background-dark-header {
