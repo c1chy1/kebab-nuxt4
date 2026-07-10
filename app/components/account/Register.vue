@@ -18,7 +18,7 @@ function showModal(id: string) {
   <div
     ref="registerRef"
     id="register"
-    class="relative overflow-hidden py-16 lg:py-28 xl:py-36"
+    class="relative overflow-hidden  pb-16 sm:pb-0 pt-16"
   >
     <div class="max-w-6xl mx-auto px-6 flex items-center gap-8 lg:gap-16">
       <!-- Decorative image – left -->

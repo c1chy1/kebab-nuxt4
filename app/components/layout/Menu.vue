@@ -18,21 +18,25 @@
       </button>
 
       <div class="flex-1 min-w-0 overflow-hidden relative">
-        <div
-          class="swipe-hint sm:hidden absolute inset-0 z-20 pointer-events-none flex items-center justify-between"
-          :class="showSwipeHint ? 'swipe-hint--visible' : 'swipe-hint--hidden'"
+        <!-- Mobile overlay nav buttons -->
+        <button
+          @click="swiper.prev()"
+          class="sm:hidden absolute left-2 top-1/2 -translate-y-1/2 z-20 flex items-center justify-center w-9 h-9 rounded-full bg-primary/80 backdrop-blur-sm text-white shadow-lg active:scale-95 transition-transform cursor-pointer"
+          aria-label="Previous"
         >
-          <div class="flex items-center self-stretch pl-1 pr-5 bg-gradient-to-r from-black/40 to-transparent">
-            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" class="w-9 h-9 drop-shadow-lg swipe-arrow-left">
-              <path d="M15 18l-6-6 6-6"/>
-            </svg>
-          </div>
-          <div class="flex items-center self-stretch pr-1 pl-5 bg-gradient-to-l from-black/40 to-transparent">
-            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" class="w-9 h-9 drop-shadow-lg swipe-arrow-right">
-              <path d="M9 18l6-6-6-6"/>
-            </svg>
-          </div>
-        </div>
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" class="w-5 h-5">
+            <path d="M15 18l-6-6 6-6"/>
+          </svg>
+        </button>
+        <button
+          @click="swiper.next()"
+          class="sm:hidden absolute right-2 top-1/2 -translate-y-1/2 z-20 flex items-center justify-center w-9 h-9 rounded-full bg-primary/80 backdrop-blur-sm text-white shadow-lg active:scale-95 transition-transform cursor-pointer"
+          aria-label="Next"
+        >
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" class="w-5 h-5">
+            <path d="M9 18l6-6-6-6"/>
+          </svg>
+        </button>
       <ClientOnly>
         <swiper-container
           ref="containerRef"
@@ -103,34 +107,20 @@ if (!adminStore.products.length) {
 
 const hamburgers = computed(() => adminStore.products)
 
-const showSwipeHint = ref(false)
-let hintTimer: ReturnType<typeof setTimeout>
-
-onMounted(() => {
-  if (window.innerWidth < 576) {
-    showSwipeHint.value = true
-    hintTimer = setTimeout(() => { showSwipeHint.value = false }, 3000)
-  }
-})
-
-onUnmounted(() => clearTimeout(hintTimer))
-
 const isMobile = import.meta.client && window.innerWidth < 576
 
 const swiper = useSwiper(containerRef, {
   loop: true,
   speed: 1000,
   touchStartPreventDefault: false,
-  ...(isMobile ? { autoplay: { delay: 2500, disableOnInteraction: true } } : {}),
+  ...(isMobile ? { autoplay: { delay: 5000, disableOnInteraction: true } } : {}),
   breakpoints: {
     0:    { slidesPerView: 1, spaceBetween: 20 },
     640:  { slidesPerView: 2, spaceBetween: 40 },
     1024: { slidesPerView: 2 },
     1536: { slidesPerView: 3 },
   },
-  on: {
-    slideChange: () => { showSwipeHint.value = false; clearTimeout(hintTimer) },
-  },
+  on: {},
 })
 
 </script>
@@ -147,31 +137,4 @@ swiper-container::part(wrapper) {
   align-items: flex-end;
 }
 
-.swipe-arrow-left {
-  animation: swipe-left 1.2s ease-in-out infinite;
-}
-
-.swipe-arrow-right {
-  animation: swipe-right 1.2s ease-in-out infinite;
-}
-
-@keyframes swipe-left {
-  0%, 100% { transform: translateX(0);    opacity: 0.5; }
-  50%       { transform: translateX(-7px); opacity: 1; }
-}
-
-@keyframes swipe-right {
-  0%, 100% { transform: translateX(0);   opacity: 0.5; }
-  50%       { transform: translateX(7px); opacity: 1; }
-}
-
-.swipe-hint {
-  transition: opacity 0.5s ease;
-}
-.swipe-hint--visible {
-  opacity: 1;
-}
-.swipe-hint--hidden {
-  opacity: 0;
-}
 </style>

@@ -18,7 +18,7 @@ function showModal(id: string) {
   <div
     ref="loginRef"
     id="login"
-    class="relative overflow-hidden py-16 lg:py-28 xl:py-36"
+    class="relative overflow-hidden "
   >
     <div class="max-w-6xl mx-auto px-6 flex items-center gap-8 lg:gap-16">
       <!-- Content – left -->

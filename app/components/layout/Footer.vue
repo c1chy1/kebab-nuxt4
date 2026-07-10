@@ -2,7 +2,7 @@
 <template>
 <footer
     id="contact"
-    class="relative footer bg-transparent w-full flex flex-col opacity-95 mt-16 pl-4 pr-6 lg:pl-12 lg:pr-20"
+    class="relative footer bg-transparent w-full flex flex-col mt-16 pl-4 pr-6 lg:pl-12 lg:pr-20"
 >
   <NuxtImg
     src="/images/contact/footer-bg.png"
@@ -12,8 +12,10 @@
     loading="lazy"
     alt=""
     aria-hidden="true"
-    class="absolute inset-0 w-full h-full object-cover object-center z-0 pointer-events-none"
+    class="absolute inset-0 w-full h-full object-cover object-[center_30%] z-0 pointer-events-none"
   />
+  <!-- Dark overlay for contrast -->
+  <div class="absolute inset-0 z-[1] bg-gradient-to-b from-black/70 via-black/60 to-black/80 pointer-events-none" />
   <div class="relative z-10 flex flex-col w-full">
 <nav class="footer pt-8 xl:pt-0 flex flex-col gap-4 lg:flex-row items-end lg:items-center">
 
