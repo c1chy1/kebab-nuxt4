@@ -43,7 +43,7 @@ bg-repeat-round  lg:px-12 xl:px-16  font-bebas">
           <li class="relative" ref="langSwitcher">
             <div class="dropdown dropdown-end">
               <button tabindex="0" class="flex items-center gap-1.5 px-2 hover:bg-transparent focus:bg-transparent">
-                <Icon :name="currentFlag" class="w-6 h-6" />
+                <Icon :name="currentFlag" class="w-6 h-6" mode="svg" />
                 <span class="text-sm lg:text-base">{{ locale.toUpperCase() }}</span>
                 <svg class="w-3 h-3 fill-current opacity-70" viewBox="0 0 10 6">
                   <path d="M0 0l5 6 5-6z"/>
@@ -56,7 +56,7 @@ bg-repeat-round  lg:px-12 xl:px-16  font-bebas">
                     class="flex items-center gap-2 px-3 py-2 rounded hover:bg-white/10 transition-colors w-full text-left"
                     :class="{ 'text-primary font-bold': locale === loc.code }"
                   >
-                    <Icon :name="localeFlags[loc.code]" class="w-6 h-6" />
+                    <Icon :name="localeFlags[loc.code]" class="w-6 h-6" mode="svg" />
                     <span class="text-sm tracking-widest">{{ loc.code.toUpperCase() }}</span>
                   </button>
                 </li>
@@ -75,7 +75,8 @@ bg-repeat-round  lg:px-12 xl:px-16  font-bebas">
     </nav>
 
     <div ref="mobilNav"
-         class=" opacity-0 nav-bg w-full h-16  lg:h-[7.5rem] bg-[url('/bg.png')]  duration-1000 xl:duration-750 transition-all filter-dark absolute">
+         class="opacity-0 nav-bg w-full h-16 lg:h-[7.5rem] duration-1000 xl:duration-750 transition-all absolute relative">
+      <div class="absolute inset-0 bg-[url('/bg.png')] filter-dark"></div>
       <LayoutMobilNav/>
     </div>
   </header>

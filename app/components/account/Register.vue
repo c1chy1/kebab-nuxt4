@@ -17,8 +17,8 @@ function showModal(id: string) {
 <template>
   <div
       ref="registerRef"
-      class="relative text-center z-20 pb-12"
-       :class="!user.isLoggedIn ? 'h-auto pt-20' : 'h-32'"
+      class="relative text-center z-20 pt-12 lg:pt-24 xl:pt-32 "
+       :class="!user.isLoggedIn ? 'h-auto pt-12' : 'h-32'"
        id="register">
     <ClientOnly>
       <div class="absolute inset-0 -z-10 hidden sm:block bg-[url('/images/register/register-left.png')] bg-no-repeat sm:bg-size-[18rem_35rem] xl:bg-size-[24rem_40rem] pointer-events-none" aria-hidden="true" />

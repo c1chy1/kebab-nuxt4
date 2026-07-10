@@ -28,8 +28,8 @@ useHead({
     <LazySectionsGallery/>
   </div>
   <section class="[content-visibility:auto] [contain-intrinsic-size:0_400px]">
-    <LazyAccountLogin v-if="!user.isLoggedIn"/>
     <LazyAccountRegister/>
+    <LazyAccountLogin v-if="!user.isLoggedIn"/>
   </section>
   <div class="[content-visibility:auto] [contain-intrinsic-size:0_300px]">
     <LazyLayoutFooter/>

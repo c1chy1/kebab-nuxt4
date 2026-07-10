@@ -173,7 +173,7 @@
 
       <dialog id="settings_modal" class="modal">
         <div class="modal-box">
-          <h2 class="section-title">{{ $t('dashboard.settings') }}</h2>
+          <h2 class="section-title text-primary">{{ $t('dashboard.settings') }}</h2>
           <div class="w-full mx-auto flex justify-center">
             <UiButtonTheme/>
           </div>
@@ -191,11 +191,6 @@
             <table class="table text-xs sm:text-sm  text-center">
               <thead>
               <tr>
-<!--                <th>
-                  <label>
-                    <input type="checkbox" class="checkbox"/>
-                  </label>
-                </th>-->
                 <th>{{ $t('dashboard.ordersTable.orderId') }}</th>
                 <th>{{ $t('dashboard.ordersTable.title') }}</th>
                 <th>{{ $t('dashboard.ordersTable.price') }}</th>
@@ -205,15 +200,6 @@
               </thead>
               <tbody>
               <tr v-for="item in store.orders">
-
-<!--                <td>
-                  <div>
-                    <label>
-                      <input type="checkbox" class="checkbox"/>
-                    </label>
-
-                  </div>
-                </td>-->
                 <td>
                   <p > {{ item._id }}</p>
                 </td>
@@ -276,51 +262,54 @@
             />
           </div>
           <div class="w-full overflow-auto h-72">
-            <table class="table text-xs sm:text-sm text-center">
+            <table class="table table-xs sm:table-sm text-center">
               <thead class="sticky top-0 z-10 bg-base-100">
               <tr>
-                <th>#</th>
-                <th>{{ $t('dashboard.usersTable.avatar') }}</th>
+                <th class="hidden sm:table-cell">#</th>
                 <th>{{ $t('dashboard.usersTable.username') }}</th>
-                <th>{{ $t('dashboard.usersTable.email') }}</th>
+                <th class="hidden sm:table-cell">{{ $t('dashboard.usersTable.email') }}</th>
                 <th>{{ $t('dashboard.usersTable.role') }}</th>
-                <th></th>
                 <th></th>
               </tr>
               </thead>
               <tbody>
               <tr v-for="(user, index) in filteredUsers" :key="user._id">
-                <td>{{ index + 1 }}</td>
+                <td class="hidden sm:table-cell">{{ index + 1 }}</td>
                 <td>
-                  <div class="flex justify-center">
-                    <div class="avatar">
-                      <div class="mask mask-squircle w-10 h-10">
+                  <div class="flex items-center gap-2 text-left">
+                    <div class="avatar shrink-0">
+                      <div class="mask mask-squircle w-7 h-7 sm:w-9 sm:h-9">
                         <img :src="user.profilePicture" alt="avatar"/>
                       </div>
                     </div>
+                    <div class="min-w-0">
+                      <div class="font-semibold truncate max-w-[100px] sm:max-w-none">{{ user.username }}</div>
+                      <div class="text-[10px] sm:hidden opacity-60 font-normal truncate max-w-[100px]">{{ user.email }}</div>
+                    </div>
                   </div>
                 </td>
-                <td>{{ user.username }}</td>
-                <td>{{ user.email }}</td>
+                <td class="hidden sm:table-cell text-left">{{ user.email }}</td>
                 <td>
-                  <span :class="user.role === 'admin' ? 'badge badge-warning' : 'badge badge-ghost'">
+                  <span :class="user.role === 'admin' ? 'badge badge-warning badge-xs sm:badge-sm' : 'badge badge-ghost badge-xs sm:badge-sm'">
                     {{ user.role }}
                   </span>
                 </td>
                 <td>
-                  <button
-                      class="btn btn-info btn-xs text-white cursor-pointer"
-                      @click="openUserOrdersModal(user)">
-                    {{ $t('dashboard.orders') }}
-                  </button>
-                </td>
-                <td>
-                  <button
-                      v-if="user.role !== 'admin'"
-                      class="btn btn-error btn-xs cursor-pointer"
-                      @click="adminStore.removeUser(user._id)">
-                    {{ $t('dashboard.usersTable.deleteUser') }}
-                  </button>
+                  <div class="flex flex-col sm:flex-row gap-1 items-center justify-center">
+                    <button
+                        class="btn btn-info btn-xs text-white cursor-pointer"
+                        @click="openUserOrdersModal(user)">
+                      <span class="hidden sm:inline">{{ $t('dashboard.orders') }}</span>
+                      <Icon name="heroicons:list-bullet" class="w-3 h-3 sm:hidden" />
+                    </button>
+                    <button
+                        v-if="user.role !== 'admin'"
+                        class="btn btn-error btn-xs cursor-pointer"
+                        @click="adminStore.removeUser(user._id)">
+                      <span class="hidden sm:inline">{{ $t('dashboard.usersTable.deleteUser') }}</span>
+                      <Icon name="heroicons:trash" class="w-3 h-3 sm:hidden" />
+                    </button>
+                  </div>
                 </td>
               </tr>
               </tbody>
@@ -333,53 +322,49 @@
           </div>
         </div>
 
-        <dialog id="user_orders_modal" class="modal font-bold">
-          <div class="modal-box max-w-fit overflow-auto" data-lenis-prevent>
-            <h2 class="section-title">{{ adminStore.selectedUsername }} – {{ $t('dashboard.orders') }}</h2>
-            <div class="w-full flex flex-col">
-              <p v-if="adminStore.selectedUserOrders.length === 0" class="text-center py-4 opacity-60">{{ $t('dashboard.ordersTable.noOrders') }}</p>
-              <table v-else class="table text-xs sm:text-sm text-center">
-                <thead>
-                <tr>
-                  <th>{{ $t('dashboard.ordersTable.orderId') }}</th>
-                  <th>{{ $t('dashboard.ordersTable.title') }}</th>
-                  <th>{{ $t('dashboard.ordersTable.price') }}</th>
-                  <th>{{ $t('dashboard.ordersTable.qty') }}</th>
-                  <th>{{ $t('dashboard.ordersTable.total') }}</th>
-                </tr>
-                </thead>
-                <tbody>
-                <tr v-for="item in adminStore.selectedUserOrders" :key="item._id">
-                  <td>{{ item._id }}</td>
-                  <td>
-                    <div v-for="order in item.orderItems" :key="order.title">
-                      <p>{{ order.title }}</p>
-                    </div>
-                    <p>{{ $t('dashboard.ordersTable.delivery') }}</p>
-                  </td>
-                  <td>
-                    <div v-for="order in item.orderItems" :key="order.title">
-                      <p>{{ order.price }} €</p>
-                    </div>
-                    <p>3 €</p>
-                  </td>
-                  <td class="align-baseline">
-                    <div v-for="order in item.orderItems" :key="order.title">
-                      <p>{{ order.qty }}</p>
-                    </div>
-                  </td>
-                  <td>{{ item.totalPrice }} €</td>
-                </tr>
-                </tbody>
-              </table>
-            </div>
-            <div class="modal-action">
-              <form method="dialog">
-                <button class="button-orange cursor-pointer">{{ $t('dashboard.back') }}</button>
-              </form>
-            </div>
+      </dialog>
+
+      <dialog id="user_orders_modal" class="modal font-bold">
+        <div class="modal-box w-11/12 max-w-2xl overflow-auto" data-lenis-prevent>
+          <h2 class="section-title">{{ adminStore.selectedUsername }}</h2>
+          <div class="w-full overflow-auto">
+            <p v-if="adminStore.selectedUserOrders.length === 0" class="text-center py-4 opacity-60">{{ $t('dashboard.ordersTable.noOrders') }}</p>
+            <table v-else class="table table-xs sm:table-sm text-center w-full">
+              <thead>
+              <tr>
+                <th class="hidden sm:table-cell">{{ $t('dashboard.ordersTable.orderId') }}</th>
+                <th>{{ $t('dashboard.ordersTable.title') }}</th>
+                <th>{{ $t('dashboard.ordersTable.price') }}</th>
+                <th class="hidden sm:table-cell">{{ $t('dashboard.ordersTable.qty') }}</th>
+                <th>{{ $t('dashboard.ordersTable.total') }}</th>
+              </tr>
+              </thead>
+              <tbody>
+              <tr v-for="item in adminStore.selectedUserOrders" :key="item._id">
+                <td class="hidden sm:table-cell font-mono text-[10px] opacity-60">…{{ item._id.slice(-8) }}</td>
+                <td class="text-left">
+                  <div v-for="order in item.orderItems" :key="order.title" class="flex justify-between gap-2 sm:block">
+                    <span>{{ order.title }}</span>
+                    <span class="sm:hidden text-[10px] opacity-60">×{{ order.qty }}</span>
+                  </div>
+                  <div class="opacity-50 text-[10px]">{{ $t('dashboard.ordersTable.delivery') }}</div>
+                </td>
+                <td class="align-top">
+                  <div v-for="order in item.orderItems" :key="order.title">{{ order.price }} €</div>
+                  <div>3 €</div>
+                </td>
+                <td class="hidden sm:table-cell align-top">
+                  <div v-for="order in item.orderItems" :key="order.title">{{ order.qty }}</div>
+                </td>
+                <td class="font-semibold">{{ item.totalPrice }} €</td>
+              </tr>
+              </tbody>
+            </table>
           </div>
-        </dialog>
+          <div class="modal-action">
+            <button class="button-orange cursor-pointer" @click="backToUsers()">{{ $t('dashboard.back') }}</button>
+          </div>
+        </div>
       </dialog>
       <dialog id="products_modal" class="modal font-bold">
         <div class="modal-box w-11/12 max-w-2xl overflow-y-auto" data-lenis-prevent>
@@ -544,8 +529,14 @@ async function openUsersModal() {
 }
 
 async function openUserOrdersModal(user: any) {
+  document.getElementById('users_modal')?.close()
   await adminStore.getUserOrders(user._id, user.username ?? user.email)
   showModal('user_orders_modal')
+}
+
+function backToUsers() {
+  document.getElementById('user_orders_modal')?.close()
+  showModal('users_modal')
 }
 
 async function openProductsModal() {

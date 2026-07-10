@@ -32,10 +32,10 @@ useLocaleTransition(eventsRef, 'h2')
         <swiper-slide
             v-for="(slide, i) in hamburgers"
             :key="i"
-            class="text-left bg-white"
+            class="text-left events"
         >
           <div class=" flex flex-col-reverse lg:flex-row lg:items-stretch w-full p-2">
-            <div class="events w-full lg:w-1/2 px-2 py-8 lg:py-16 lg:pl-12 lg:pr-7">
+            <div class="w-full lg:w-1/2 px-2 py-8 lg:py-16 lg:pl-12 lg:pr-7">
               <h2 class="text-primary text-[29px] font-bebas uppercase">
                 {{ slide.label }}
               </h2>

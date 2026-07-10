@@ -1,5 +1,5 @@
 <template>
-  <VueLenis ref="lenisRef" root :auto-raf="false">
+  <VueLenis ref="lenisRef" root :auto-raf="false" :options="{ duration: 3 }">
   <div
       :data-theme="theme"
       class="duration-700 transition-all">
@@ -20,7 +20,9 @@ import {useThemeStore} from '@/stores/useTheme'
 import {useUserStore} from "@/stores/userStore";
 import {useCartStore} from "@/stores/useCart";
 const i18nHead = useLocaleHead()
-useHead(() => ({ htmlAttrs: i18nHead.value.htmlAttrs }))
+const themeStore = useThemeStore()
+const { theme } = storeToRefs(themeStore)
+useHead(() => ({ htmlAttrs: { ...i18nHead.value.htmlAttrs, 'data-theme': theme.value } }))
 
 const { t } = useI18n()
 useSeoMeta({ description: () => t('meta.description') })
@@ -33,9 +35,6 @@ const lang = ref<string | null>(langChosenCookie.value ?? null)
 
 const { introComplete } = useIntroState()
 watch(showPage, (val) => { if (val) introComplete.value = true })
-
-const themeStore = useThemeStore()
-const { theme } = storeToRefs(themeStore)
 const user = useUserStore()
 
 const {loadCart} = useCartStore()

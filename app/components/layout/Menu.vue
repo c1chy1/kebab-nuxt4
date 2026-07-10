@@ -3,7 +3,7 @@
     <p class="tagline text-[22px] text-secondary w-56 mb-7 mx-auto font-bebas bg-neutral inline-block py-4 xl:px-4">
       {{ $t('menu.tagline') }}
     </p>
-    <h2 class="text-primary font-bold text-xl sm:text-4xl xl:text-6xl font-alfa uppercase">{{ $t('menu.title') }}</h2>
+    <h2 class="text-primary font-bold text-xl sm:text-4xl xl:text-5xl font-alfa uppercase">{{ $t('menu.title') }}</h2>
     <p class="text-sm xl:text-[17px] max-w-4xl mx-auto lowercase">
       {{ $t('menu.description') }}
     </p>
@@ -21,10 +21,14 @@
         <Transition name="swipe-hint-fade">
           <div
             v-if="showSwipeHint"
-            class="swipe-hint sm:hidden absolute inset-0 z-20 pointer-events-none flex items-center justify-between px-3"
+            class="swipe-hint sm:hidden absolute inset-0 z-20 pointer-events-none flex items-center justify-between"
           >
-            <Icon name="heroicons:chevron-left" class="w-8 h-8 text-white drop-shadow-lg swipe-arrow" />
-            <Icon name="heroicons:chevron-right" class="w-8 h-8 text-white drop-shadow-lg swipe-arrow" />
+            <div class="flex items-center self-stretch pl-1 pr-5 bg-gradient-to-r from-black/35 to-transparent">
+              <Icon name="heroicons:chevron-left" class="w-9 h-9 text-white drop-shadow-lg swipe-arrow-left" />
+            </div>
+            <div class="flex items-center self-stretch pr-1 pl-5 bg-gradient-to-l from-black/35 to-transparent">
+              <Icon name="heroicons:chevron-right" class="w-9 h-9 text-white drop-shadow-lg swipe-arrow-right" />
+            </div>
           </div>
         </Transition>
       <ClientOnly>
@@ -46,7 +50,7 @@
                 <uiMenuImage :src="slide.img" :alt="slide.title" />
               </figure>
               <div class="card-body p-0 items-center text-center">
-                <h3 class="card-title text-2xl sm:text-4xl text-primary xl:mb-2.5 font-bebas uppercase">
+                <h3 class="card-title text-primary text-2xl sm:text-4xl xl:mb-2.5 font-bebas uppercase">
                   {{ slide.title }}
                 </h3>
                 <p class="text-xs xl:text-[17px] leading-5 lowercase w-2/3 xl:w-full">
@@ -97,7 +101,17 @@ if (!adminStore.products.length) {
 
 const hamburgers = computed(() => adminStore.products)
 
-const showSwipeHint = ref(true)
+const showSwipeHint = ref(false)
+let hintTimer: ReturnType<typeof setTimeout>
+
+onMounted(() => {
+  if (window.innerWidth < 576) {
+    showSwipeHint.value = true
+    hintTimer = setTimeout(() => { showSwipeHint.value = false }, 3000)
+  }
+})
+
+onUnmounted(() => clearTimeout(hintTimer))
 
 const swiper = useSwiper(containerRef, {
   loop: true,
@@ -110,8 +124,7 @@ const swiper = useSwiper(containerRef, {
     1536: { slidesPerView: 3 },
   },
   on: {
-    slideChange: () => { showSwipeHint.value = false },
-    touchStart: () => { showSwipeHint.value = false },
+    slideChange: () => { showSwipeHint.value = false; clearTimeout(hintTimer) },
   },
 })
 
@@ -129,19 +142,22 @@ swiper-container::part(wrapper) {
   align-items: flex-end;
 }
 
-.swipe-arrow {
-  animation: swipe-pulse 1.4s ease-in-out infinite;
-  opacity: 0.85;
-  filter: drop-shadow(0 2px 6px rgba(0,0,0,0.5));
+.swipe-arrow-left {
+  animation: swipe-left 1.2s ease-in-out infinite;
 }
 
-@keyframes swipe-pulse {
-  0%, 100% { transform: translateX(0); opacity: 0.6; }
-  50%       { transform: translateX(6px); opacity: 1; }
+.swipe-arrow-right {
+  animation: swipe-right 1.2s ease-in-out infinite;
 }
 
-.swipe-hint > .swipe-arrow:first-child {
-  animation-direction: reverse;
+@keyframes swipe-left {
+  0%, 100% { transform: translateX(0);    opacity: 0.5; }
+  50%       { transform: translateX(-7px); opacity: 1; }
+}
+
+@keyframes swipe-right {
+  0%, 100% { transform: translateX(0);   opacity: 0.5; }
+  50%       { transform: translateX(7px); opacity: 1; }
 }
 
 .swipe-hint-fade-leave-active {

@@ -12,7 +12,7 @@
 
   </div>
   <div class="menu-mobile right-0 top-0 cursor-pointer font-mont " id="menu-mobile">
-    <div ref="bgMenu" class=" h-dvh px-6 bg-menu-mobile bg-accent " id="bg-menu-mobile">
+    <div ref="bgMenu" class=" h-dvh px-6 bg-menu-mobile " id="bg-menu-mobile">
       <div class="fixed w-full top-[100px] z-[3]">
       <ul ref="menuContainer" class="space-y-4 text-2xl sm:text-3xl pl-6">
         <li><a href="#header" @click.prevent="navClick('#header')">{{ $t('nav.home') }}</a></li>
@@ -30,7 +30,7 @@
               class="flex flex-col items-center gap-0.5 transition-all duration-300"
               :class="locale === loc.code ? 'opacity-100 scale-110' : 'opacity-35 hover:opacity-60'"
             >
-              <Icon :name="localeFlags[loc.code]" class="w-9 h-9 sm:w-10 sm:h-10" />
+              <Icon :name="localeFlags[loc.code]" class="w-9 h-9 sm:w-10 sm:h-10" mode="svg" />
               <span class="text-[10px] tracking-widest uppercase font-bold">{{ loc.code }}</span>
             </button>
           </div>
@@ -55,7 +55,7 @@ const scrollOffsets: Record<string, number> = {
   '#menu':    145,
   '#events':  -25,
   '#gallery': 0,
-  '#login':   20,
+  '#login':   -230,
   '#contact': 400,
 }
 

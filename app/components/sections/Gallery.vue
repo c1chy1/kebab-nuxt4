@@ -52,12 +52,40 @@ const gallery = ref()
 const titleRef = ref<HTMLElement>()
 useLocaleTransition(titleRef)
 
+let lgInstance: any = null
+let historyPushed = false
+
+const handlePopstate = () => {
+  if (historyPushed) {
+    historyPushed = false
+    lgInstance?.closeGallery()
+  }
+}
+
 onMounted(async () => {
+  window.addEventListener('popstate', handlePopstate)
+
   const [{ default: Lightgallery }] = await Promise.all([
     import('lightgallery'),
     import('lightgallery/scss/lightgallery.scss'),
   ])
-  Lightgallery(gallery.value, gallerySettings)
+  lgInstance = Lightgallery(gallery.value, gallerySettings)
+
+  gallery.value.addEventListener('lgAfterOpen', () => {
+    history.pushState({ lgOpen: true }, '')
+    historyPushed = true
+  })
+
+  gallery.value.addEventListener('lgBeforeClose', () => {
+    if (historyPushed) {
+      historyPushed = false
+      history.go(-1)
+    }
+  })
+})
+
+onUnmounted(() => {
+  window.removeEventListener('popstate', handlePopstate)
 })
 
 const hamburgers = [
@@ -111,6 +139,20 @@ const gallerySettings = {
 }
 </script>
 
-<style scoped>
-
+<style>
+.lg-close.lg-icon {
+  width: 44px !important;
+  height: 44px !important;
+  border-radius: 50% !important;
+  background: rgba(0, 0, 0, 0.55) !important;
+  backdrop-filter: blur(4px);
+  display: flex !important;
+  align-items: center;
+  justify-content: center;
+  margin: 8px !important;
+  font-size: 22px !important;
+}
+.lg-close.lg-icon:hover {
+  background: rgba(0, 0, 0, 0.8) !important;
+}
 </style>

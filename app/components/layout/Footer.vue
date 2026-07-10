@@ -7,7 +7,7 @@
   <NuxtImg
     src="/images/contact/footer-bg.png"
     format="webp"
-    quality="75"
+    quality="100"
     sizes="100vw"
     loading="lazy"
     alt=""
