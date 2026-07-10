@@ -2,7 +2,7 @@
 <template>
 <footer
     id="contact"
-    class="relative footer bg-transparent w-full flex flex-col mt-16 pl-4 pr-6 lg:pl-12 lg:pr-20"
+    class="relative footer  bg-cover bg-no-repeat bg-center  w-full flex flex-col mt-16 pl-4 pr-6 lg:pl-12 lg:pr-20"
 >
   <NuxtImg
     src="/images/contact/footer-bg.png"
@@ -15,7 +15,7 @@
     class="absolute inset-0 w-full h-full object-cover object-[center_30%] z-0 pointer-events-none"
   />
 
-  <div class="relative z-10 flex flex-col w-full">
+  <div class="relative z-0 flex flex-col w-full">
 <nav class="footer pt-8 xl:pt-0 flex flex-col gap-4 lg:flex-row items-end lg:items-center">
 
 <div class="lg:w-1/2 2xl:pt-12">

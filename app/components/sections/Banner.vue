@@ -14,7 +14,7 @@
             sizes="100vw sm:50vw lg:50vw"
             alt=""
             :src="src"
-            class="w-full h-full min-h-[200px] hover:scale-105 transition duration-500 cursor-pointer object-cover"/>
+            class="w-full h-full min-h-50 hover:scale-105 transition duration-500 cursor-pointer object-cover"/>
 </article>
 
 
