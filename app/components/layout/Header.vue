@@ -1,9 +1,9 @@
 <template>
-  <header id="header" class="flex bg-[url('/bg.png')] bg-no-repeat bg-center bg-cover h-dvh">
+  <header id="header" class="flex bg-[url('/bg.png')] bg-no-repeat bg-center bg-cover h-screen">
     <swiper-container
         ref="containerRef"
         :init="false"
-        class="md:block h-dvh shadow-dark-lg background-dark-header transition-all duration-500 w-full"
+        class="md:block h-screen shadow-dark-lg background-dark-header transition-all duration-500 w-full"
       >
         <swiper-slide
           v-for="(slide, index) in kebabs"
@@ -13,7 +13,7 @@
           class="hero w-11/12"
         >
           <div
-            class="h-dvh xl:w-5/6 relative flex flex-col sm:flex-row items-center justify-center
+            class="h-screen xl:w-5/6 relative flex flex-col sm:flex-row items-center justify-center
                    text-center lg:text-left lg:justify-center lg:flex-row-reverse uppercase"
           >
             <div class="relative sm:w-1/2 xl:w-full">
