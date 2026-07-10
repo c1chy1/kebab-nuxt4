@@ -15,25 +15,13 @@ useHead({
 <template >
   <LayoutNavigation/>
   <LayoutHeader/>
-  <div class="[content-visibility:auto] [contain-intrinsic-size:0_600px]">
-    <LazySectionsHome/>
-  </div>
-  <div class="[content-visibility:auto] [contain-intrinsic-size:0_800px]">
-    <LazyLayoutMenu/>
-  </div>
-  <div class="[content-visibility:auto] [contain-intrinsic-size:0_600px]">
-    <LazySectionsEvents/>
-  </div>
-  <div class="[content-visibility:auto] [contain-intrinsic-size:0_600px]">
-    <LazySectionsGallery/>
-  </div>
-  <section class="[content-visibility:auto] [contain-intrinsic-size:0_400px]">
-    <LazyAccountRegister/>
-    <LazyAccountLogin v-if="!user.isLoggedIn"/>
-  </section>
-  <div class="[content-visibility:auto] [contain-intrinsic-size:0_300px]">
-    <LazyLayoutFooter/>
-  </div>
+  <LazySectionsHome/>
+  <LazyLayoutMenu/>
+  <LazySectionsEvents/>
+  <LazySectionsGallery/>
+  <LazyAccountRegister/>
+  <LazyAccountLogin v-if="!user.isLoggedIn"/>
+  <LazyLayoutFooter/>
 
 
 </template>

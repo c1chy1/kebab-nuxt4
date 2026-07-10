@@ -164,6 +164,20 @@ html:has(:is(.modal-open, .modal:target, .modal-toggle:checked + .modal, .modal[
   }
 }
 
+.Toastify__toast-container--top-center {
+  top: 72px !important;
+}
+
+@media (min-width: 1024px) {
+  .Toastify__toast-container--top-center {
+    top: 128px !important;
+  }
+}
+
+.Toastify__toast {
+  font-family: var(--font-alfa) !important;
+}
+
 .section-title {
   color: var(--color-primary) !important;
 }

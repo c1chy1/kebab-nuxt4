@@ -1,5 +1,5 @@
 <template>
-  <section id="menu" ref="menuRef" class="px-2 pt-28 lg:pt-40 pb-12 sm:pb-20 min-h-dvh text-center uppercase flex flex-col items-center justify-between gap-4">
+  <section id="menu" ref="menuRef" class="px-2 pt-28 lg:pt-40 pb-12 sm:pb-20 min-h-screen text-center uppercase flex flex-col items-center justify-between gap-4">
     <p class="tagline text-[22px] text-secondary w-56 mb-7 mx-auto font-bebas bg-neutral inline-block py-4 xl:px-4">
       {{ $t('menu.tagline') }}
     </p>
@@ -18,19 +18,21 @@
       </button>
 
       <div class="flex-1 min-w-0 overflow-hidden relative">
-        <Transition name="swipe-hint-fade">
-          <div
-            v-if="showSwipeHint"
-            class="swipe-hint sm:hidden absolute inset-0 z-20 pointer-events-none flex items-center justify-between"
-          >
-            <div class="flex items-center self-stretch pl-1 pr-5 bg-gradient-to-r from-black/35 to-transparent">
-              <Icon name="heroicons:chevron-left" class="w-9 h-9 text-white drop-shadow-lg swipe-arrow-left" />
-            </div>
-            <div class="flex items-center self-stretch pr-1 pl-5 bg-gradient-to-l from-black/35 to-transparent">
-              <Icon name="heroicons:chevron-right" class="w-9 h-9 text-white drop-shadow-lg swipe-arrow-right" />
-            </div>
+        <div
+          class="swipe-hint sm:hidden absolute inset-0 z-20 pointer-events-none flex items-center justify-between"
+          :class="showSwipeHint ? 'swipe-hint--visible' : 'swipe-hint--hidden'"
+        >
+          <div class="flex items-center self-stretch pl-1 pr-5 bg-gradient-to-r from-black/40 to-transparent">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" class="w-9 h-9 drop-shadow-lg swipe-arrow-left">
+              <path d="M15 18l-6-6 6-6"/>
+            </svg>
           </div>
-        </Transition>
+          <div class="flex items-center self-stretch pr-1 pl-5 bg-gradient-to-l from-black/40 to-transparent">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" class="w-9 h-9 drop-shadow-lg swipe-arrow-right">
+              <path d="M9 18l6-6-6-6"/>
+            </svg>
+          </div>
+        </div>
       <ClientOnly>
         <swiper-container
           ref="containerRef"
@@ -113,10 +115,13 @@ onMounted(() => {
 
 onUnmounted(() => clearTimeout(hintTimer))
 
+const isMobile = import.meta.client && window.innerWidth < 576
+
 const swiper = useSwiper(containerRef, {
   loop: true,
   speed: 1000,
   touchStartPreventDefault: false,
+  ...(isMobile ? { autoplay: { delay: 2500, disableOnInteraction: true } } : {}),
   breakpoints: {
     0:    { slidesPerView: 1, spaceBetween: 20 },
     640:  { slidesPerView: 2, spaceBetween: 40 },
@@ -160,10 +165,13 @@ swiper-container::part(wrapper) {
   50%       { transform: translateX(7px); opacity: 1; }
 }
 
-.swipe-hint-fade-leave-active {
+.swipe-hint {
   transition: opacity 0.5s ease;
 }
-.swipe-hint-fade-leave-to {
+.swipe-hint--visible {
+  opacity: 1;
+}
+.swipe-hint--hidden {
   opacity: 0;
 }
 </style>

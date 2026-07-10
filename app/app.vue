@@ -57,6 +57,9 @@ onMounted(async () => {
   window.scrollTo(0, 0)
   loadCart()
 
+  const { updateGlobalOptions } = await import('vue3-toastify')
+  updateGlobalOptions({ position: 'top-center' })
+
   window.addEventListener('language-selected', (e: CustomEvent) => {
     lang.value = e.detail
     langChosenCookie.value = e.detail
