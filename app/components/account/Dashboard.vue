@@ -375,6 +375,7 @@
               <tr>
                 <th>#</th>
                 <th>{{ $t('dashboard.productsTable.title') }}</th>
+                <th>{{ $t('dashboard.productsTable.description') }}</th>
                 <th>{{ $t('dashboard.productsTable.price') }}</th>
                 <th></th>
               </tr>
@@ -384,7 +385,14 @@
                 <td>{{ product.id }}</td>
                 <td>
                   <input
-                      v-model="product.title"
+                      v-model="product.title[locale]"
+                      type="text"
+                      class="input input-bordered input-xs w-full font-normal"
+                  />
+                </td>
+                <td>
+                  <input
+                      v-model="product.description[locale]"
                       type="text"
                       class="input input-bordered input-xs w-full font-normal"
                   />
@@ -428,6 +436,7 @@ import Draggable from "gsap/Draggable";
 
 const store = useUserStore()
 const adminStore = useAdminStore()
+const { locale } = useI18n()
 
 const isEditing = ref(false)
 const editUsername = ref('')
@@ -545,7 +554,13 @@ async function openProductsModal() {
 }
 
 async function saveProduct(product: any) {
-  await adminStore.updateProduct(product.id, product.title, product.price)
+  await adminStore.updateProduct(
+      product.id,
+      product.title[locale.value],
+      product.description?.[locale.value] ?? '',
+      product.price,
+      locale.value
+  )
 }
 
 const tl = gsap.timeline()

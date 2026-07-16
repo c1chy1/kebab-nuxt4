@@ -10,9 +10,9 @@
 
     <div class="relative flex items-center w-full">
       <button
-        @click="swiper.prev()"
-        class="swiper-preview hidden sm:flex shrink-0 z-10 items-center justify-center w-10 h-10 lg:w-12 lg:h-12 rounded-full bg-primary text-white shadow-md hover:bg-orange-600 transition-colors duration-200 mx-1 lg:mx-3 cursor-pointer"
-        aria-label="Previous"
+          @click="swiper.prev()"
+          class="swiper-preview hidden sm:flex shrink-0 z-10 items-center justify-center w-10 h-10 lg:w-12 lg:h-12 rounded-full bg-primary text-white shadow-md hover:bg-orange-600 transition-colors duration-200 mx-1 lg:mx-3 cursor-pointer"
+          aria-label="Previous"
       >
         <Icon name="heroicons:chevron-left" class="w-5 h-5 lg:w-6 lg:h-6" />
       </button>
@@ -20,68 +20,68 @@
       <div class="flex-1 min-w-0 overflow-hidden relative">
         <!-- Mobile overlay nav buttons -->
         <button
-          @click="swiper.prev()"
-          class="sm:hidden absolute left-2 top-1/2 -translate-y-1/2 z-0 flex items-center justify-center w-9 h-9 rounded-full bg-primary/80 backdrop-blur-sm text-white shadow-lg active:scale-95 transition-transform cursor-pointer"
-          aria-label="Previous"
+            @click="swiper.prev()"
+            class="sm:hidden absolute left-2 top-1/2 -translate-y-1/2 z-0 flex items-center justify-center w-9 h-9 rounded-full bg-primary/80 backdrop-blur-sm text-white shadow-lg active:scale-95 transition-transform cursor-pointer"
+            aria-label="Previous"
         >
           <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" class="w-5 h-5">
             <path d="M15 18l-6-6 6-6"/>
           </svg>
         </button>
         <button
-          @click="swiper.next()"
-          class="sm:hidden absolute right-2 top-1/2 -translate-y-1/2 z-0 flex items-center justify-center w-9 h-9 rounded-full bg-primary/80 backdrop-blur-sm text-white shadow-lg active:scale-95 transition-transform cursor-pointer"
-          aria-label="Next"
+            @click="swiper.next()"
+            class="sm:hidden absolute right-2 top-1/2 -translate-y-1/2 z-0 flex items-center justify-center w-9 h-9 rounded-full bg-primary/80 backdrop-blur-sm text-white shadow-lg active:scale-95 transition-transform cursor-pointer"
+            aria-label="Next"
         >
           <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" class="w-5 h-5">
             <path d="M9 18l6-6-6-6"/>
           </svg>
         </button>
-      <ClientOnly>
-        <swiper-container
-          ref="containerRef"
-          :init="false"
-          class="swiper w-full"
-        >
-          <swiper-slide
-            v-for="slide in (hamburgers ?? [])"
-            :key="slide.id"
-            class="hero pt-4 md:px-12"
+        <ClientOnly>
+          <swiper-container
+              ref="containerRef"
+              :init="false"
+              class="swiper w-full"
           >
-            <div
-              :class="'card-' + slide.title"
-              class="card transition-all mx-auto h-full w-10/12"
+            <swiper-slide
+                v-for="slide in (hamburgers ?? [])"
+                :key="slide.id"
+                class="hero pt-4 md:px-12"
             >
-              <figure class="p-2 lg:p-4 xl:p-10 h-full cursor-grab active:cursor-grabbing">
-                <uiMenuImage :src="slide.img" :alt="slide.title" />
-              </figure>
-              <div class="card-body p-0 items-center text-center">
-                <h3 class="card-title text-primary text-2xl sm:text-4xl xl:mb-2.5 font-bebas uppercase">
-                  {{ slide.title }}
-                </h3>
-                <p class="text-xs xl:text-[17px] leading-5 lowercase w-2/3 xl:w-full">
-                  {{ $t(`menu.items.${slide.id}`) }}
-                </p>
-                <h2 class="card-title py-1 lg:py-2 text-3xl sm:text-[38px] text-primary font-bebas uppercase">
-                  {{ slide.price }} €
-                </h2>
-                <div class="card-actions mt-auto">
-                  <button class="button-orange" @click.stop="cart.addItem(slide)">
-                    {{ $t('menu.buyNow') }}
-                  </button>
+              <div
+                  :class="'card-' + getTitle(slide)"
+                  class="card transition-all mx-auto h-full w-10/12"
+              >
+                <figure class="p-2 lg:p-4 xl:p-10 h-full cursor-grab active:cursor-grabbing">
+                  <uiMenuImage :src="slide.img" :alt="getTitle(slide)" />
+                </figure>
+                <div class="card-body p-0 items-center text-center">
+                  <h3 class="card-title text-primary text-2xl sm:text-4xl xl:mb-2.5 font-bebas uppercase">
+                    {{ getTitle(slide) }}
+                  </h3>
+                  <p class="text-xs xl:text-[17px] leading-5 lowercase w-2/3 xl:w-full">
+                    {{ getDescription(slide) }}
+                  </p>
+                  <h2 class="card-title py-1 lg:py-2 text-3xl sm:text-[38px] text-primary font-bebas uppercase">
+                    {{ slide.price }} €
+                  </h2>
+                  <div class="card-actions mt-auto">
+                    <button class="button-orange" @click.stop="cart.addItem(slide)">
+                      {{ $t('menu.buyNow') }}
+                    </button>
+                  </div>
                 </div>
               </div>
-            </div>
-            <div class="box left-1/2 bottom-1/2 absolute z-[1000]" />
-          </swiper-slide>
-        </swiper-container>
-      </ClientOnly>
-        </div>
+              <div class="box left-1/2 bottom-1/2 absolute z-[1000]" />
+            </swiper-slide>
+          </swiper-container>
+        </ClientOnly>
+      </div>
 
       <button
-        @click="swiper.next()"
-        class="swiper-next hidden sm:flex shrink-0 z-10 items-center justify-center w-10 h-10 lg:w-12 lg:h-12 rounded-full bg-primary text-white shadow-md hover:bg-orange-600 transition-colors duration-200 mx-1 lg:mx-3 cursor-pointer"
-        aria-label="Next"
+          @click="swiper.next()"
+          class="swiper-next hidden sm:flex shrink-0 z-10 items-center justify-center w-10 h-10 lg:w-12 lg:h-12 rounded-full bg-primary text-white shadow-md hover:bg-orange-600 transition-colors duration-200 mx-1 lg:mx-3 cursor-pointer"
+          aria-label="Next"
       >
         <Icon name="heroicons:chevron-right" class="w-5 h-5 lg:w-6 lg:h-6" />
       </button>
@@ -96,6 +96,8 @@ import { useAdminStore } from '@/stores/adminStore'
 
 const cart = useCartStore()
 const adminStore = useAdminStore()
+const { locale } = useI18n()
+
 const menuRef = ref<HTMLElement>()
 useLocaleTransition(menuRef, 'p, h2, h3, button.button-orange')
 
@@ -106,6 +108,20 @@ if (!adminStore.products.length) {
 }
 
 const hamburgers = computed(() => adminStore.products)
+
+function getTitle(slide: any): string {
+  const t = slide?.title
+  if (!t) return ''
+  if (typeof t === 'string') return t
+  return t[locale.value] || t.en || (Object.values(t)[0] as string) || ''
+}
+
+function getDescription(slide: any): string {
+  const d = slide?.description
+  if (!d) return ''
+  if (typeof d === 'string') return d
+  return d[locale.value] || d.en || (Object.values(d)[0] as string) || ''
+}
 
 const isMobile = import.meta.client && window.innerWidth < 576
 

@@ -43,10 +43,10 @@
           <div :data-swipe-id="item.id" class="swipe-content flex items-center w-full px-1 py-1 bg-white will-change-transform">
             <NuxtImg
                 :src="item.img"
-                :alt="`${$t('cart.imageAlt')} ${item.title}`"
+                :alt="`${$t('cart.imageAlt')} ${getTitle(item)}`"
                 class="img-fluid rounded w-12 sm:w-20 lg:w-24 xl:w-32 h-10 sm:h-12 lg:h-16 xl:h-24 shrink-0"/>
             <div class="text-black flex-1 mx-2 sm:mx-3 lg:mx-4 min-w-0">
-              <h2 class="font-bold text-xs 2xl:text-base text-black">{{ item.title }}</h2>
+              <h2 class="font-bold text-xs 2xl:text-base text-black">{{ getTitle(item) }}</h2>
               <div class="grid grid-cols-2 items-center mt-0.5">
                 <span>{{ item.price }}€</span>
                 <div class="flex justify-center">
@@ -89,7 +89,15 @@
 import {useCartStore} from '@/stores/useCart'
 import {cartItems} from "@/stores/useCart";
 const cartStore = useCartStore()
-const { t } = useI18n()
+const { t, locale } = useI18n()
+
+
+function getTitle(item: any): string {
+  const tt = item?.title
+  if (!tt) return ''
+  if (typeof tt === 'string') return tt
+  return tt[locale.value] || tt.en || (Object.values(tt)[0] as string) || ''
+}
 
 const countTransition = ref('count-up')
 
@@ -195,15 +203,23 @@ watch(() => cartStore.shouldOpen, (val) => {
 
 async function placeOrderHandler() {
   try {
+    const orderItems = cartItems.value.map((it: any) => ({
+      id: it.id,
+      img: it.img,
+      title: getTitle(it),
+      price: it.price,
+      qty: it.qty,
+      countInStock: it.countInStock,
+    }))
     const order = {
-      orderItems: cartItems.value,
+      orderItems,
       totalPrice: cartStore.total
     }
     await cartStore.placeOrder(order)
     cartStore.clearCart()
   } catch (error: any) {
     const { toast } = await import('vue3-toastify')
-    toast.error(t(error.data.statusMessage ?? error.data.message))
+    toast.error(t(error?.data?.statusMessage ?? error?.data?.message ?? 'errors.youNeedToLogIn'))
   }
 }
 

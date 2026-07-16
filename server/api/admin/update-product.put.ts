@@ -1,6 +1,7 @@
 import Product from '../../db/models/Product'
 import { verifyToken } from '../../utils/jwt'
 import { connectToMongoDB } from '../../plugins/mongodb'
+import { SUPPORTED_LOCALES, translateToAllLocales, type SupportedLocale } from '../../utils/translate'
 
 export default defineEventHandler(async (event) => {
     await connectToMongoDB()
@@ -18,15 +19,30 @@ export default defineEventHandler(async (event) => {
     }
 
     const body = await readBody(event)
-    const { id, title, price } = body
+    const { id, title, description, price, sourceLocale } = body as {
+        id: number
+        title: string
+        description?: string
+        price: number
+        sourceLocale?: SupportedLocale
+    }
 
     if (!id || !title || price === undefined) {
         throw createError({ statusCode: 400, message: 'Missing fields' })
     }
 
+    const source: SupportedLocale = SUPPORTED_LOCALES.includes(sourceLocale as SupportedLocale)
+        ? (sourceLocale as SupportedLocale)
+        : 'en'
+
+    const localizedTitle = await translateToAllLocales(title, source)
+    const localizedDescription = description
+        ? await translateToAllLocales(description, source)
+        : { en: '', de: '', pl: '', tr: '' }
+
     const product = await Product.findOneAndUpdate(
         { id },
-        { title, price: Number(price) },
+        { title: localizedTitle, description: localizedDescription, price: Number(price) },
         { returnDocument: 'after' }
     )
 
