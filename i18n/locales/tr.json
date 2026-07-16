@@ -161,6 +161,7 @@
     "products": "Ürünler",
     "productsTable": {
       "title": "Ad",
+      "description": "Açıklama",
       "price": "Fiyat"
     }
   }

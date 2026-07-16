@@ -161,6 +161,7 @@
     "products": "Produkte",
     "productsTable": {
       "title": "Name",
+      "description": "Beschreibung",
       "price": "Preis"
     }
   }
