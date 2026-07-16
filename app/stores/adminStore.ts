@@ -30,10 +30,10 @@ export const useAdminStore = defineStore('admin', {
             const data = await $fetch<any[]>('/api/products')
             this.products = data
         },
-        async updateProduct(id: number, title: string, price: number) {
+        async updateProduct(id: number, title: string, description: string, price: number, sourceLocale: string) {
             const updated = await $fetch<any>('/api/admin/update-product', {
                 method: 'PUT',
-                body: { id, title, price },
+                body: { id, title, description, price, sourceLocale },
             })
             const index = this.products.findIndex(p => p.id === id)
             if (index !== -1) this.products[index] = updated
