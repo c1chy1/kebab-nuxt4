@@ -1,134 +1,157 @@
 # 🥙 Kebab Nuxt 4
 
-A modern full-stack e-commerce platform built with **Nuxt 4**, designed as a custom-built e-commerce CMS with focus on performance, scalability, security, and smooth user experience.
+A modern **full-stack e-commerce platform** built with **Nuxt 4**, combining a fast storefront with a custom-built CMS, secure authentication, multilingual content management and a fully responsive administration panel.
 
 ---
 
-## 🚀 Tech Stack
+# 🚀 Tech Stack
 
 ### Frontend
-- Nuxt 4
-- Tailwind CSS v4
-- DaisyUI
-- Sass
-- Nuxt I18n (multi-language support)
+
+* Nuxt 4
+* Vue 3
+* Tailwind CSS v4
+* DaisyUI
+* Sass
 
 ### State Management
-- Pinia
 
-### UI / UX
-- GSAP (animations)
-- Lenis (smooth scrolling)
-- Swiper (carousels)
-- LightGallery (media viewer)
-- Nuxt Image (optimized images)
-- Nuxt Icon (icon system)
-- Vue3 Toastify (notifications)
+* Pinia
 
-### Backend / Database
-- MongoDB
-- Mongoose
-- bcrypt / mongoose-bcrypt (password security)
+### UI & UX
 
-### Authentication & Security
-- JWT authentication
-- Nuxt Security module
-- Role-based access control (Admin/User)
+* GSAP
+* Lenis
+* Swiper
+* LightGallery
+* Nuxt Image
+* Nuxt Icon
+* Vue3 Toastify
 
-### PWA & Performance
-- PWA support via Vite PWA module
-- Offline-ready installable web app
-- Optimized caching strategies
+### Backend
+
+* MongoDB
+* Mongoose
+* JWT Authentication
+* bcrypt
+* Nuxt Security
+* Compression middleware
 
 ### Storage
-- Vercel Blob (image/file storage)
 
-### Forms & Validation
-- FormKit
+* Vercel Blob Storage
 
----
+### Forms
 
-## ✨ Features
+* FormKit
 
-### 🛍️ User Features
-- Shopping cart system
-- User authentication (register/login)
-- JWT-based session handling
-- Profile management
-  - Change username
-  - Upload avatar (blob storage)
-- Multi-language support (i18n)
-- PWA installable app (mobile & desktop)
-- Fully responsive UI
-- Toast notifications system
+### Internationalization
+
+* Nuxt I18n
+* MyMemory Translation API
+
+### Progressive Web App
+
+* Vite PWA
 
 ---
 
-### 🛠️ Admin Features
-- Custom admin dashboard
-- 📦 Order management system
-- 👥 User management
-  - Delete users
-  - Filter users by name & email
-- 🛍️ Custom-built e-commerce CMS
-  - Manage products from admin panel
-  - Edit product names
-  - Edit product pricing
-- Image/media handling via Vercel Blob
-- Secure admin-only routes
-- Role-based access control
+# ✨ Features
+
+## 🛒 Customer Experience
+
+* Secure user registration & login
+* JWT-based authentication
+* Password hashing with bcrypt
+* Shopping cart system
+* User profile management
+* Update username
+* Upload profile picture
+* Toast notifications
+* Fully responsive interface
+* Progressive Web App (PWA)
 
 ---
 
-## 📌 Project Highlights
+## 🌍 Multilingual Platform
 
-- Full-stack Nuxt 4 application
-- Custom-built e-commerce CMS (admin-controlled system)
-- Secure JWT + bcrypt authentication flow
-- MongoDB-based scalable backend
-- Admin panel with full control over users, orders and products
-- PWA (Progressive Web App) support
-- Multi-language support (i18n)
-- File uploads via Vercel Blob storage
-- Smooth UX with GSAP + Lenis animations
-- Modular and scalable Nuxt architecture
+The application currently supports **4 languages**:
 
----
+* 🇵🇱 Polish
+* 🇬🇧 English
+* 🇩🇪 German
+* 🇹🇷 Turkish
 
-## 🔒 Security
+One of the main features is the **intelligent multilingual CMS workflow**.
 
-- JWT authentication
-- Password hashing (bcrypt)
-- Nuxt Security integration
-- Role-based access control (admin/user)
-- Protected API routes & middleware
+When an administrator edits a product title or description, the application automatically generates translations for all supported languages using the **MyMemory Translation API**, allowing content to stay synchronized without manually editing every language version.
 
 ---
 
-## 📱 PWA
+## 🛠️ Custom Admin Dashboard
 
-This project is fully installable as a Progressive Web App, providing a native-like experience across mobile and desktop devices, with offline capabilities and performance optimizations.
+The project includes a fully responsive **custom-built administration panel**, making it easy to manage the store from both desktop and mobile devices.
+
+### User Management
+
+* View registered users
+* Delete users
+* Filter users by name
+* Filter users by email
+
+### Order Management
+
+* Browse customer orders
+* Manage incoming orders
+
+### Custom E-Commerce CMS
+
+* Manage products directly from the dashboard
+* Edit product names
+* Edit product prices
+* Edit product descriptions
+* Automatic multilingual content synchronization
+* Image uploads using Vercel Blob Storage
 
 ---
 
-## 🌍 Internationalization
+# 🔒 Security
 
-Built-in multi-language support using **Nuxt I18n**, allowing scalable localization for future expansion.
-
----
-
-**Built with ❤️ using Nuxt 4, MongoDB & a custom CMS architecture**
-
-## 🧪 Demo Access
-
-Demo admin account for testing:
-
-```bash
-Email: demo@admin.com
-Password: demo123
-```
-
+* JWT authentication
+* bcrypt password hashing
+* Nuxt Security integration
+* Protected API routes
+* Role-based authorization
+* Secure admin-only routes
+* HTTP compression for optimized delivery
 
 ---
 
-**Built with ❤️ using Nuxt 4 + MongoDB**
+# ⚡ Performance
+
+* Progressive Web App (PWA)
+* Responsive design across desktop, tablet and mobile
+* Optimized image loading
+* Smooth scrolling powered by Lenis
+* GSAP-powered animations
+* Optimized asset delivery
+
+---
+
+# 📌 Project Highlights
+
+* ⚙️ Full-stack Nuxt 4 architecture
+* 🛍️ Custom-built e-commerce CMS
+* 👨‍💼 Responsive admin dashboard
+* 🌍 Four-language support
+* 🔄 Automatic content translation across all supported languages
+* 👥 User management system
+* 📦 Order management system
+* 🔐 Secure authentication with JWT & bcrypt
+* ☁️ Vercel Blob image storage
+* 📱 Progressive Web App
+* 🚀 Modern UI with smooth animations and optimized performance
+
+---
+
+**Built with ❤️ using Nuxt 4, MongoDB and a custom e-commerce CMS architecture.**
