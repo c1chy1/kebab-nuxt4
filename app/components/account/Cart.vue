@@ -242,16 +242,22 @@ onMounted(async () => {
     tl.set(cart.value, {
       x: closedPositionW
     }).set(cart.value, {
-      height: "2.5rem",
-      opacity: 1
+      height: "2.5rem"
+    }).to(cart.value, {
+      opacity: 1,
+      duration: 0.6,
+      ease: "power2.out"
     })
   })
   mm.add("(min-width: 576px)", () => {
     tl.set(cart.value, {
       x: closedPositionW
     }).set(cart.value, {
-      height: "3.5rem",
-      opacity: 1
+      height: "3.5rem"
+    }).to(cart.value, {
+      opacity: 1,
+      duration: 0.6,
+      ease: "power2.out"
     })
   })
   await nextTick()

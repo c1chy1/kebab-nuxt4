@@ -83,7 +83,7 @@
           class="swiper-next hidden sm:flex shrink-0 z-10 items-center justify-center w-10 h-10 lg:w-12 lg:h-12 rounded-full bg-primary text-white shadow-md hover:bg-orange-600 transition-colors duration-200 mx-1 lg:mx-3 cursor-pointer"
           aria-label="Next"
       >
-        <Icon name="heroicons:chevron-right" class="w-5 h-5 lg:w-6 lg:h-6" />
+        <Icon name="heroicons:chevron-right" class="w-5 h-5 lg:w-6 lg:h-6 z-0" />
       </button>
     </div>
   </section>
@@ -150,7 +150,13 @@ swiper-slide .button-orange {
 }
 
 swiper-container::part(wrapper) {
-  align-items: flex-end;
+  align-items: stretch;
+}
+
+/* równa wysokość slajdów -> karty wypełniają je przez h-full,
+   przycisk i tak jest dosuwany do dołu przez card-actions mt-auto */
+swiper-slide {
+  height: auto;
 }
 
 </style>

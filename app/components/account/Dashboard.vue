@@ -185,56 +185,40 @@
         </div>
       </dialog>
       <dialog id="orders_modal" class="modal font-bold">
-        <div class="modal-box max-w-fit overflow-auto" data-lenis-prevent>
+        <div class="modal-box w-11/12 max-w-4xl overflow-y-auto" data-lenis-prevent>
           <h2 class="section-title">{{ $t('dashboard.orders') }}</h2>
-          <div class="w-full flex flex-col ">
-            <table class="table text-xs sm:text-sm  text-center">
-              <thead>
+          <div class="w-full overflow-auto">
+            <table class="table table-xs sm:table-sm text-center">
+              <thead class="sticky top-0 z-10 bg-base-100">
               <tr>
-                <th>{{ $t('dashboard.ordersTable.orderId') }}</th>
+                <th class="hidden sm:table-cell">{{ $t('dashboard.ordersTable.orderId') }}</th>
                 <th>{{ $t('dashboard.ordersTable.title') }}</th>
                 <th>{{ $t('dashboard.ordersTable.price') }}</th>
-                <th>{{ $t('dashboard.ordersTable.quantity') }}</th>
+                <th class="hidden sm:table-cell">{{ $t('dashboard.ordersTable.quantity') }}</th>
                 <th>{{ $t('dashboard.ordersTable.total') }}</th>
               </tr>
               </thead>
               <tbody>
-              <tr v-for="item in store.orders">
-                <td>
-                  <p > {{ item._id }}</p>
-                </td>
-                <td>
-                  <div
-                       v-for="order in item.orderItems">
-                    <p> {{ order.title }}</p>
-
+              <tr v-for="item in store.orders" :key="item._id">
+                <td class="hidden sm:table-cell font-mono text-[10px] opacity-60">…{{ item._id.slice(-8) }}</td>
+                <td class="text-left">
+                  <div v-for="order in item.orderItems" :key="order.title" class="flex justify-between gap-2 sm:block">
+                    <span>{{ order.title }}</span>
+                    <span class="sm:hidden text-[10px] opacity-60">×{{ order.qty }}</span>
                   </div>
-                  <p>{{ $t('dashboard.ordersTable.delivery') }}</p>
+                  <div class="opacity-50 text-[10px]">{{ $t('dashboard.ordersTable.delivery') }}</div>
                 </td>
-
-                <td>
-                  <div
-                       v-for="order in item.orderItems">
-                    <p> {{ order.price }} €</p>
-                  </div>
-                  <p>3 €</p>
+                <td class="align-top">
+                  <div v-for="order in item.orderItems" :key="order.title">{{ order.price }} €</div>
+                  <div>3 €</div>
                 </td>
-                <td class="align-baseline">
-                  <div
-                       v-for="order in item.orderItems">
-                    <p> {{ order.qty }}</p>
-                  </div>
+                <td class="hidden sm:table-cell align-top">
+                  <div v-for="order in item.orderItems" :key="order.title">{{ order.qty }}</div>
                 </td>
-                <td>
-                  <div >
-                    <p> {{ item.totalPrice }} €</p>
-                  </div>
-                </td>
+                <td class="font-semibold">{{ item.totalPrice }} €</td>
               </tr>
               </tbody>
-
             </table>
-
           </div>
           <div class="modal-action">
             <form method="dialog">
@@ -367,34 +351,42 @@
         </div>
       </dialog>
       <dialog id="products_modal" class="modal font-bold">
-        <div class="modal-box w-11/12 max-w-2xl overflow-y-auto" data-lenis-prevent>
+        <div class="modal-box w-11/12 max-w-4xl overflow-y-auto" data-lenis-prevent>
           <h2 class="section-title">{{ $t('dashboard.products') }}</h2>
           <div class="w-full overflow-auto">
-            <table class="table text-xs sm:text-sm text-center">
+            <table class="table table-xs sm:table-sm text-center">
               <thead class="sticky top-0 z-10 bg-base-100">
               <tr>
-                <th>#</th>
+                <th class="hidden sm:table-cell">#</th>
                 <th>{{ $t('dashboard.productsTable.title') }}</th>
-                <th>{{ $t('dashboard.productsTable.description') }}</th>
+                <th class="hidden sm:table-cell">{{ $t('dashboard.productsTable.description') }}</th>
                 <th>{{ $t('dashboard.productsTable.price') }}</th>
                 <th></th>
               </tr>
               </thead>
               <tbody>
               <tr v-for="product in adminStore.products" :key="product.id">
-                <td>{{ product.id }}</td>
+                <td class="hidden sm:table-cell">{{ product.id }}</td>
                 <td>
                   <input
                       v-model="product.title[locale]"
                       type="text"
-                      class="input input-bordered input-xs w-full font-normal"
+                      :placeholder="$t('dashboard.productsTable.title')"
+                      class="input input-bordered input-xs w-full min-w-[120px] font-normal"
                   />
-                </td>
-                <td>
+                  <!-- opis pod tytułem tylko na telefonie -->
                   <input
                       v-model="product.description[locale]"
                       type="text"
-                      class="input input-bordered input-xs w-full font-normal"
+                      :placeholder="$t('dashboard.productsTable.description')"
+                      class="input input-bordered input-xs w-full min-w-[120px] mt-1 font-normal sm:hidden"
+                  />
+                </td>
+                <td class="hidden sm:table-cell">
+                  <input
+                      v-model="product.description[locale]"
+                      type="text"
+                      class="input input-bordered input-xs w-full min-w-[160px] font-normal"
                   />
                 </td>
                 <td>
@@ -403,14 +395,15 @@
                       type="number"
                       min="0"
                       step="0.01"
-                      class="input input-bordered input-xs w-20 font-normal"
+                      class="input input-bordered input-xs w-16 sm:w-20 font-normal"
                   />
                 </td>
                 <td>
                   <button
                       class="btn btn-xs cursor-pointer"
                       @click="saveProduct(product)">
-                    {{ $t('dashboard.save') }}
+                    <span class="hidden sm:inline">{{ $t('dashboard.save') }}</span>
+                    <Icon name="heroicons:check" class="w-3 h-3 sm:hidden" />
                   </button>
                 </td>
               </tr>

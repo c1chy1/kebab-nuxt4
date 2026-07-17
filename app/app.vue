@@ -4,7 +4,7 @@
       :data-theme="theme"
       class="duration-700 transition-all">
     <LazyAccountDashboard v-if="user.isLoggedIn"/>
-    <LazyAccountCart/>
+    <LazyAccountCart v-if="introComplete"/>
     <main>
       <NuxtPage />
       <div v-if="!showPage" class="fixed inset-0 z-[55] bg-base-100 pointer-events-none" />

@@ -1,5 +1,5 @@
 <template>
-  <header class=" w-full fixed z-10">
+  <header class=" w-full fixed z-20">
     <nav ref="navbar" class="navbar  w-5/6 lg:w-full fixed z-50
 bg-repeat-round  lg:px-12 xl:px-16  font-bebas">
       <div class="navbar-start flex-row py-4  w-full md:w-1/2 lg:w-1/4">
