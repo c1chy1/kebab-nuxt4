@@ -54,6 +54,11 @@ A modern **full-stack e-commerce platform** built with **Nuxt 4**, combining a f
 
 * Vite PWA
 
+### Access to Admin
+
+* demo@admin.com
+* demo123
+
 ---
 
 # ✨ Features
