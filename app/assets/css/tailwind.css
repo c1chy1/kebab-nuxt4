@@ -239,8 +239,8 @@ html:has(
     form {
       @apply w-2/3 sm:w-1/2 mx-auto;
     }
-   p {
-      color: oklch(0.8 0 0);
+    p {
+      color: oklch(38.81% 0.141 132.11);
     }
   }
 
@@ -503,6 +503,12 @@ html:has(
       color: oklch(0.8 0 0);
     }
 
+  }
+
+  #register {
+    p {
+      color: oklch(0.8 0 0);
+    }
   }
 
   #menu {
