@@ -35,6 +35,11 @@
   --color-warning: oklch(79.41% 0.118 73.57);
   --color-error: oklch(48.36% 0.123 16.34);
 }
+@layer utilities {
+
+
+  --color-primary: oklch(38.81% 0.141 132.11);
+}
 
 @theme {
   --font-bebas: "Bebas Neue", sans-serif;

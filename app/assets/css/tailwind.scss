@@ -55,6 +55,14 @@
   }
 }
 
+
+@layer utilities {
+
+
+  --color-primary: oklch(38.81% 0.141 132.11);
+}
+
+
 @font-face {
   font-family: 'Alfa Slab One';
   font-display: swap;
