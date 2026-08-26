@@ -1,11 +1,6 @@
 <script setup lang="ts">
 import {useUserStore} from "../stores/userStore";
 const user = useUserStore()
-definePageMeta
-({
-  middleware
-      : ["auth"]
-})
 
 useHead({
   title: 'Kebab',

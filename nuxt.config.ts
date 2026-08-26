@@ -180,7 +180,6 @@ export default defineNuxtConfig({
         'pinia',
         'gsap',
         'gsap/ScrollTrigger',
-        'workbox-window',
       ]
     }
   },
