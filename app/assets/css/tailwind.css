@@ -67,7 +67,7 @@
   name: "dark";
   color-scheme: dark;
 
-  --color-primary: oklch(80% 0 0);
+  --color-primary: oklch(30.62% 0.059 280.81);
   --color-primary-content: oklch(20% 0 0);
 
   --color-secondary: oklch(55.23% 0.096 67.08);
@@ -235,8 +235,13 @@ html:has(
     color: black;
   }
 
-  #register form {
-    @apply w-2/3 sm:w-1/2 mx-auto;
+  #register  {
+    form {
+      @apply w-2/3 sm:w-1/2 mx-auto;
+    }
+   p {
+      color: oklch(0.8 0 0);
+    }
   }
 
   #login form {
@@ -493,6 +498,13 @@ html:has(
     background-color: oklch(0.8 0 0);
   }
 
+  #settings_modal {
+    h2 {
+      color: oklch(0.8 0 0);
+    }
+
+  }
+
   #menu {
     .swiper-preview,
     .swiper-next {
@@ -500,6 +512,9 @@ html:has(
     }
 
     h2 {
+      color: oklch(0.8 0 0);
+    }
+    p {
       color: oklch(0.8 0 0);
     }
   }
