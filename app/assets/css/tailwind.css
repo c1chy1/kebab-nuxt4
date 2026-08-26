@@ -1,45 +1,116 @@
 @import "tailwindcss";
+
 @plugin "daisyui" {
-  themes: light --default, dark --prefersdark;
-  exclude: accordion, alert, artboard, carousel, chat, countdown, diff, file-input, kbd, loading, pagination, progress, radial-progress, radio, range, rating, stat, steps, timeline, toggle, tooltip;
+  themes: kebab --default, dark --prefersdark;
+  exclude: accordion, alert, artboard, carousel, chat, countdown, diff,
+  file-input, kbd, loading, pagination, progress, radial-progress,
+  radio, range, rating, stat, steps, timeline, toggle, tooltip;
 }
+
 @plugin "@tailwindcss/typography";
 
+/* =========================================================
+   DAISYUI - LIGHT / KEBAB THEME
+   ========================================================= */
+
 @plugin "daisyui/theme" {
-  name: "light";
+  name: "kebab";
   default: true;
   color-scheme: light;
+
   --color-primary: oklch(38.81% 0.141 132.11);
+  --color-primary-content: oklch(100% 0 0);
+
   --color-secondary: oklch(65.04% 0.197 41.62);
+  --color-secondary-content: oklch(100% 0 0);
+
   --color-accent: oklch(80.93% 0.155 77.17);
+  --color-accent-content: oklch(20% 0 0);
+
   --color-neutral: oklch(92% 0.03 41.62);
+  --color-neutral-content: oklch(20% 0 0);
+
   --color-info: oklch(55.4% 0.076 201.07);
+  --color-info-content: oklch(100% 0 0);
+
   --color-success: oklch(54.87% 0.096 301.83);
+  --color-success-content: oklch(100% 0 0);
+
   --color-warning: oklch(70.67% 0.137 55.65);
+  --color-warning-content: oklch(20% 0 0);
+
   --color-error: oklch(65.55% 0.178 15.68);
+  --color-error-content: oklch(100% 0 0);
+
   --color-base-100: oklch(100% 0 0);
+  --color-base-200: oklch(98% 0 0);
+  --color-base-300: oklch(95% 0 0);
   --color-base-content: oklch(20% 0 0);
+
+  --radius-selector: 0.5rem;
+  --radius-field: 0.25rem;
+  --radius-box: 0.5rem;
+
+  --size-selector: 0.25rem;
+  --size-field: 0.25rem;
+
+  --border: 1px;
+  --depth: 1;
+  --noise: 0;
 }
+
+/* =========================================================
+   DAISYUI - DARK THEME
+   ========================================================= */
 
 @plugin "daisyui/theme" {
   name: "dark";
   color-scheme: dark;
-  --color-primary: oklch(0.8 0 0);;
+
+  --color-primary: oklch(80% 0 0);
+  --color-primary-content: oklch(20% 0 0);
+
   --color-secondary: oklch(55.23% 0.096 67.08);
+  --color-secondary-content: oklch(100% 0 0);
+
   --color-accent: oklch(65.55% 0.178 15.68);
+  --color-accent-content: oklch(100% 0 0);
+
   --color-neutral: oklch(30.62% 0.059 280.81);
+  --color-neutral-content: oklch(100% 0 0);
+
   --color-base-100: oklch(30.62% 0.059 280.81);
+  --color-base-200: oklch(28% 0.05 280.81);
+  --color-base-300: oklch(25% 0.045 280.81);
   --color-base-content: oklch(80% 0 0);
+
   --color-info: oklch(76.42% 0.065 209.26);
+  --color-info-content: oklch(20% 0 0);
+
   --color-success: oklch(77.32% 0.09 305.18);
+  --color-success-content: oklch(20% 0 0);
+
   --color-warning: oklch(79.41% 0.118 73.57);
+  --color-warning-content: oklch(20% 0 0);
+
   --color-error: oklch(48.36% 0.123 16.34);
-}
-@layer utilities {
+  --color-error-content: oklch(100% 0 0);
 
+  --radius-selector: 0.5rem;
+  --radius-field: 0.25rem;
+  --radius-box: 0.5rem;
 
-  --color-primary: oklch(38.81% 0.141 132.11);
+  --size-selector: 0.25rem;
+  --size-field: 0.25rem;
+
+  --border: 1px;
+  --depth: 1;
+  --noise: 0;
 }
+
+/* =========================================================
+   TAILWIND THEME
+   ========================================================= */
 
 @theme {
   --font-bebas: "Bebas Neue", sans-serif;
@@ -52,45 +123,65 @@
   --breakpoint-xl: 1280px;
   --breakpoint-2xl: 1536px;
 
-  --animate-shake: shake 2.5s cubic-bezier(.36,.07,.19,.97) infinite;
+  --animate-shake: shake 2.5s cubic-bezier(.36, .07, .19, .97) infinite;
+
   @keyframes shake {
-    10%, 90% { transform: translate3d(-1px, 0, 0); }
-    20%, 80% { transform: translate3d(2px, 0, 0); }
-    30%, 50%, 70% { transform: translate3d(-4px, 0, 0); }
-    40%, 60% { transform: translate3d(4px, 0, 0); }
+    10%, 90% {
+      transform: translate3d(-1px, 0, 0);
+    }
+
+    20%, 80% {
+      transform: translate3d(2px, 0, 0);
+    }
+
+    30%, 50%, 70% {
+      transform: translate3d(-4px, 0, 0);
+    }
+
+    40%, 60% {
+      transform: translate3d(4px, 0, 0);
+    }
   }
 }
 
+/* =========================================================
+   FONTS
+   ========================================================= */
+
 @font-face {
-  font-family: 'Alfa Slab One';
+  font-family: "Alfa Slab One";
   font-display: swap;
-  src: url('/fonts/AlfaSlabOne-Regular.woff2') format('woff2');
+  src: url("/fonts/AlfaSlabOne-Regular.woff2") format("woff2");
   unicode-range: U+0020-007E, U+00C0-00FF, U+0100-017F;
 }
 
 @font-face {
-  font-family: 'Bebas Neue';
+  font-family: "Bebas Neue";
   font-display: swap;
-  src: url('/fonts/BebasNeue.woff2') format('woff2');
+  src: url("/fonts/BebasNeue.woff2") format("woff2");
   font-weight: 700;
   unicode-range: U+0020-007E, U+00C0-00FF, U+0100-017F;
 }
 
 @font-face {
-  font-family: 'Montserrat';
+  font-family: "Montserrat";
   font-display: swap;
-  src: url('/fonts/Montserrat-Bold.woff2') format('woff2');
+  src: url("/fonts/Montserrat-Bold.woff2") format("woff2");
   font-weight: 700;
   unicode-range: U+0020-007E, U+00C0-00FF, U+0100-017F;
 }
 
 @font-face {
-  font-family: 'Montserrat';
+  font-family: "Montserrat";
   font-display: swap;
-  src: url('/fonts/Montserrat-Regular.woff2') format('woff2');
+  src: url("/fonts/Montserrat-Regular.woff2") format("woff2");
   font-weight: 400;
   unicode-range: U+0020-007E, U+00C0-00FF, U+0100-017F;
 }
+
+/* =========================================================
+   ROOT
+   ========================================================= */
 
 :root {
   font-size: 16px;
@@ -100,6 +191,10 @@
   -moz-osx-font-smoothing: grayscale;
   -webkit-text-size-adjust: 100%;
 }
+
+/* =========================================================
+   BODY
+   ========================================================= */
 
 body {
   margin: 0;
@@ -111,14 +206,33 @@ body {
   text-rendering: geometricPrecision;
 }
 
-html:has(:is(.modal-open, .modal:target, .modal-toggle:checked + .modal, .modal[open])) {
+/* =========================================================
+   MODAL SCROLL
+   ========================================================= */
+
+html:has(
+  :is(
+    .modal-open,
+    .modal:target,
+    .modal-toggle:checked + .modal,
+    .modal[open]
+  )
+) {
   overflow-x: clip !important;
   overflow-y: scroll !important;
 }
 
+/* =========================================================
+   BASE
+   ========================================================= */
+
 @layer base {
   .toast-center {
     text-align: center;
+  }
+
+  p {
+    color: black;
   }
 
   #register form {
@@ -130,44 +244,125 @@ html:has(:is(.modal-open, .modal:target, .modal-toggle:checked + .modal, .modal[
   }
 
   #contact {
-    p, h2 { color: white; }
-    span:hover { color: #ffc107; }
-    a { color: white; &:hover { color: #ffc107; } }
-  }
-}
+    p,
+    h2 {
+      color: white;
+    }
 
-@layer base {
+    span:hover {
+      color: #ffc107;
+    }
+
+    a {
+      color: white;
+
+      &:hover {
+        color: #ffc107;
+      }
+    }
+  }
+
   nav .dropdown-content {
     background-color: rgba(185, 207, 33, 0.88);
   }
 }
 
+/* =========================================================
+   COMPONENTS
+   ========================================================= */
+
 @layer components {
   .button-orange {
-    @apply py-2 px-4 xl:py-4 xl:px-10 bg-[#ff6d00] font-alfa leading-none rounded hover:bg-primary border-none uppercase text-center text-base font-medium text-white transition-all ease-out duration-300 inline-block;
+    @apply py-2 px-4 xl:py-4 xl:px-10
+    bg-[#ff6d00]
+    font-alfa
+    leading-none
+    rounded
+    hover:bg-primary
+    border-none
+    uppercase
+    text-center
+    text-base
+    font-medium
+    text-white
+    transition-all
+    ease-out
+    duration-300
+    inline-block;
   }
 
   .form-label {
-    @apply py-1 sm:py-2 xl:py-3 inline-block font-mont xl:text-xl text-primary text-left font-semibold tracking-wider transition-all duration-500;
+    @apply py-1 sm:py-2 xl:py-3
+    inline-block
+    font-mont
+    xl:text-xl
+    text-primary
+    text-left
+    font-semibold
+    tracking-wider
+    transition-all
+    duration-500;
   }
 
   .form-input {
-    @apply h-7 sm:h-8 xl:h-10 pl-1 sm:pl-2 w-full font-bebas text-base sm:text-lg text-[#3d3d3d] input join-item shadow-none border-[#ced4da] focus:outline-1 focus:outline-offset-0;
+    @apply h-7 sm:h-8 xl:h-10
+    pl-1 sm:pl-2
+    w-full
+    font-bebas
+    text-base sm:text-lg
+    text-[#3d3d3d]
+    input
+    join-item
+    shadow-none
+    border-[#ced4da]
+    focus:outline-1
+    focus:outline-offset-0;
   }
 
   .form-validation {
-    @apply text-xs xl:text-sm mt-1 p-1.5 bottom-8 sm:bottom-10 xl:bottom-12 font-bebas w-full absolute text-white rounded;
-    background-color: oklch(59.8891% 0.107129 2.655486 / 1)
+    @apply text-xs xl:text-sm
+    mt-1
+    p-1.5
+    bottom-8 sm:bottom-10 xl:bottom-12
+    font-bebas
+    w-full
+    absolute
+    text-white
+    rounded;
+
+    background-color: oklch(59.8891% 0.107129 2.655486 / 1);
   }
 
   .scroll-top-button {
-    @apply !absolute xl:!-bottom-3 !left-0 bg-primary !flex !justify-center !items-center !w-11 !h-11 !rounded-full transition-all;
+    @apply !absolute
+    xl:!-bottom-3
+    !left-0
+    bg-primary
+    !flex
+    !justify-center
+    !items-center
+    !w-11
+    !h-11
+    !rounded-full
+    transition-all;
   }
 
   .section-title {
-    @apply text-center text-2xl font-alfa sm:text-[36px] lg:text-[50px] mb-2.5 leading-tight font-medium uppercase;
+    @apply text-center
+    text-2xl
+    font-alfa
+    sm:text-[36px]
+    lg:text-[50px]
+    mb-2.5
+    leading-tight
+    font-medium
+    uppercase;
   }
 }
+
+/* =========================================================
+   TOASTIFY
+   ========================================================= */
 
 .Toastify__toast-container--top-center {
   top: 72px !important;
@@ -183,13 +378,9 @@ html:has(:is(.modal-open, .modal:target, .modal-toggle:checked + .modal, .modal[
   font-family: var(--font-alfa) !important;
 }
 
-.section-title {
-  color: var(--color-primary) !important;
-}
-
-[data-theme='dark'] .section-title {
-  color: oklch(0.8 0 0) !important;
-}
+/* =========================================================
+   MOBILE MENU
+   ========================================================= */
 
 #bg-menu-mobile {
   background-color: oklch(84.4776% 0.151405 80.341749 / 1);
@@ -200,13 +391,28 @@ html:has(:is(.modal-open, .modal:target, .modal-toggle:checked + .modal, .modal[
   right: -100%;
   will-change: transform;
 }
-#bg-menu-mobile ul { list-style: none; }
-#bg-menu-mobile ul li { position: relative; left: 100%; cursor: pointer; will-change: transform; }
+
+#bg-menu-mobile ul {
+  list-style: none;
+}
+
+#bg-menu-mobile ul li {
+  position: relative;
+  left: 100%;
+  cursor: pointer;
+  will-change: transform;
+}
+
+/* =========================================================
+   HAMBURGER
+   ========================================================= */
+
 #hamburger::before {
-  content: '';
+  content: "";
   position: absolute;
   inset: -14px;
 }
+
 #hamburger span {
   z-index: 3;
   display: block;
@@ -217,60 +423,101 @@ html:has(:is(.modal-open, .modal:target, .modal-toggle:checked + .modal, .modal[
   opacity: 1;
   left: 0;
   transform: rotate(0deg);
-  transition: .25s ease-in-out;
+  transition: 0.25s ease-in-out;
 }
-#hamburger:hover span:first-child { transition: .20s ease-in-out; }
-#hamburger:hover span:nth-child(3) { transition: .16s ease-in-out; }
-#hamburger.open span:first-child { top: 14px; transform: rotate(135deg); }
-#hamburger.open span:nth-child(2) { opacity: 0; left: -30px; transition: .16s ease-in-out; }
-#hamburger.open span:nth-child(3) { top: 14px; transform: rotate(-135deg); }
 
-[data-theme='dark'] {
+#hamburger:hover span:first-child {
+  transition: 0.20s ease-in-out;
+}
+
+#hamburger:hover span:nth-child(3) {
+  transition: 0.16s ease-in-out;
+}
+
+#hamburger.open span:first-child {
+  top: 14px;
+  transform: rotate(135deg);
+}
+
+#hamburger.open span:nth-child(2) {
+  opacity: 0;
+  left: -30px;
+  transition: 0.16s ease-in-out;
+}
+
+#hamburger.open span:nth-child(3) {
+  top: 14px;
+  transform: rotate(-135deg);
+}
+
+/* =========================================================
+   DARK THEME
+   ========================================================= */
+
+[data-theme="dark"] {
   html {
     background-color: #393552;
   }
 
   body {
-    @apply bg-primary bg-[url('/bg.png')];
+    @apply bg-primary bg-[url("/bg.png")];
   }
 
   .tagline {
     background-color: oklch(0.3 0 0);
   }
+
   #events .hero-content {
     background-color: oklch(0.8 0 0);
-    h2, p { color: oklch(0.3 0 0); }
+
+    h2,
+    p {
+      color: oklch(0.3 0 0);
+    }
   }
+
   .card-title {
     color: oklch(0.8 0 0);
   }
+
   .events {
-
     background-color: oklch(0.8 0 0);
-     h2 {
-       color: oklch(.3 0 0)
-     }
+
+    h2,
     p {
-      color: oklch(.3 0 0)
+      color: oklch(0.3 0 0);
     }
   }
+
   #bg-menu-mobile {
-  background-color: oklch(0.8 0 0);
+    background-color: oklch(0.8 0 0);
   }
+
   #menu {
-    .swiper-preview {
-
-      background-color: rgb(0, 107, 0);
-    }
+    .swiper-preview,
     .swiper-next {
-
       background-color: rgb(0, 107, 0);
     }
-    h2 {    color: oklch(0.8 0 0);  }
+
+    h2 {
+      color: oklch(0.8 0 0);
+    }
   }
 
-  .form-input, .form-label {
+  .form-input,
+  .form-label {
     color: oklch(0.8 0 0);
+  }
+
+  .form-input:-webkit-autofill,
+  .form-input:-webkit-autofill:hover,
+  .form-input:-webkit-autofill:focus,
+  .form-input:-webkit-autofill:active {
+    -webkit-box-shadow:
+            0 0 0 1000px oklch(30.62% 0.059 280.81) inset;
+
+    -webkit-text-fill-color: oklch(0.8 0 0);
+    caret-color: oklch(0.8 0 0);
   }
 
   #cart h2 {
@@ -280,6 +527,7 @@ html:has(:is(.modal-open, .modal:target, .modal-toggle:checked + .modal, .modal[
   .button-orange {
     @apply bg-secondary hover:bg-[#BEBEBEFF] hover:text-primary;
   }
+
   nav .dropdown-content {
     background-color: rgba(189, 189, 189, 0.88);
   }
@@ -306,7 +554,7 @@ html:has(:is(.modal-open, .modal:target, .modal-toggle:checked + .modal, .modal[
   }
 
   .background-dark-header {
-    background: rgb(142, 31, 31, 0.5);
+    background: rgb(142 31 31 / 0.5);
   }
 
   .shadow-dark-sm {
