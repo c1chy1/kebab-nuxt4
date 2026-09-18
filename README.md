@@ -9,7 +9,6 @@ A modern **full-stack e-commerce platform** built with **Nuxt 4**, combining a f
 ### Frontend
 
 * Nuxt 4
-* Vue 3
 * Tailwind CSS v4
 * DaisyUI
 * Sass
@@ -26,7 +25,7 @@ A modern **full-stack e-commerce platform** built with **Nuxt 4**, combining a f
 * LightGallery
 * Nuxt Image
 * Nuxt Icon
-* Vue3 Toastify
+* Vue Toastify
 
 ### Backend
 
