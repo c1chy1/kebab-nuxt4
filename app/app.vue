@@ -21,20 +21,22 @@ import {useUserStore} from "@/stores/userStore";
 import {useCartStore} from "@/stores/useCart";
 const i18nHead = useLocaleHead()
 const themeStore = useThemeStore()
-const { theme } = storeToRefs(themeStore)
-useHead(() => ({ htmlAttrs: { ...i18nHead.value.htmlAttrs, 'data-theme': theme.value } }))
+const {theme} = storeToRefs(themeStore)
+useHead(() => ({htmlAttrs: {...i18nHead.value.htmlAttrs, 'data-theme': theme.value}}))
 
-const { t } = useI18n()
-useSeoMeta({ description: () => t('meta.description') })
+const {t} = useI18n()
+useSeoMeta({description: () => t('meta.description')})
 
 const showIntro = ref(true)
 const showPage = ref(false)
 
-const langChosenCookie = useCookie('lang-chosen', { maxAge: 60 * 60 * 24 * 365 })
+const langChosenCookie = useCookie('lang-chosen', {maxAge: 60 * 60 * 24 * 365})
 const lang = ref<string | null>(langChosenCookie.value ?? null)
 
-const { introComplete } = useIntroState()
-watch(showPage, (val) => { if (val) introComplete.value = true })
+const {introComplete} = useIntroState()
+watch(showPage, (val) => {
+  if (val) introComplete.value = true
+})
 const user = useUserStore()
 
 const {loadCart} = useCartStore()
@@ -43,7 +45,7 @@ const lenisRef = useTemplateRef('lenisRef')
 
 await callOnce(async () => {
   const headers = useRequestHeaders(['cookie'])
-  const data = await $fetch<any>('/api/auth/me', { headers })
+  const data = await $fetch<any>('/api/auth/me', {headers})
   if (data) {
     user.userInfo = data
     user.isAdmin = data.role === 'admin'
@@ -57,8 +59,8 @@ onMounted(async () => {
   window.scrollTo(0, 0)
   loadCart()
 
-  const { updateGlobalOptions } = await import('vue3-toastify')
-  updateGlobalOptions({ position: 'top-center' })
+  const {updateGlobalOptions} = await import('vue3-toastify')
+  updateGlobalOptions({position: 'top-center'})
 
   window.addEventListener('language-selected', (e: CustomEvent) => {
     lang.value = e.detail

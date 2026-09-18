@@ -11,9 +11,11 @@ const hamburgers = computed(() => [
 
 const swiper = useSwiper(containerRef, {
   effect: 'fade',
+  fadeEffect: {
+    crossFade: true,
+  },
   speed: 1000,
   slidesPerView: 1,
-  spaceBetween: 15,
 })
 
 const { realIndex } = swiper
@@ -27,12 +29,12 @@ useLocaleTransition(eventsRef, 'h2')
       <swiper-container
           ref="containerRef"
           :init="false"
-          class="overflow-hidden shadow-xl"
+          class="overflow-hidden shadow-xl bg-white"
       >
         <swiper-slide
             v-for="(slide, i) in hamburgers"
             :key="i"
-            class="text-left events"
+            class="text-left events bg-white"
         >
           <div class=" flex flex-col-reverse lg:flex-row lg:items-stretch w-full p-2">
             <div class="w-full lg:w-1/2 px-2 py-8 lg:py-16 lg:pl-12 lg:pr-7">

@@ -30,6 +30,7 @@
                 loading="eager"
                 class="logo-box mx-auto sm:w-full lg:mr-0 cursor-grab active:cursor-grabbing"
               />
+
               <div
                 id="banner"
                 class="absolute flex p-1 xl:p-2 items-center justify-center will-change-transform
@@ -39,6 +40,8 @@
                        xl:size-40
                        bg-[#ff6d00] rounded-full opacity-0"
               >
+
+
                 <article
                   class="flex flex-col items-center justify-center w-full h-full
                          text-[22px] sm:text-[26px] md:text-[32px] 2xl:text-[58px] md:leading-[1.2]
