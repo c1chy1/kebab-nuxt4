@@ -134,7 +134,6 @@ export default defineNuxtConfig({
   app: {
     head: {
       link: [
-        { rel: 'manifest', href: '/manifest.webmanifest' },
         { rel: 'apple-touch-icon', href: '/icons/logo-192.png' },
         { rel: 'preload', as: 'font', type: 'font/woff2', crossorigin: 'anonymous', href: '/fonts/Montserrat-Regular.woff2' },
         { rel: 'preload', as: 'font', type: 'font/woff2', crossorigin: 'anonymous', href: '/fonts/Montserrat-Bold.woff2' },
