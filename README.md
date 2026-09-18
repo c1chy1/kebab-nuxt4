@@ -25,7 +25,7 @@ A modern **full-stack e-commerce platform** built with **Nuxt 4**, combining a f
 * LightGallery
 * Nuxt Image
 * Nuxt Icon
-* Vue3 Toastify
+* Vue Toastify
 
 ### Backend
 
