@@ -14,7 +14,7 @@ bg-repeat-round  lg:px-12 xl:px-16  font-bebas">
         />
       </div>
       <div class="navbar-end lg:flex items-end flex-col  text-primary  w-full">
-        <div class="hidden sm:flex items-center pr-20 space-x-5 lg:pt-6 lg:pr-24">
+        <div class="hidden sm:flex items-center pr-20 space-x-5 lg:pt-6 lg:pr-12 2xl:pr-14" >
           <img alt="delivery icon" width="41" height="33" class="animate-shake delay-500" src="/delivery-icon.png">
           <p class="text-xs text-primary md:text-sm lg:text-base 2xl:text-lg  text-center font-semibold font-mont py-5 tracking-wider transition-all duration-500">
             {{ $t('nav.delivery') }}</p>
