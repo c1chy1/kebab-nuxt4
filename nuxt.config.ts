@@ -176,9 +176,12 @@ export default defineNuxtConfig({
     plugins: [tailwindcss()],
     optimizeDeps: {
       include: [
-        'pinia',
         'gsap',
+        'gsap/Draggable',
         'gsap/ScrollTrigger',
+        'lightgallery',
+        'pinia',
+        'swiper/element/bundle',
       ]
     }
   },

@@ -32,3 +32,15 @@ minimumReleaseAgeExclude:
   - '@tailwindcss/oxide@4.3.3'
   - '@tailwindcss/vite@4.3.3'
   - tailwindcss@4.3.3
+  - '@formkit/core@2.2.1'
+  - '@formkit/dev@2.2.1'
+  - '@formkit/i18n@2.2.1'
+  - '@formkit/inputs@2.2.1'
+  - '@formkit/nuxt@2.2.1'
+  - '@formkit/observer@2.2.1'
+  - '@formkit/rules@2.2.1'
+  - '@formkit/themes@2.2.1'
+  - '@formkit/utils@2.2.1'
+  - '@formkit/validation@2.2.1'
+  - '@formkit/vue@2.2.1'
+  - gsap@3.15.1
