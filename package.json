@@ -10,7 +10,7 @@
     "postinstall": "nuxt prepare"
   },
   "dependencies": {
-    "@formkit/nuxt": "^2.2.1",
+    "@formkit/nuxt": "^2.3.0",
     "@nuxt/icon": "^2.6.2",
     "@nuxt/image": "^2.2.1",
     "@vercel/blob": "^2.8.2",
@@ -21,7 +21,7 @@
     "jsonwebtoken": "^9.0.3",
     "lenis": "^1.3.27",
     "lightgallery": "^3.0.0",
-    "mongoose": "^9.11.4",
+    "mongoose": "^9.12.0",
     "mongoose-bcrypt": "^1.11.0",
     "nuxt-security": "^2.7.0",
     "nuxt-swiper": "^2.0.2",
@@ -40,7 +40,7 @@
     "@tailwindcss/vite": "^4.3.4",
     "@types/compression": "^1.8.1",
     "@types/jsonwebtoken": "^9.0.10",
-    "@vue/compiler-dom": "^3.5.44",
+    "@vue/compiler-dom": "^3.5.45",
     "daisyui": "^5.7.50",
     "nuxt": "^4.6.4",
     "sass": "^1.107.1",

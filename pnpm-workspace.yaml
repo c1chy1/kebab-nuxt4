@@ -7,12 +7,12 @@ minimumReleaseAgeExclude:
   - daisyui@5.5.20 || 5.6.6 || 5.6.10 || 5.6.14 || 5.7.42
   - '@tailwindcss/typography@0.5.20'
   - sass@1.101.0
-  - mongoose@9.7.2 || 9.9.4
+  - mongoose@9.7.2 || 9.9.4 || 9.12.0
   - '@nuxt/icon@2.2.4 || 2.2.5 || 2.3.1'
   - '@vercel/blob@2.5.0'
-  - '@vue/compiler-core@3.5.39 || 3.5.40'
-  - '@vue/compiler-dom@3.5.39 || 3.5.40'
-  - '@vue/shared@3.5.39 || 3.5.40'
+  - '@vue/compiler-core@3.5.39 || 3.5.40 || 3.5.45'
+  - '@vue/compiler-dom@3.5.39 || 3.5.40 || 3.5.45'
+  - '@vue/shared@3.5.39 || 3.5.40 || 3.5.45'
   - lenis@1.3.24
   - '@nuxtjs/i18n@10.4.1'
   - '@pinia/nuxt@1.0.1'
@@ -32,15 +32,15 @@ minimumReleaseAgeExclude:
   - '@tailwindcss/oxide@4.3.3'
   - '@tailwindcss/vite@4.3.3'
   - tailwindcss@4.3.3
-  - '@formkit/core@2.2.1'
-  - '@formkit/dev@2.2.1'
-  - '@formkit/i18n@2.2.1'
-  - '@formkit/inputs@2.2.1'
-  - '@formkit/nuxt@2.2.1'
-  - '@formkit/observer@2.2.1'
-  - '@formkit/rules@2.2.1'
-  - '@formkit/themes@2.2.1'
-  - '@formkit/utils@2.2.1'
-  - '@formkit/validation@2.2.1'
-  - '@formkit/vue@2.2.1'
+  - '@formkit/core@2.2.1 || 2.3.0'
+  - '@formkit/dev@2.2.1 || 2.3.0'
+  - '@formkit/i18n@2.2.1 || 2.3.0'
+  - '@formkit/inputs@2.2.1 || 2.3.0'
+  - '@formkit/nuxt@2.2.1 || 2.3.0'
+  - '@formkit/observer@2.2.1 || 2.3.0'
+  - '@formkit/rules@2.2.1 || 2.3.0'
+  - '@formkit/themes@2.2.1 || 2.3.0'
+  - '@formkit/utils@2.2.1 || 2.3.0'
+  - '@formkit/validation@2.2.1 || 2.3.0'
+  - '@formkit/vue@2.2.1 || 2.3.0'
   - gsap@3.15.1
