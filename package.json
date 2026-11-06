@@ -10,7 +10,7 @@
     "postinstall": "nuxt prepare"
   },
   "dependencies": {
-    "@formkit/nuxt": "^2.3.0",
+    "@formkit/nuxt": "^2.4.0",
     "@nuxt/icon": "^2.6.2",
     "@nuxt/image": "^2.2.1",
     "@vercel/blob": "^2.8.2",
