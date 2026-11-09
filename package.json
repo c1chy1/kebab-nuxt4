@@ -10,7 +10,7 @@
     "postinstall": "nuxt prepare"
   },
   "dependencies": {
-    "@formkit/nuxt": "^2.4.0",
+    "@formkit/nuxt": "^2.5.0",
     "@nuxt/icon": "^2.6.2",
     "@nuxt/image": "^2.2.1",
     "@vercel/blob": "^2.8.2",
@@ -37,14 +37,14 @@
     "@nuxtjs/tailwindcss": "^6.14.0",
     "@pinia/nuxt": "^1.0.3",
     "@tailwindcss/typography": "^0.5.20" ,
-    "@tailwindcss/vite": "^4.3.4",
+    "@tailwindcss/vite": "^4.3.5",
     "@types/compression": "^1.8.1",
     "@types/jsonwebtoken": "^9.0.10",
     "@vue/compiler-dom": "^3.5.45",
     "daisyui": "^5.7.50",
     "nuxt": "^4.6.4",
-    "sass": "^1.107.1",
-    "tailwindcss": "^4.3.4",
+    "sass": "^1.108.1",
+    "tailwindcss": "^4.3.5",
     "tslib": "^2.9.1"
   }
 }
